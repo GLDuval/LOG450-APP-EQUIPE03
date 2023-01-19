@@ -1,0 +1,12 @@
+babel.config.js
+metro.config.js
+jest.setup.js
+.eslintrc.js
+.prettierrc.js
+index.js
+/android
+/ios
+/assets
+/node_modules
+/.vscode
+/.github
