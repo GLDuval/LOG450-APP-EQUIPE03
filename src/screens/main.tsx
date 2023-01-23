@@ -50,10 +50,20 @@ export const Main: NavioScreen = observer(({}) => {
 
   // STYLES
   const styles = StyleSheet.create({
+    page: {
+      borderTopEndRadius: 30,
+      borderTopStartRadius: 30,
+    },
     container: {
       fontSize: 24,
       flex: 1,
-      paddingTop: 10,
+      paddingTop: 60,
+      paddingBottom: 30,
+      marginHorizontal: 15,
+    },
+    carDontainer: {
+      fontSize: 24,
+      flex: 1,
       marginHorizontal: 15,
     },
     title: {
@@ -77,27 +87,30 @@ export const Main: NavioScreen = observer(({}) => {
       color: '#696d6e',
     },
     card: {
-      backgroundColor: '#E9C46A',
+      backgroundColor: '#e0e0de',
       padding: 10,
       marginVertical: 3,
-      borderRadius: 5,
+      borderRadius: 10,
     },
   });
   
   return (
-    <View flex bg-bgColor>
+    <View flex style={{ backgroundColor: '#E9C46A'}}>
       <ScrollView contentInsetAdjustmentBehavior="always">
-        <View style={styles.container}>
-          <View style={{flexDirection:"row"}}>
-            <Text style={styles.title}>
-              Bonjour, {"\n"}{username} !
-            </Text>
-            <View style={{flexDirection: 'row', justifyContent: 'flex-end', marginHorizontal:3}}>
-              <Avatar source={{ uri: 'https://static.pexels.com/photos/60628/flower-garden-blue-sky-hokkaido-japan-60628.jpeg' }} size={50}/>
+        <View>
+          <View style={styles.container}>
+            <View style={{flexDirection:"row"}}>
+              <Text style={styles.title}>
+                Bonjour, {"\n"}{username} !
+              </Text>
+              <View style={{flexDirection: 'row', justifyContent: 'flex-end', marginHorizontal:3}}>
+                <Avatar source={{ uri: 'https://static.pexels.com/photos/60628/flower-garden-blue-sky-hokkaido-japan-60628.jpeg' }} size={50}/>
+              </View>
             </View>
           </View>
         </View>
 
+        <View style={styles.page} bg-bgColor>
         <View style={styles.container}>
           <View style={{flexDirection:"row"}}>
             <Text style={styles.subtitle}>
@@ -113,7 +126,7 @@ export const Main: NavioScreen = observer(({}) => {
           sections={groceryStores}
           keyExtractor={(item, index) => item + index}
           renderItem={({item}) => (
-              <View style={styles.container}>
+              <View style={styles.carDontainer}>
                 <View style={styles.card}>
                   <View style={{flexDirection:"row"}}>
                     <Text style={styles.text}>
@@ -145,10 +158,11 @@ export const Main: NavioScreen = observer(({}) => {
             </Text>
           </View>
         </View>
+        </View>
       </ScrollView>
     </View>
   );
 });
 Main.options = () => ({
-  
+  title: services.t.do('home.title'),
 });
