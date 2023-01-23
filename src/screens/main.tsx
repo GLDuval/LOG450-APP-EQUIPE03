@@ -150,5 +150,5 @@ export const Main: NavioScreen = observer(({}) => {
   );
 });
 Main.options = () => ({
-  title: services.t.do('home.title'),
+  
 });

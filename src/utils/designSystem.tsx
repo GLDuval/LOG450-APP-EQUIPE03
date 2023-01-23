@@ -1,12 +1,10 @@
 import {DarkTheme, DefaultTheme, Theme} from '@react-navigation/native';
 import {NativeStackNavigationOptions} from '@react-navigation/native-stack';
-import {BottomTabNavigationOptions} from '@react-navigation/bottom-tabs';
 import {StatusBarStyle} from 'expo-status-bar';
 import {Appearance as RNAppearance, Platform} from 'react-native';
 import {Colors, Typography} from 'react-native-ui-lib';
 
 import {stores} from '../stores';
-import {Icon} from '../components/icon';
 import {Appearance} from './types/enums';
 
 // =============
@@ -135,8 +133,7 @@ export const getHeaderBlurEffect = (): 'regular' | 'light' | 'dark' => {
 
 // Default options
 export const screenDefaultOptions = (): NativeStackNavigationOptions => ({
-  headerShadowVisible: false,
-  headerTintColor: Colors.primary,
+  headerShown: false,
 
   // this setup makes large title work on iOS
   ...Platform.select({
@@ -149,29 +146,3 @@ export const screenDefaultOptions = (): NativeStackNavigationOptions => ({
     },
   }),
 });
-
-export const tabDefaultOptions = (): BottomTabNavigationOptions => ({
-  headerShown: false,
-  tabBarActiveTintColor: Colors.primary,
-  tabBarInactiveTintColor: Colors.grey40,
-  tabBarStyle: {backgroundColor: Colors.bgColor, borderTopWidth: 0, elevation: 0},
-});
-
-export const getTabBarIcon =
-  (tabName: string) =>
-  ({focused, color, size}: {focused: boolean; color: string; size: number}) =>
-    <Icon name={getTabIconName(tabName, focused)} size={size} color={color} />;
-
-const getTabIconName = (tabName: string, focused: boolean): string => {
-  if (tabName === 'MainTab') {
-    return focused ? 'home' : 'home-outline';
-  }
-  if (tabName === 'PlaygroundTab') {
-    return focused ? 'construct' : 'construct-outline';
-  }
-  if (tabName === 'SettingsTab') {
-    return focused ? 'settings' : 'settings-outline';
-  }
-
-  return 'list';
-};
