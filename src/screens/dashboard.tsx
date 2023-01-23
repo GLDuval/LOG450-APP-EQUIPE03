@@ -3,6 +3,7 @@ import {ScrollView, SectionList, StyleSheet} from 'react-native';
 import {Assets, Avatar, Colors, Icon, Text, View} from 'react-native-ui-lib';
 import {observer} from 'mobx-react';
 import {NavioScreen} from 'rn-navio';
+import { navio } from '.';
 
 export const Dashboard: NavioScreen = observer(({}) => {
   const username = "Félix-Antoine"
@@ -111,7 +112,12 @@ export const Dashboard: NavioScreen = observer(({}) => {
                 Bonjour, {"\n"}{username} !
               </Text>
               <View style={{flexDirection: 'row'}}>
-                <Avatar source={{ uri: 'https://randomuser.me/api/portraits/men/1.jpg' }} size={60}/>
+                  <Avatar 
+                    source={{ uri: 'https://randomuser.me/api/portraits/men/1.jpg' }}
+                    size={60} 
+                    onPress={() => {
+                      navio.show('Profile');
+                }} />
               </View>
             </View>
           </View>
