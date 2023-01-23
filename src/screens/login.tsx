@@ -1,6 +1,6 @@
 import React, {useCallback, useState} from 'react';
 import {ScrollView, SectionList, StyleSheet} from 'react-native';
-import {Assets, Avatar, Colors, Icon, Text, View} from 'react-native-ui-lib';
+import {TextField, Text, View, Button, Checkbox} from 'react-native-ui-lib';
 import {observer} from 'mobx-react';
 import {useNavigation} from '@react-navigation/native';
 import {NavioScreen} from 'rn-navio';
@@ -8,7 +8,8 @@ import {NavioScreen} from 'rn-navio';
 import {services, useServices} from '../services';
 import {useStores} from '../stores';
 import {useAppearance} from '../utils/hooks';
-import { TextInput } from 'react-native-gesture-handler';
+
+const googleIcon = require('../../assets/google.png')
 
 export const Login: NavioScreen = observer(({}) => {
   useAppearance();
@@ -44,6 +45,7 @@ export const Login: NavioScreen = observer(({}) => {
     headerTitle: {
       fontSize: 32,
       flex: 1,
+      fontWeight: 'bold',
       color: '#264653',
       textAlign: 'center',
     },
@@ -53,31 +55,29 @@ export const Login: NavioScreen = observer(({}) => {
       paddingTop: 10,
       marginHorizontal: 15,
     },
-    title: {
-      fontSize: 24,
-      flex: 1,
-      color: '#264653',
+    input: {
+      paddingHorizontal: 25,
     },
-    subtitle: {
-      fontSize: 22,
-      flex: 1,
-      color: Colors.black,
-      fontWeight: 'bold',
-    },
-    text: {
+    textField: {
       fontSize: 20,
-      flex: 1,
+      backgroundColor: '#F6F6F6',
+      borderColor: '#E8E8E8',
+      borderRadius: 10,
+      paddingHorizontal: 15,
+      paddingVertical: 10,
     },
-    infos: {
-      fontSize: 18,
-      flex: 1,
-      color: '#696d6e',
+    loginButton: {
+      backgroundColor: '#264653',
+      borderRadius: 10,
     },
-    card: {
-      backgroundColor: '#E9C46A',
-      padding: 10,
-      marginVertical: 3,
-      borderRadius: 5,
+    loginButtonLabel: {
+      fontSize: 20,
+      padding: 5,
+    },
+    loginGoogleButtonLabel: {
+      fontSize: 20,
+      color: "#264653",
+      padding: 5,
     },
   });
   
@@ -92,9 +92,55 @@ export const Login: NavioScreen = observer(({}) => {
           </View>
         </View>
         
-        <View>
-          <TextInput placeholder={services.t.do('login.email')} />
-          <TextInput placeholder={services.t.do('login.password')} />
+        <View style={{flexDirection:"column"}}>
+          <View style={styles.input}>
+            <TextField 
+            style={styles.textField}
+            placeholder={services.t.do('login.email')} 
+            validate="email" 
+            errorMessage={services.t.do('login.invalidEmail')} />
+          </View>
+          <View style={styles.input}>
+            <TextField 
+            style={styles.textField}
+            placeholder={services.t.do('login.password')}
+            secureTextEntry={true} />
+          </View>
+        </View>
+
+        <View style={styles.input}>
+          <View style={{flexDirection:"row", justifyContent:"space-between"}}>
+            <View>
+              <Checkbox 
+              value={false}
+              label={services.t.do('login.rememberMe')}/>
+            </View>
+            <View>
+              <Text>
+                {services.t.do('login.forgotPassword')}
+              </Text>
+            </View>
+          </View>
+        </View>
+
+        <View style={styles.input}>
+          <Button 
+            label={services.t.do('login.login')}
+            labelStyle={styles.loginButtonLabel}
+            borderRadius={15}
+            backgroundColor="#264653"
+            style={{marginBottom: 10}}
+          />
+        </View>
+        <View style={styles.input}>
+          <Button 
+            label={services.t.do('login.loginWithGoogle')}
+            labelStyle={styles.loginGoogleButtonLabel}
+            borderRadius={15}
+            backgroundColor="#FFFFFF"
+            style={{borderColor: "#D6D6D6"}}
+            iconSource={googleIcon}
+          />
         </View>
       </ScrollView>
     </View>
