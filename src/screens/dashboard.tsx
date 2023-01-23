@@ -1,38 +1,10 @@
-import React, {useCallback, useState} from 'react';
+import React from 'react';
 import {ScrollView, SectionList, StyleSheet} from 'react-native';
 import {Assets, Avatar, Colors, Icon, Text, View} from 'react-native-ui-lib';
 import {observer} from 'mobx-react';
-import {useNavigation} from '@react-navigation/native';
 import {NavioScreen} from 'rn-navio';
 
-import {services, useServices} from '../services';
-import {useStores} from '../stores';
-import {useAppearance} from '../utils/hooks';
-import { Row } from '../components/row';
-
-export const Main: NavioScreen = observer(({}) => {
-  useAppearance();
-  const navigation = useNavigation();
-  const {counter, ui} = useStores();
-  const {t, api, navio} = useServices();
-
-  // State (local)
-  const [loading, setLoading] = useState(false);
-
-  // API Methods
-  const getCounterValue = useCallback(async () => {
-    setLoading(true);
-    try {
-      const {value} = await api.counter.get();
-
-      counter.set('value', value);
-    } catch (e) {
-      console.log('[ERROR]', e);
-    } finally {
-      setLoading(false);
-    }
-  }, [api.counter, counter]);
-
+export const Dashboard: NavioScreen = observer(({}) => {
   const username = "Félix-Antoine"
 
   const groceryStores = [
@@ -108,7 +80,7 @@ export const Main: NavioScreen = observer(({}) => {
       backgroundColor: '#264653',
       borderRadius: 15,
       padding: 10,
-      marginEnd: 5,
+      marginEnd: 10,
     },
     groceryListCard: {
       flex: 1,
@@ -121,7 +93,11 @@ export const Main: NavioScreen = observer(({}) => {
       backgroundColor: '#578699',
       borderRadius: 15,
       padding: 10,
-      marginTop: 5,
+      marginTop: 10,
+    },
+    bottom: {
+      flex: 1,
+      justifyContent: 'flex-end',
     }
   });
   
@@ -134,8 +110,8 @@ export const Main: NavioScreen = observer(({}) => {
               <Text style={styles.title}>
                 Bonjour, {"\n"}{username} !
               </Text>
-              <View style={{flexDirection: 'row', justifyContent: 'flex-end', marginHorizontal:3}}>
-                <Avatar source={{ uri: 'https://static.pexels.com/photos/60628/flower-garden-blue-sky-hokkaido-japan-60628.jpeg' }} size={50}/>
+              <View style={{flexDirection: 'row'}}>
+                <Avatar source={{ uri: 'https://randomuser.me/api/portraits/men/1.jpg' }} size={60}/>
               </View>
             </View>
           </View>
@@ -145,36 +121,42 @@ export const Main: NavioScreen = observer(({}) => {
           <View style={styles.menuContainer}>
             <View style={{flexDirection:"row"}}>
               <View style={styles.recepesCard}>
-                <Icon
-                  size={20}
-                  tintColor={Colors.white}
-                  source={Assets.icons['search']}
-                />
-                <Text style={styles.menuText}>
-                  Mes {'\n'}recettes
-                </Text>
-              </View>
-
-              <View style={{flexDirection:"column"}}>
-                <View style={styles.groceryListCard}>
+                <View style={{flexDirection:"row-reverse"}}>
                   <Icon
-                    size={20}
-                    tintColor={Colors.white}
-                    source={Assets.icons['search']}
-                    style={{justifyContent: 'flex-end'}}
-                  />
+                      size={20}
+                      tintColor={Colors.white}
+                      source={Assets.icons['search']}
+                    />
+                </View>
+                <View style={styles.bottom}>
+                  <Text style={styles.menuText}>
+                    Mes {'\n'}recettes
+                  </Text>
+                </View>
+              </View>
+            
+              <View style={{flexDirection:"column", width:'50%'}}>
+                <View style={styles.groceryListCard}>
+                  <View style={{flexDirection:"row-reverse"}}>
+                    <Icon
+                        size={20}
+                        tintColor={Colors.white}
+                        source={Assets.icons['search']}
+                      />
+                  </View>
                   <Text style={styles.menuText}>
                     Liste {'\n'}d'épicerie
                   </Text>
                 </View>
 
                 <View style={styles.mapCart}>
-                  <Icon
-                    size={20}
-                    tintColor={Colors.white}
-                    source={Assets.icons['search']}
-                    style={{justifyContent: 'flex-end'}}
-                  />
+                  <View style={{flexDirection:"row-reverse"}}>
+                    <Icon
+                        size={20}
+                        tintColor={Colors.white}
+                        source={Assets.icons['search']}
+                      />
+                  </View>
                   <Text style={styles.menuText}>
                     Carte
                   </Text>
@@ -199,7 +181,7 @@ export const Main: NavioScreen = observer(({}) => {
                       <Text style={styles.cardHeader}>
                         {item}
                       </Text>
-                      <View style={{flexDirection: 'row', justifyContent: 'flex-end', marginHorizontal:3, marginTop: 4}}>
+                      <View>
                         <Icon
                             size={22}
                             tintColor={'#264653'}
@@ -219,5 +201,5 @@ export const Main: NavioScreen = observer(({}) => {
     </View>
   );
 });
-Main.options = () => ({
+Dashboard.options = () => ({
 });
