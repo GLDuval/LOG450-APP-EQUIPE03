@@ -1,18 +1,12 @@
-import React, {useCallback, useEffect, useState} from 'react';
-import {ScrollView} from 'react-native';
-import {Text, View} from 'react-native-ui-lib';
-import Constants from 'expo-constants';
-import * as Application from 'expo-application';
+import React, {useCallback, useState} from 'react';
+import {ScrollView, SectionList, StyleSheet} from 'react-native';
+import {Assets, Avatar, Colors, Icon, Text, View} from 'react-native-ui-lib';
 import {observer} from 'mobx-react';
 import {useNavigation} from '@react-navigation/native';
 import {NavioScreen} from 'rn-navio';
 
 import {services, useServices} from '../services';
 import {useStores} from '../stores';
-import {Section} from '../components/section';
-import {BButton, HeaderButton} from '../components/button';
-import {Reanimated2} from '../components/reanimated2';
-import {Row} from '../components/row';
 import {useAppearance} from '../utils/hooks';
 
 export const Main: NavioScreen = observer(({}) => {
@@ -38,80 +32,119 @@ export const Main: NavioScreen = observer(({}) => {
     }
   }, [api.counter, counter]);
 
-  // Methods
-  const push = () => navio.push('Example', {type: 'push'});
-  const pushStack = () => navio.pushStack('ExampleStack');
-  const jumpTo = () => navio.jumpTo('PlaygroundTab');
-  const show = () => navio.show('ExampleModal');
-  const setRoot = () => navio.setRoot('ExampleStack');
+  const username = "Félix-Antoine"
 
-  const handleCounterDec = () => counter.set('value', counter.value - 1);
-  const handleCounterInc = () => counter.set('value', counter.value + 1);
-  const handleCounterReset = () => counter.set('value', 0);
+  const groceryStores = [
+    {
+      title: 'Épiceries',
+      data: ['Super C', 'Maxi', 'IGA'],
+    },
+  ];
 
-  // Start
-  useEffect(() => {
-    configureUI();
-    getCounterValue();
-  }, []);
+  const recepes = [
+    {
+      title: 'Recettes',
+      data: ['Caramilk et jus d\'orange', 'Maxi', 'IGA'],
+    },
+  ];
 
-  // UI Methods
-  const configureUI = () => {
-    navigation.setOptions({
-      headerRight: () => (
-        <Row>
-          <HeaderButton onPress={handleCounterDec} label="Dec" />
-          <HeaderButton onPress={handleCounterInc} label="Inc" />
-        </Row>
-      ),
-    });
-  };
-
+  // STYLES
+  const styles = StyleSheet.create({
+    container: {
+      fontSize: 24,
+      flex: 1,
+      paddingTop: 10,
+      marginHorizontal: 15,
+    },
+    title: {
+      fontSize: 24,
+      flex: 1,
+      color: '#264653',
+    },
+    subtitle: {
+      fontSize: 22,
+      flex: 1,
+      color: Colors.black,
+      fontWeight: 'bold',
+    },
+    text: {
+      fontSize: 20,
+      flex: 1,
+    },
+    infos: {
+      fontSize: 18,
+      flex: 1,
+      color: '#696d6e',
+    },
+    card: {
+      backgroundColor: '#E9C46A',
+      padding: 10,
+      marginVertical: 3,
+      borderRadius: 5,
+    },
+  });
+  
   return (
     <View flex bg-bgColor>
       <ScrollView contentInsetAdjustmentBehavior="always">
-        <Section title="Expo">
-          <Text text60R textColor>
-            Session ID: {Constants.sessionId}
-          </Text>
-          <Text text60R textColor>
-            App name: {Application.applicationName}
-          </Text>
-        </Section>
-
-        <Section title={t.do('section.navio.title')}>
-          <BButton marginV-s1 label={t.do('section.navio.button.push')} onPress={push} />
-          <BButton marginV-s1 label={t.do('section.navio.button.push_stack')} onPress={pushStack} />
-          <BButton marginV-s1 label={t.do('section.navio.button.jump_to')} onPress={jumpTo} />
-          <BButton marginV-s1 label={t.do('section.navio.button.show')} onPress={show} />
-          <BButton marginV-s1 label={'Set Root - Stack'} onPress={setRoot} />
-        </Section>
-
-        <Section title="Reanimated 2">
-          <Reanimated2 />
-        </Section>
-
-        <Section title="MobX">
-          <View centerV>
-            <Text marginB-s2 text60R textColor>
-              App launches: {ui.appLaunches}
+        <View style={styles.container}>
+          <View style={{flexDirection:"row"}}>
+            <Text style={styles.title}>
+              Bonjour, {"\n"}{username} !
             </Text>
-
-            <Text marginB-s2 text60R textColor>
-              Counter: <Text textColor>{counter.value}</Text>
-            </Text>
-
-            <Row>
-              <BButton margin-s1 label=" - " onPress={handleCounterDec} />
-              <BButton margin-s1 label=" + " onPress={handleCounterInc} />
-              <BButton margin-s1 label="reset" onPress={handleCounterReset} />
-            </Row>
+            <View style={{flexDirection: 'row', justifyContent: 'flex-end', marginHorizontal:3}}>
+              <Avatar source={{ uri: 'https://static.pexels.com/photos/60628/flower-garden-blue-sky-hokkaido-japan-60628.jpeg' }} size={50}/>
+            </View>
           </View>
-        </Section>
+        </View>
 
-        <Section title="API">
-          <BButton margin-s1 label="Update counter value from API" onPress={getCounterValue} />
-        </Section>
+        <View style={styles.container}>
+          <View style={{flexDirection:"row"}}>
+            <Text style={styles.subtitle}>
+              Épiceries
+            </Text>
+            <Text style={{flexDirection: 'row', justifyContent: 'flex-end', marginHorizontal:3}}>
+              Voir tout
+            </Text>
+          </View>
+        </View>
+        
+        <SectionList
+          sections={groceryStores}
+          keyExtractor={(item, index) => item + index}
+          renderItem={({item}) => (
+              <View style={styles.container}>
+                <View style={styles.card}>
+                  <View style={{flexDirection:"row"}}>
+                    <Text style={styles.text}>
+                      {item}
+                    </Text>
+                    <View style={{flexDirection: 'row', justifyContent: 'flex-end', marginHorizontal:3, marginTop: 4}}>
+                      <Icon
+                          size={25}
+                          tintColor={'#264653'}
+                          source={Assets.icons['search']}
+                        />
+                    </View>
+                  </View>
+                  <Text style={styles.infos}>
+                    Jusqu'à mercredi
+                  </Text>
+              </View>
+            </View>
+          )}
+        />
+
+        <View style={styles.container}>
+          <View style={{flexDirection:"row"}}>
+            <Text style={styles.subtitle}>
+             Recettes
+            </Text>
+            <Text style={{flexDirection: 'row', justifyContent: 'flex-end', marginHorizontal:3}}>
+              Voir tout
+            </Text>
+          </View>
+        </View>
       </ScrollView>
     </View>
   );
