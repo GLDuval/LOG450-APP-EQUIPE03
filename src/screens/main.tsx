@@ -8,6 +8,7 @@ import {NavioScreen} from 'rn-navio';
 import {services, useServices} from '../services';
 import {useStores} from '../stores';
 import {useAppearance} from '../utils/hooks';
+import { Row } from '../components/row';
 
 export const Main: NavioScreen = observer(({}) => {
   useAppearance();
@@ -37,14 +38,7 @@ export const Main: NavioScreen = observer(({}) => {
   const groceryStores = [
     {
       title: 'Épiceries',
-      data: ['Super C', 'Maxi', 'IGA'],
-    },
-  ];
-
-  const recepes = [
-    {
-      title: 'Recettes',
-      data: ['Caramilk et jus d\'orange', 'Maxi', 'IGA'],
+      data: ['Super C', 'Maxi', 'IGA', 'Metro', 'Provigo', 'Loblaws'],
     },
   ];
 
@@ -54,51 +48,88 @@ export const Main: NavioScreen = observer(({}) => {
       borderTopEndRadius: 30,
       borderTopStartRadius: 30,
     },
-    container: {
+    topContainer: {
       fontSize: 24,
       flex: 1,
       paddingTop: 60,
       paddingBottom: 30,
-      marginHorizontal: 15,
-    },
-    carDontainer: {
-      fontSize: 24,
-      flex: 1,
-      marginHorizontal: 15,
+      marginHorizontal: 20,
     },
     title: {
       fontSize: 24,
       flex: 1,
       color: '#264653',
     },
+    cardHeader: {
+      fontSize: 20,
+      flex: 1,
+      color: Colors.black,
+      fontWeight: 'bold',
+    },
     subtitle: {
       fontSize: 22,
       flex: 1,
       color: Colors.black,
       fontWeight: 'bold',
+      marginVertical: 10,
+      marginHorizontal: 20,
     },
     text: {
       fontSize: 20,
       flex: 1,
+    },
+    menuText: {
+      fontSize: 18,
+      fontWeight: 'bold',
+      color: '#FFFFFF',
     },
     infos: {
       fontSize: 18,
       flex: 1,
       color: '#696d6e',
     },
+    cardContainer: {
+      fontSize: 24,
+      flex: 1,
+      marginHorizontal: 20,
+    },
     card: {
       backgroundColor: '#e0e0de',
-      padding: 10,
+      padding: 15,
       marginVertical: 3,
       borderRadius: 10,
     },
+    menuContainer: {
+      marginTop: 20,
+      marginHorizontal: 20,
+    },
+    recepesCard: {
+      flex: 1,
+      backgroundColor: '#264653',
+      borderRadius: 15,
+      padding: 10,
+      marginEnd: 5,
+    },
+    groceryListCard: {
+      flex: 1,
+      backgroundColor: '#E76F51',
+      borderRadius: 15,
+      padding: 10,
+    },
+    mapCart: {
+      flex: 1,
+      backgroundColor: '#578699',
+      borderRadius: 15,
+      padding: 10,
+      marginTop: 5,
+    }
   });
   
   return (
     <View flex style={{ backgroundColor: '#E9C46A'}}>
       <ScrollView contentInsetAdjustmentBehavior="always">
         <View>
-          <View style={styles.container}>
+          <View style={styles.topContainer}>
             <View style={{flexDirection:"row"}}>
               <Text style={styles.title}>
                 Bonjour, {"\n"}{username} !
@@ -111,58 +142,82 @@ export const Main: NavioScreen = observer(({}) => {
         </View>
 
         <View style={styles.page} bg-bgColor>
-        <View style={styles.container}>
-          <View style={{flexDirection:"row"}}>
+          <View style={styles.menuContainer}>
+            <View style={{flexDirection:"row"}}>
+              <View style={styles.recepesCard}>
+                <Icon
+                  size={20}
+                  tintColor={Colors.white}
+                  source={Assets.icons['search']}
+                />
+                <Text style={styles.menuText}>
+                  Mes {'\n'}recettes
+                </Text>
+              </View>
+
+              <View style={{flexDirection:"column"}}>
+                <View style={styles.groceryListCard}>
+                  <Icon
+                    size={20}
+                    tintColor={Colors.white}
+                    source={Assets.icons['search']}
+                    style={{justifyContent: 'flex-end'}}
+                  />
+                  <Text style={styles.menuText}>
+                    Liste {'\n'}d'épicerie
+                  </Text>
+                </View>
+
+                <View style={styles.mapCart}>
+                  <Icon
+                    size={20}
+                    tintColor={Colors.white}
+                    source={Assets.icons['search']}
+                    style={{justifyContent: 'flex-end'}}
+                  />
+                  <Text style={styles.menuText}>
+                    Carte
+                  </Text>
+                </View>
+              </View>
+            </View>
+          </View>
+
+          <View>
             <Text style={styles.subtitle}>
               Épiceries
             </Text>
-            <Text style={{flexDirection: 'row', justifyContent: 'flex-end', marginHorizontal:3}}>
-              Voir tout
-            </Text>
           </View>
-        </View>
-        
-        <SectionList
-          sections={groceryStores}
-          keyExtractor={(item, index) => item + index}
-          renderItem={({item}) => (
-              <View style={styles.carDontainer}>
-                <View style={styles.card}>
-                  <View style={{flexDirection:"row"}}>
-                    <Text style={styles.text}>
-                      {item}
-                    </Text>
-                    <View style={{flexDirection: 'row', justifyContent: 'flex-end', marginHorizontal:3, marginTop: 4}}>
-                      <Icon
-                          size={25}
-                          tintColor={'#264653'}
-                          source={Assets.icons['search']}
-                        />
+          
+          <SectionList
+            sections={groceryStores}
+            keyExtractor={(item, index) => item + index}
+            renderItem={({item}) => (
+                <View style={styles.cardContainer}>
+                  <View style={styles.card}>
+                    <View style={{flexDirection:"row"}}>
+                      <Text style={styles.cardHeader}>
+                        {item}
+                      </Text>
+                      <View style={{flexDirection: 'row', justifyContent: 'flex-end', marginHorizontal:3, marginTop: 4}}>
+                        <Icon
+                            size={22}
+                            tintColor={'#264653'}
+                            source={Assets.icons['search']}
+                          />
+                      </View>
                     </View>
-                  </View>
-                  <Text style={styles.infos}>
-                    Jusqu'à mercredi
-                  </Text>
+                    <Text style={styles.infos}>
+                      Jusqu'à mercredi
+                    </Text>
+                </View>
               </View>
-            </View>
-          )}
-        />
-
-        <View style={styles.container}>
-          <View style={{flexDirection:"row"}}>
-            <Text style={styles.subtitle}>
-             Recettes
-            </Text>
-            <Text style={{flexDirection: 'row', justifyContent: 'flex-end', marginHorizontal:3}}>
-              Voir tout
-            </Text>
-          </View>
-        </View>
+            )}
+          />
         </View>
       </ScrollView>
     </View>
   );
 });
 Main.options = () => ({
-  title: services.t.do('home.title'),
 });

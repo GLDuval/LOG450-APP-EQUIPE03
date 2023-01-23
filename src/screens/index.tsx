@@ -13,7 +13,7 @@ export const navio = Navio.build({
     Login,
   },
   stacks: {
-    MainStack: ['Login','Main'],
+    MainStack: ['Main','Login'],
   },
   root: 'Tabs',
   hooks: [useAppearance],
