@@ -12,7 +12,6 @@ export const GroceryList: NavioScreen = observer(({}) => {
     page: {
       borderTopEndRadius: 30,
       borderTopStartRadius: 30,
-      height: Dimensions.get("window").height
     },
     topContainer: {
       fontSize: 24,
