@@ -1,8 +1,9 @@
 import React from 'react';
-import {Dimensions, ScrollView, StyleSheet} from 'react-native';
+import {Dimensions, ScrollView, StyleSheet, TouchableHighlight} from 'react-native';
 import {Assets, Colors, Icon, Text, View} from 'react-native-ui-lib';
 import {observer} from 'mobx-react';
 import {NavioScreen} from 'rn-navio';
+import { navio } from '..';
 
 export const GroceryList: NavioScreen = observer(({}) => {
   // STYLES
@@ -39,11 +40,18 @@ export const GroceryList: NavioScreen = observer(({}) => {
       <ScrollView contentInsetAdjustmentBehavior="always">
         <View style={styles.topContainer}>
             <View style={{flexDirection:"row"}}>
+              <TouchableHighlight
+              underlayColor="Colors.transparent"
+                onPress={() => {
+                  navio.pop();
+                }}
+              >
                 <Icon
-                    size={20}
-                    source={Assets.icons.close}
-                    style={styles.backIcon}
-                    />
+                  size={18}
+                  source={Assets.icons.close}
+                  style={styles.backIcon}
+                  />
+              </TouchableHighlight>
                 <Text style={styles.title} center>
                     Liste d'épicerie
                 </Text>

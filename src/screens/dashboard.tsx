@@ -132,9 +132,9 @@ export const Dashboard: NavioScreen = observer(({}) => {
                 }}>
                 <View style={{flexDirection:"row-reverse"}}>
                   <Icon
-                      size={20}
-                      source={Assets.icons.recipe}
-                    />
+                    size={20}
+                    source={Assets.icons.recipe}
+                  />
                 </View>
                 <View style={styles.bottom}>
                   <Text style={styles.menuText}>

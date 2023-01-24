@@ -1,8 +1,9 @@
 import React from 'react';
-import {ScrollView, StyleSheet} from 'react-native';
+import {ScrollView, StyleSheet, TouchableHighlight} from 'react-native';
 import {Assets, Avatar, Button, Icon, Text, View} from 'react-native-ui-lib';
 import {observer} from 'mobx-react';
 import {NavioScreen} from 'rn-navio';
+import { navio } from '..';
 
 export const Profile: NavioScreen = observer(({}) => {  
   const options = [
@@ -20,12 +21,13 @@ export const Profile: NavioScreen = observer(({}) => {
       marginHorizontal: 20,
     },
     container: {
-        padding: 20,
-        marginTop: 20,
+      padding: 20,
+      marginTop: 20,
     },
     title: {
-      fontSize: 24,
+      fontSize: 30,
       flex: 1,
+      marginBottom: 20,
     },
     subtitle: {
       fontSize: 22,
@@ -37,7 +39,8 @@ export const Profile: NavioScreen = observer(({}) => {
       flex: 1,
     },
     backIcon: {
-        marginTop: 8,
+      marginTop: 8,
+      marginLeft: 10,
     }
   });
   
@@ -46,16 +49,23 @@ export const Profile: NavioScreen = observer(({}) => {
       <ScrollView contentInsetAdjustmentBehavior="always">
         <View style={styles.topContainer}>
           <View style={{flexDirection:"row"}}>
-              <Text style={styles.title} center>
-                  Profile
-              </Text>
+            <TouchableHighlight
+            underlayColor="Colors.transparent"
+              onPress={() => {
+                navio.pop();
+              }}
+            >
               <Icon
-                  size={20}
-                  source={Assets.icons.close}
-                  style={styles.backIcon}
-                  />
+                size={18}
+                source={Assets.icons.close}
+                style={styles.backIcon}
+                />
+            </TouchableHighlight>
           </View>
         </View>
+        <Text style={styles.title} center>
+          Profile
+        </Text>
 
         <View center>
           <Avatar 
