@@ -1,5 +1,5 @@
 import React from 'react';
-import {ScrollView, SectionList, StyleSheet} from 'react-native';
+import {ScrollView, SectionList, StyleSheet, TouchableOpacity} from 'react-native';
 import {Assets, Avatar, Colors, Icon, Text, View} from 'react-native-ui-lib';
 import {observer} from 'mobx-react';
 import {NavioScreen} from 'rn-navio';
@@ -114,19 +114,26 @@ export const Dashboard: NavioScreen = observer(({}) => {
               <View style={{flexDirection: 'row'}}>
                   <Avatar 
                     source={{ uri: 'https://randomuser.me/api/portraits/men/1.jpg' }}
-                    size={60} 
+                    size={60}
                     onPress={() => {
                       navio.show('Profile');
-                }} />
+                    }}
+                  />
               </View>
             </View>
           </View>
         </View>
 
         <View style={styles.page} bg-bgColor>
-          <View style={styles.menuContainer}>
-            <View style={{flexDirection:"row"}}>
-              <View style={styles.recepesCard}>
+          
+            <View style={styles.menuContainer}>
+              <View style={{flexDirection:"row"}}>
+                
+              <TouchableOpacity
+                 style={styles.recepesCard}
+                onPress={()=> {
+                  navio.show('MyRecipes');
+                }}>
                 <View style={{flexDirection:"row-reverse"}}>
                   <Icon
                       size={20}
@@ -139,10 +146,14 @@ export const Dashboard: NavioScreen = observer(({}) => {
                     Mes {'\n'}recettes
                   </Text>
                 </View>
-              </View>
+              </TouchableOpacity>
             
               <View style={{flexDirection:"column", width:'50%'}}>
-                <View style={styles.groceryListCard}>
+                <TouchableOpacity
+                  style={styles.groceryListCard}
+                  onPress={()=> {
+                    navio.show('GroceryList');
+                  }}>
                   <View style={{flexDirection:"row-reverse"}}>
                     <Icon
                         size={20}
@@ -153,9 +164,13 @@ export const Dashboard: NavioScreen = observer(({}) => {
                   <Text style={styles.menuText}>
                     Liste {'\n'}d'épicerie
                   </Text>
-                </View>
+                </TouchableOpacity>
 
-                <View style={styles.mapCart}>
+                <TouchableOpacity
+                  style={styles.mapCart}
+                  onPress={()=> {
+                    navio.show('GroceryMap');
+                  }}>
                   <View style={{flexDirection:"row-reverse"}}>
                     <Icon
                         size={20}
@@ -166,7 +181,7 @@ export const Dashboard: NavioScreen = observer(({}) => {
                   <Text style={styles.menuText}>
                     Carte
                   </Text>
-                </View>
+                </TouchableOpacity>
               </View>
             </View>
           </View>

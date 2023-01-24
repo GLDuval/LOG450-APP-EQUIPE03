@@ -53,19 +53,17 @@ export const Profile: NavioScreen = observer(({}) => {
   return (
     <View flex bg-bgColor>
       <ScrollView contentInsetAdjustmentBehavior="always">
-        <View>
-          <View style={styles.topContainer}>
+        <View style={styles.topContainer}>
             <View style={{flexDirection:"row"}}>
-              <Text style={styles.title} center>
-                Profile
-              </Text>
-              <Icon
-                size={20}
-                source={Assets.icons['search']}
-                style={styles.backIcon}
-               />
+                <Text style={styles.title} center>
+                    Profile
+                </Text>
+                <Icon
+                    size={20}
+                    source={Assets.icons['search']}
+                    style={styles.backIcon}
+                    />
             </View>
-          </View>
         </View>
 
         <View center>

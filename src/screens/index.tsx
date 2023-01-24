@@ -3,6 +3,10 @@ import {Navio} from 'rn-navio';
 import {Dashboard} from './dashboard';
 import {Login} from './login';
 import {Profile} from './pages/profile';
+import {GroceryInfos} from './pages/grocery-infos';
+import {GroceryMap} from './pages/grocery-map';
+import {GroceryList} from './pages/grocery-list';
+import {MyRecipes} from './pages/my-recipes';
 
 import {useAppearance} from '../utils/hooks';
 import {screenDefaultOptions} from '../utils/designSystem';
@@ -13,9 +17,13 @@ export const navio = Navio.build({
     Dashboard,
     Login,
     Profile,
+    GroceryInfos,
+    GroceryMap,
+    GroceryList,
+    MyRecipes
   },
   stacks: {
-    MainStack: ['Dashboard','Login', 'Profile'],
+    MainStack: ['Dashboard','Login', 'Profile', 'GroceryInfos', 'GroceryMap', 'GroceryList', 'MyRecipes'],
   },
   root: 'Tabs',
   hooks: [useAppearance],

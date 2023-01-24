@@ -4,7 +4,7 @@ import {Assets, Colors, Icon, Text, View} from 'react-native-ui-lib';
 import {observer} from 'mobx-react';
 import {NavioScreen} from 'rn-navio';
 
-export const GroceryList: NavioScreen = observer(({}) => {
+export const MyRecipes: NavioScreen = observer(({}) => {
   // STYLES
   const styles = StyleSheet.create({
     page: {
@@ -35,7 +35,7 @@ export const GroceryList: NavioScreen = observer(({}) => {
   });
   
   return (
-    <View flex style={{ backgroundColor: '#E76F51'}}>
+    <View flex style={{ backgroundColor: '#264653'}}>
       <ScrollView contentInsetAdjustmentBehavior="always">
         <View style={styles.topContainer}>
             <View style={{flexDirection:"row"}}>
@@ -45,7 +45,7 @@ export const GroceryList: NavioScreen = observer(({}) => {
                     style={styles.backIcon}
                     />
                 <Text style={styles.title} center>
-                    Liste d'épicerie
+                    Mes recettes
                 </Text>
             </View>
         </View>
@@ -59,5 +59,5 @@ export const GroceryList: NavioScreen = observer(({}) => {
     </View>
   );
 });
-GroceryList.options = () => ({
+MyRecipes.options = () => ({
 });
