@@ -6,6 +6,7 @@ import {NavioScreen} from 'rn-navio';
 import {navio} from '..';
 import {RecipesList} from '../components/recipes-list';
 import {SearchBar} from '../components/search-bar';
+import { services } from '../../services';
 
 export const MyRecipes: NavioScreen = observer(() => {
   // STYLES
@@ -48,7 +49,7 @@ export const MyRecipes: NavioScreen = observer(() => {
               <Icon size={18} source={Assets.icons.close} style={styles.backIcon} />
             </TouchableHighlight>
             <Text style={styles.title} center>
-              Mes recettes
+              {services.t.do('myRecipes.title')}
             </Text>
           </View>
           <View style={{padding: 10}}>

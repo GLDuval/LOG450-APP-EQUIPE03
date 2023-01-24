@@ -5,6 +5,7 @@ import {observer} from 'mobx-react';
 import {NavioScreen} from 'rn-navio';
 import {navio} from '..';
 import {SearchBar} from '../components/search-bar';
+import { services } from '../../services';
 
 export const GroceryMap: NavioScreen = observer(() => {
   // STYLES
@@ -52,7 +53,7 @@ export const GroceryMap: NavioScreen = observer(() => {
               <Icon size={18} source={Assets.icons.close} style={styles.backIcon} />
             </TouchableHighlight>
             <Text style={styles.title} center>
-              Carte
+            {services.t.do('map.title')}
             </Text>
           </View>
           <View style={{padding: 10}}>

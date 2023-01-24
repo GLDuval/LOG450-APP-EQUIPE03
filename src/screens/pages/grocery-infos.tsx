@@ -13,6 +13,7 @@ import {NavioScreen} from 'rn-navio';
 import {navio} from '..';
 import {RecipesList} from '../components/recipes-list';
 import {FoodInfosList} from '../components/food-infos-list';
+import { services } from '../../services';
 
 export const GroceryInfos: NavioScreen = observer(() => {
   // STYLES
@@ -60,7 +61,7 @@ export const GroceryInfos: NavioScreen = observer(() => {
         </View>
 
         <View style={styles.page} bg-bgColor>
-          <TabController items={[{label: 'Circulaire'}, {label: 'Recettes'}]}>
+          <TabController items={[{label: services.t.do('groceryInfos.flyer')}, {label: services.t.do('groceryInfos.recipes')}]}>
             <TabController.TabBar
               enableShadows
               indicatorStyle={{backgroundColor: '#E76F51'}}

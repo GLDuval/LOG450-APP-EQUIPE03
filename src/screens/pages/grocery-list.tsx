@@ -5,6 +5,7 @@ import {observer} from 'mobx-react';
 import {NavioScreen} from 'rn-navio';
 import {navio} from '..';
 import {FoodInfosList} from '../components/food-infos-list';
+import { services } from '../../services';
 
 export const GroceryList: NavioScreen = observer(() => {
   // STYLES
@@ -46,7 +47,7 @@ export const GroceryList: NavioScreen = observer(() => {
               <Icon size={18} source={Assets.icons.close} style={styles.backIcon} />
             </TouchableHighlight>
             <Text style={styles.title} center>
-              Liste d'épicerie
+              {services.t.do('groceryList.title')}
             </Text>
           </View>
         </View>

@@ -5,6 +5,7 @@ import {observer} from 'mobx-react';
 import {NavioScreen} from 'rn-navio';
 import {navio} from '.';
 import {GroceryStoresList} from './components/grocery-stores-list';
+import { services } from '../services';
 
 export const Dashboard: NavioScreen = observer(() => {
   const username = 'Félix-Antoine';
@@ -77,7 +78,7 @@ export const Dashboard: NavioScreen = observer(() => {
         <View style={styles.topContainer}>
           <View style={{flexDirection: 'row'}}>
             <Text style={styles.title}>
-              Bonjour, {'\n'}
+              {services.t.do('dashboard.hello')}
               {username} !
             </Text>
             <View style={{flexDirection: 'row'}}>
@@ -105,7 +106,7 @@ export const Dashboard: NavioScreen = observer(() => {
                   <Icon size={20} source={Assets.icons.recipe} />
                 </View>
                 <View style={styles.bottom}>
-                  <Text style={styles.menuText}>Mes {'\n'}recettes</Text>
+                  <Text style={styles.menuText}>{services.t.do('dashboard.myRecipes')}</Text>
                 </View>
               </TouchableOpacity>
 
@@ -118,7 +119,7 @@ export const Dashboard: NavioScreen = observer(() => {
                   <View style={{flexDirection:'row-reverse'}}>
                     <Icon size={20} tintColor={Colors.white} source={Assets.icons.list} />
                   </View>
-                  <Text style={styles.menuText}>Liste {'\n'}d&apos;épicerie</Text>
+                  <Text style={styles.menuText}>{services.t.do('dashboard.groceryList')}</Text>
                 </TouchableOpacity>
 
                 <TouchableOpacity
@@ -130,13 +131,13 @@ export const Dashboard: NavioScreen = observer(() => {
                   <View style={{flexDirection:'row-reverse'}}>
                     <Icon size={20} tintColor={Colors.white} source={Assets.icons.map} />
                   </View>
-                  <Text style={styles.menuText}>Carte</Text>
+                  <Text style={styles.menuText}>{services.t.do('dashboard.map')}</Text>
                 </TouchableOpacity>
               </View>
             </View>
           </View>
 
-          <Text style={styles.subtitle}>Épiceries</Text>
+          <Text style={styles.subtitle}>{services.t.do('dashboard.groceries')}</Text>
 
           <GroceryStoresList />
         </View>

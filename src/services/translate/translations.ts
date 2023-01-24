@@ -6,9 +6,9 @@ export const en = {
   },
   dashboard: {
     title: "Dashboard",
-    hello: "Hello,",
-    myRecipes: "My Recipes",
-    groceryList: "Grocery List",
+    hello: "Hello, \n",
+    myRecipes: "My \nRecipes",
+    groceryList: "Grocery \nList",
     map: "Map",
     groceries: "Groceries",
   },
@@ -31,9 +31,9 @@ export const en = {
   },
   actions: {
     logout: "Logout",
+    connexion: "Connexion",
     search: "Rechercher",
     show: "Show",
-    connexion: "Connexion",
   },
 };
 
@@ -45,11 +45,11 @@ export const fr = {
   },
   dashboard: {
     title: "Tableau de bord",
-    hello: "Bonjour,",
-    myRecipes: "Mes recettes",
-    groceryList: "Liste d'épiceries",
+    hello: "Bonjour,\n",
+    myRecipes: "Mes \nrecettes",
+    groceryList: "Liste \nd'épiceries",
     map: "Carte",
-    groceries: "Épicerie",
+    groceries: "Épiceries",
   },
   myRecipes: {
     title: "Mes recettes",
@@ -70,8 +70,8 @@ export const fr = {
   },
   actions: {
     logout: "Se déconnecter",
+    connexion: "Connexion",
     search: "Rechercher",
     show: "Afficher",
-    connexion: "Connexion",
   },
 };

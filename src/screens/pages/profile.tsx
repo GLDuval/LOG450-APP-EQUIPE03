@@ -5,6 +5,7 @@ import {observer} from 'mobx-react';
 import {NavioScreen} from 'rn-navio';
 import {navio} from '..';
 import {getStatusBarBGColor} from '../../../src/utils/designSystem';
+import { services } from '../../services';
 
 export const Profile: NavioScreen = observer(() => {
   /*const options = [
@@ -62,7 +63,7 @@ export const Profile: NavioScreen = observer(() => {
           </View>
         </View>
         <Text style={styles.title} center>
-          Profile
+          {services.t.do('profile.title')}
         </Text>
 
         <View center>
@@ -70,7 +71,7 @@ export const Profile: NavioScreen = observer(() => {
             source={{uri: 'https://randomuser.me/api/portraits/men/1.jpg'}}
             size={90}
             onPress={() => {
-              console.log('You tapped the button!');
+              console.log('Change photo');
             }}
           />
         </View>
@@ -80,17 +81,17 @@ export const Profile: NavioScreen = observer(() => {
         </Text>
 
         <View center style={{marginTop: 15}}>
-          <Button label={'Déconnexion'} size={Button.sizes.medium} backgroundColor={'#578699'} />
+          <Button label={services.t.do('actions.logout')} size={Button.sizes.medium} backgroundColor={'#578699'} />
         </View>
 
         <View style={styles.container}>
           <View style={{flexDirection: 'row'}}>
-            <View style={{flexDirection: 'column', width: '50%'}}>
+            <View style={{flexDirection: 'column', width: '60%'}}>
               <View style={{flexDirection: 'row-reverse'}}>
-                <Text style={styles.text}>Choisir la langue</Text>
+                <Text style={styles.text}>{services.t.do('profile.chooseLanguage')}</Text>
               </View>
             </View>
-            <View style={{flexDirection: 'column', width: '50%'}}>
+            <View style={{flexDirection: 'column', width: '40%'}}>
               <Text Text style={styles.text}>
                 Todo
               </Text>
