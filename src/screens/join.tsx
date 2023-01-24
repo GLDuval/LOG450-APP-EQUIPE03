@@ -9,11 +9,57 @@ import {services, useServices} from '../services';
 import {useStores} from '../stores';
 import {useAppearance} from '../utils/hooks';
 
+import { createUserWithEmailAndPassword, getAuth, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
+import { auth } from "../../firebaseConfig";
+import { TextInput } from 'react-native-gesture-handler';
+
 export const Join: NavioScreen = observer(({}) => {
   useAppearance();
   const navigation = useNavigation();
   const {counter, ui} = useStores();
   const {t, api, navio} = useServices();
+
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+
+  // Firebase Create
+  const createNewUser = useCallback((email: string, password: string) => {
+    createUserWithEmailAndPassword(auth, email, password)
+    .then((userCredential) => {
+      // Signed in 
+      const user = userCredential.user;
+      console.log(user);
+    })
+    .catch((error) => {
+      const errorCode = error.code;
+      const errorMessage = error.message;
+      console.log(errorCode, errorMessage);
+    });
+  }, []);
+
+  const createNewUserGoogle = useCallback(() => {
+    const provider = new GoogleAuthProvider();
+    signInWithPopup(auth, provider)
+    .then((result) => {
+      // This gives you a Google Access Token. You can use it to access the Google API.
+      const credential = GoogleAuthProvider.credentialFromResult(result);
+      const token = credential?.accessToken;
+      // The signed-in user info.
+      const user = result.user;
+      console.log(user);
+    }).catch((error) => {
+      // Handle Errors here.
+      const errorCode = error.code;
+      const errorMessage = error.message;
+      // The email of the user's account used.
+      const email = error.customData.email;
+      // The AuthCredential type that was used.
+      const credential = GoogleAuthProvider.credentialFromError(error);
+      console.log(errorCode, errorMessage);
+      console.log(credential);
+    });
+  }, []);
 
   // State (local)
   const [loading, setLoading] = useState(false);
@@ -36,7 +82,7 @@ export const Join: NavioScreen = observer(({}) => {
   const styles = StyleSheet.create({
     header: {
       flex: 1,
-      paddingTop: 70,
+      paddingTop: 90,
       paddingBottom: 40,
       marginHorizontal: 15,
     },
@@ -55,11 +101,13 @@ export const Join: NavioScreen = observer(({}) => {
     },
     input: {
       paddingHorizontal: 25,
+      paddingBottom: 15,
     },
     textField: {
       fontSize: 20,
       backgroundColor: '#F6F6F6',
       borderColor: '#E8E8E8',
+      borderWidth: 1.5,
       borderRadius: 10,
       paddingHorizontal: 15,
       paddingVertical: 10,
@@ -100,22 +148,29 @@ export const Join: NavioScreen = observer(({}) => {
         
         <View style={{flexDirection:"column"}}>
             <View style={styles.input}>
-                <TextField 
+                <TextInput 
                 style={styles.textField}
-                placeholder={services.t.do('signup.name')} />
+                placeholder={services.t.do('signup.name')} 
+                onChangeText={(text: string) => setName(text)}
+                value={name}
+                />
             </View>
           <View style={styles.input}>
-            <TextField 
+            <TextInput 
             style={styles.textField}
-            placeholder={services.t.do('signup.email')} 
-            validate="email" 
-            errorMessage={services.t.do('signup.invalidEmail')} />
+            placeholder={services.t.do('signup.email')}
+            onChangeText={(text: string) => setEmail(text)}
+            value={email}
+            />
           </View>
           <View style={styles.input}>
-            <TextField 
+            <TextInput 
             style={styles.textField}
             placeholder={services.t.do('signup.password')}
-            secureTextEntry={true} />
+            secureTextEntry={true} 
+            onChangeText={(text: string) => setPassword(text)}
+            value={password}
+            />
           </View>
         </View>
 
@@ -126,8 +181,10 @@ export const Join: NavioScreen = observer(({}) => {
             borderRadius={15}
             backgroundColor="#264653"
             style={{marginBottom: 10}}
+            onPress={() => createNewUser(email, password)}
           />
         </View>
+        {/*}
         <View style={styles.input}>
           <Button 
             label={services.t.do('signup.signUpWithGoogle')}
@@ -136,8 +193,10 @@ export const Join: NavioScreen = observer(({}) => {
             backgroundColor="#FFFFFF"
             style={{borderColor: "#D6D6D6"}}
             iconSource={Assets.images.google}
+            onPress={() => createNewUserGoogle()}
           />
         </View>
+        {*/}
         <View style={styles.input}>
           <Text 
             onPress={() => navio.goBack()} style={styles.backText}>
