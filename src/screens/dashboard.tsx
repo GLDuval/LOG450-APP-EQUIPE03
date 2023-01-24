@@ -1,5 +1,5 @@
 import React from 'react';
-import {ScrollView, SectionList, StyleSheet, TouchableOpacity, StatusBar} from 'react-native';
+import {ScrollView, SectionList, StyleSheet, TouchableOpacity, StatusBar, TouchableHighlight} from 'react-native';
 import {Assets, Avatar, Colors, Icon, Text, View} from 'react-native-ui-lib';
 import {observer} from 'mobx-react';
 import {NavioScreen} from 'rn-navio';
@@ -189,23 +189,30 @@ export const Dashboard: NavioScreen = observer(({}) => {
             sections={groceryStores}
             keyExtractor={(item, index) => item + index}
             renderItem={({item}) => (
-              <View style={styles.cardContainer}>
-                <View style={styles.card}>
-                  <View style={{flexDirection:"row"}}>
-                    <Text style={styles.cardHeader}>
-                      {item}
+              <TouchableHighlight
+                underlayColor="Colors.transparent"
+                  onPress={() => {
+                    navio.show('GroceryInfos')
+                  }}
+                >
+                <View style={styles.cardContainer}>
+                  <View style={styles.card}>
+                    <View style={{flexDirection:"row"}}>
+                      <Text style={styles.cardHeader}>
+                        {item}
+                      </Text>
+                      <Icon
+                        size={22}
+                        tintColor={'#264653'}
+                        source={Assets.icons.heart}
+                      />
+                    </View>
+                    <Text style={styles.infos}>
+                      Jusqu'à mecredi
                     </Text>
-                    <Icon
-                      size={22}
-                      tintColor={'#264653'}
-                      source={Assets.icons.heart}
-                    />
                   </View>
-                  <Text style={styles.infos}>
-                    Jusqu'à mecredi
-                  </Text>
                 </View>
-              </View>
+              </TouchableHighlight>
             )}
           />
         </View>

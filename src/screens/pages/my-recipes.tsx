@@ -42,10 +42,6 @@ export const MyRecipes: NavioScreen = observer(({}) => {
       color: Colors.white,
       paddingBottom: 15,
     },
-    text: {
-      fontSize: 20,
-      flex: 1,
-    },
     infos: {
       fontSize: 18,
       flex: 1,

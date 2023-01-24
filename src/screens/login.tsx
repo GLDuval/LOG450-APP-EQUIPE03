@@ -1,37 +1,15 @@
 import React, {useCallback, useState} from 'react';
-import {ScrollView, SectionList, StyleSheet} from 'react-native';
-import {Assets, Avatar, Colors, Icon, Text, View} from 'react-native-ui-lib';
+import {ScrollView, StyleSheet} from 'react-native';
+import {Colors, Text, View} from 'react-native-ui-lib';
 import {observer} from 'mobx-react';
-import {useNavigation} from '@react-navigation/native';
 import {NavioScreen} from 'rn-navio';
 
-import {services, useServices} from '../services';
-import {useStores} from '../stores';
+import {services} from '../services';
 import {useAppearance} from '../utils/hooks';
 import { TextInput } from 'react-native-gesture-handler';
 
 export const Login: NavioScreen = observer(({}) => {
   useAppearance();
-  const navigation = useNavigation();
-  const {counter, ui} = useStores();
-  const {t, api, navio} = useServices();
-
-  // State (local)
-  const [loading, setLoading] = useState(false);
-
-  // API Methods
-  const getCounterValue = useCallback(async () => {
-    setLoading(true);
-    try {
-      const {value} = await api.counter.get();
-
-      counter.set('value', value);
-    } catch (e) {
-      console.log('[ERROR]', e);
-    } finally {
-      setLoading(false);
-    }
-  }, [api.counter, counter]);
 
   // STYLES
   const styles = StyleSheet.create({

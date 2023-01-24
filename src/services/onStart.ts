@@ -22,6 +22,10 @@ export class OnStartService implements IService {
       heart: require('../../assets/icons/heart.png'),
       close: require('../../assets/icons/close.png'),
     });
+
+    Assets.loadAssetsGroup('images', {
+      superC: require('../../assets/super-c-logo.png'),
+    });
   };
   private incAppLaunches() {
     const {ui} = stores;
