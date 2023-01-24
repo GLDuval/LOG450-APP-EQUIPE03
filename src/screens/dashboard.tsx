@@ -3,11 +3,11 @@ import {ScrollView, StyleSheet, TouchableOpacity, StatusBar} from 'react-native'
 import {Assets, Avatar, Colors, Icon, Text, View} from 'react-native-ui-lib';
 import {observer} from 'mobx-react';
 import {NavioScreen} from 'rn-navio';
-import { navio } from '.';
-import { GroceryStoresList } from './components/grocery-stores-list';
+import {navio} from '.';
+import {GroceryStoresList} from './components/grocery-stores-list';
 
-export const Dashboard: NavioScreen = observer(({}) => {
-  const username = "Félix-Antoine"
+export const Dashboard: NavioScreen = observer(() => {
+  const username = 'Félix-Antoine';
 
   // STYLES
   const styles = StyleSheet.create({
@@ -67,21 +67,22 @@ export const Dashboard: NavioScreen = observer(({}) => {
     bottom: {
       flex: 1,
       justifyContent: 'flex-end',
-    }
+    },
   });
-  
+
   return (
-    <View flex style={{ backgroundColor: '#E9C46A'}}>
-      <StatusBar backgroundColor='#E9C46A' />
+    <View flex style={{backgroundColor: '#E9C46A'}}>
+      <StatusBar backgroundColor="#E9C46A" />
       <ScrollView contentInsetAdjustmentBehavior="always">
         <View style={styles.topContainer}>
-          <View style={{flexDirection:"row"}}>
+          <View style={{flexDirection: 'row'}}>
             <Text style={styles.title}>
-              Bonjour, {"\n"}{username} !
+              Bonjour, {'\n'}
+              {username} !
             </Text>
             <View style={{flexDirection: 'row'}}>
-              <Avatar 
-                source={{ uri: 'https://randomuser.me/api/portraits/men/1.jpg' }}
+              <Avatar
+                source={{uri: 'https://randomuser.me/api/portraits/men/1.jpg'}}
                 size={60}
                 onPress={() => {
                   navio.show('Profile');
@@ -93,67 +94,50 @@ export const Dashboard: NavioScreen = observer(({}) => {
 
         <View style={styles.page} bg-bgColor>
           <View style={styles.menuContainer}>
-            <View style={{flexDirection:"row"}}>
+            <View style={{flexDirection: 'row'}}>
               <TouchableOpacity
                 style={styles.recepesCard}
-                onPress={()=> {
+                onPress={() => {
                   navio.show('MyRecipes');
-                }}>
-                <View style={{flexDirection:"row-reverse"}}>
-                  <Icon
-                    size={20}
-                    source={Assets.icons.recipe}
-                  />
+                }}
+              >
+                <View style={{flexDirection: 'row-reverse'}}>
+                  <Icon size={20} source={Assets.icons.recipe} />
                 </View>
                 <View style={styles.bottom}>
-                  <Text style={styles.menuText}>
-                    Mes {'\n'}recettes
-                  </Text>
+                  <Text style={styles.menuText}>Mes {'\n'}recettes</Text>
                 </View>
               </TouchableOpacity>
-            
-              <View style={{flexDirection:"column", width:'50%'}}>
+
+              <View style={{flexDirection: 'column', width: '50%'}}>
                 <TouchableOpacity
                   style={styles.groceryListCard}
                   onPress={()=> {
                     navio.show('GroceryList');
                   }}>
-                  <View style={{flexDirection:"row-reverse"}}>
-                    <Icon
-                        size={20}
-                        tintColor={Colors.white}
-                        source={Assets.icons.list}
-                      />
+                  <View style={{flexDirection:'row-reverse'}}>
+                    <Icon size={20} tintColor={Colors.white} source={Assets.icons.list} />
                   </View>
-                  <Text style={styles.menuText}>
-                    Liste {'\n'}d'épicerie
-                  </Text>
+                  <Text style={styles.menuText}>Liste {'\n'}d&apos;épicerie</Text>
                 </TouchableOpacity>
 
                 <TouchableOpacity
                   style={styles.mapCart}
-                  onPress={()=> {
+                  onPress={() => {
                     navio.show('GroceryMap');
-                  }}>
-                  <View style={{flexDirection:"row-reverse"}}>
-                    <Icon
-                        size={20}
-                        tintColor={Colors.white}
-                        source={Assets.icons.map}
-                      />
+                  }}
+                >
+                  <View style={{flexDirection:'row-reverse'}}>
+                    <Icon size={20} tintColor={Colors.white} source={Assets.icons.map} />
                   </View>
-                  <Text style={styles.menuText}>
-                    Carte
-                  </Text>
+                  <Text style={styles.menuText}>Carte</Text>
                 </TouchableOpacity>
               </View>
             </View>
           </View>
 
-          <Text style={styles.subtitle}>
-            Épiceries
-          </Text>
-          
+          <Text style={styles.subtitle}>Épiceries</Text>
+
           <GroceryStoresList />
         </View>
       </ScrollView>

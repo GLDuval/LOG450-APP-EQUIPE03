@@ -6,11 +6,11 @@ import {NavioScreen} from 'rn-navio';
 import {navio} from '..';
 import {getStatusBarBGColor} from '../../../src/utils/designSystem';
 
-export const Profile: NavioScreen = observer(({}) => {  
-  const options = [
+export const Profile: NavioScreen = observer(() => {
+  /*const options = [
     {label: 'Français', value: 'fr'},
     {label: 'English', value: 'en'},
-  ];
+  ];*/
 
   // STYLES
   const styles = StyleSheet.create({
@@ -42,26 +42,22 @@ export const Profile: NavioScreen = observer(({}) => {
     backIcon: {
       marginTop: 8,
       marginLeft: 10,
-    }
+    },
   });
-  
+
   return (
     <View flex bg-bgColor>
       <StatusBar backgroundColor={getStatusBarBGColor()} />
       <ScrollView contentInsetAdjustmentBehavior="always">
         <View style={styles.topContainer}>
-          <View style={{flexDirection:"row"}}>
+          <View style={{flexDirection: 'row'}}>
             <TouchableHighlight
-            underlayColor="Colors.transparent"
+              underlayColor="Colors.transparent"
               onPress={() => {
                 navio.pop();
               }}
             >
-              <Icon
-                size={18}
-                source={Assets.icons.close}
-                style={styles.backIcon}
-                />
+              <Icon size={18} source={Assets.icons.close} style={styles.backIcon} />
             </TouchableHighlight>
           </View>
         </View>
@@ -70,12 +66,13 @@ export const Profile: NavioScreen = observer(({}) => {
         </Text>
 
         <View center>
-          <Avatar 
-              source={{ uri: 'https://randomuser.me/api/portraits/men/1.jpg' }}
-              size={90} 
-              onPress={() => {
-                  console.log('You tapped the button!');
-          }} />
+          <Avatar
+            source={{uri: 'https://randomuser.me/api/portraits/men/1.jpg'}}
+            size={90}
+            onPress={() => {
+              console.log('You tapped the button!');
+            }}
+          />
         </View>
 
         <Text style={styles.subtitle} center>
@@ -83,24 +80,22 @@ export const Profile: NavioScreen = observer(({}) => {
         </Text>
 
         <View center style={{marginTop: 15}}>
-          <Button label={'Déconnexion'} size={Button.sizes.medium} backgroundColor={'#578699'}/>
+          <Button label={'Déconnexion'} size={Button.sizes.medium} backgroundColor={'#578699'} />
         </View>
 
         <View style={styles.container}>
-            <View style={{flexDirection:"row"}}>
-                <View style={{flexDirection:"column", width:'50%'}}>
-                    <View style={{flexDirection:"row-reverse"}}>
-                        <Text style={styles.text}>
-                            Choisir la langue
-                        </Text>
-                    </View>
-                </View>
-                <View style={{flexDirection:"column", width:'50%'}}>
-                    <Text   Text style={styles.text}>
-                        Todo
-                    </Text>
-                </View>
+          <View style={{flexDirection: 'row'}}>
+            <View style={{flexDirection: 'column', width: '50%'}}>
+              <View style={{flexDirection: 'row-reverse'}}>
+                <Text style={styles.text}>Choisir la langue</Text>
+              </View>
             </View>
+            <View style={{flexDirection: 'column', width: '50%'}}>
+              <Text Text style={styles.text}>
+                Todo
+              </Text>
+            </View>
+          </View>
         </View>
       </ScrollView>
     </View>

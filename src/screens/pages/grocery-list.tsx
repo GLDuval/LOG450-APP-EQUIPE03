@@ -1,12 +1,12 @@
 import React from 'react';
-import {Dimensions, ScrollView, StyleSheet, TouchableHighlight, StatusBar} from 'react-native';
+import {ScrollView, StyleSheet, TouchableHighlight, StatusBar} from 'react-native';
 import {Assets, Colors, Icon, Text, View} from 'react-native-ui-lib';
 import {observer} from 'mobx-react';
 import {NavioScreen} from 'rn-navio';
 import {navio} from '..';
 import {FoodInfosList} from '../components/food-infos-list';
 
-export const GroceryList: NavioScreen = observer(({}) => {
+export const GroceryList: NavioScreen = observer(() => {
   // STYLES
   const styles = StyleSheet.create({
     page: {
@@ -30,36 +30,31 @@ export const GroceryList: NavioScreen = observer(({}) => {
       tintColor: Colors.white,
     },
   });
-  
+
   return (
-    <View flex style={{ backgroundColor: '#E76F51'}}>
-      <StatusBar backgroundColor='#E76F51' />
+    <View flex style={{backgroundColor: '#E76F51'}}>
+      <StatusBar backgroundColor="#E76F51" />
       <ScrollView contentInsetAdjustmentBehavior="always">
         <View style={styles.topContainer}>
-            <View style={{flexDirection:"row"}}>
-              <TouchableHighlight
+          <View style={{flexDirection: 'row'}}>
+            <TouchableHighlight
               underlayColor="Colors.transparent"
-                onPress={() => {
-                  navio.pop();
-                }}
-              >
-                <Icon
-                  size={18}
-                  source={Assets.icons.close}
-                  style={styles.backIcon}
-                  />
-              </TouchableHighlight>
-                <Text style={styles.title} center>
-                    Liste d'épicerie
-                </Text>
-            </View>
+              onPress={() => {
+                navio.pop();
+              }}
+            >
+              <Icon size={18} source={Assets.icons.close} style={styles.backIcon} />
+            </TouchableHighlight>
+            <Text style={styles.title} center>
+              Liste d'épicerie
+            </Text>
+          </View>
         </View>
 
         <View style={styles.page} bg-bgColor>
           <FoodInfosList />
-      </View>
+        </View>
       </ScrollView>
     </View>
   );
 });
-

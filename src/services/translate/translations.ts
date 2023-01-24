@@ -31,6 +31,9 @@ export const en = {
   },
   actions: {
     logout: "Logout",
+    search: "Rechercher",
+    show: "Show",
+    connexion: "Connexion",
   },
 };
 
@@ -67,5 +70,8 @@ export const fr = {
   },
   actions: {
     logout: "Se déconnecter",
+    search: "Rechercher",
+    show: "Afficher",
+    connexion: "Connexion",
   },
 };

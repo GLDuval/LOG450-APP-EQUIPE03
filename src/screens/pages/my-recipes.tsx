@@ -1,30 +1,13 @@
 import React from 'react';
-import {ScrollView, StatusBar, StyleSheet, TextInput, TouchableHighlight} from 'react-native';
+import {ScrollView, StatusBar, StyleSheet, TouchableHighlight} from 'react-native';
 import {Assets, Colors, Icon, Text, View} from 'react-native-ui-lib';
 import {observer} from 'mobx-react';
 import {NavioScreen} from 'rn-navio';
 import {navio} from '..';
 import {RecipesList} from '../components/recipes-list';
-import { SearchBar } from '../components/search-bar';
+import {SearchBar} from '../components/search-bar';
 
-export const MyRecipes: NavioScreen = observer(({}) => {
-  const onChangeText = (text: string) => {
-    let message = '';
-    if (text === '') {
-      message = 'This field is mandatory';
-    }
-    if (text === 'Zzz') {
-      message = 'Please enter a valid text';
-    }
-    setState({error: message});
-  };
-
-  const recipes = [
-    {
-      data: ['Caramilk et Orange', 'Pâté chinois', 'Lasage', 'Poulet parmesan', 'Pizzaghetti', 'Saumon fumé'],
-    },
-  ];
-
+export const MyRecipes: NavioScreen = observer(() => {
   // STYLES
   const styles = StyleSheet.create({
     page: {
@@ -49,30 +32,26 @@ export const MyRecipes: NavioScreen = observer(({}) => {
       tintColor: Colors.white,
     },
   });
-  
+
   return (
-    <View flex style={{ backgroundColor: '#264653'}}>
-      <StatusBar backgroundColor='#264653' />
+    <View flex style={{backgroundColor: '#264653'}}>
+      <StatusBar backgroundColor="#264653" />
       <ScrollView contentInsetAdjustmentBehavior="always">
         <View style={styles.topContainer}>
-          <View style={{flexDirection:"row"}}>
+          <View style={{flexDirection: 'row'}}>
             <TouchableHighlight
               underlayColor="Colors.transparent"
-                onPress={() => {
-                  navio.pop();
-                }}
-              >
-                <Icon
-                  size={18}
-                  source={Assets.icons.close}
-                  style={styles.backIcon}
-                  />
-              </TouchableHighlight>
+              onPress={() => {
+                navio.pop();
+              }}
+            >
+              <Icon size={18} source={Assets.icons.close} style={styles.backIcon} />
+            </TouchableHighlight>
             <Text style={styles.title} center>
               Mes recettes
             </Text>
           </View>
-          <View style={{padding:10}}>
+          <View style={{padding: 10}}>
             <SearchBar />
           </View>
         </View>
@@ -84,7 +63,3 @@ export const MyRecipes: NavioScreen = observer(({}) => {
     </View>
   );
 });
-function setState(arg0: { error: string; }) {
-  throw new Error('Function not implemented.');
-}
-

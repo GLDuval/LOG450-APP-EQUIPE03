@@ -1,29 +1,18 @@
 import React from 'react';
-import {Dimensions, ScrollView, StyleSheet, TextInput, TouchableHighlight, StatusBar} from 'react-native';
+import {Dimensions, ScrollView, StyleSheet, TouchableHighlight, StatusBar} from 'react-native';
 import {Assets, Colors, Icon, Text, View} from 'react-native-ui-lib';
 import {observer} from 'mobx-react';
 import {NavioScreen} from 'rn-navio';
 import {navio} from '..';
-import { SearchBar } from '../components/search-bar';
+import {SearchBar} from '../components/search-bar';
 
-export const GroceryMap: NavioScreen = observer(({}) => {
-  const onChangeText = (text: string) => {
-    let message = '';
-    if (text === '') {
-      message = 'This field is mandatory';
-    }
-    if (text === 'Zzz') {
-      message = 'Please enter a valid text';
-    }
-    setState({error: message});
-  };
-
+export const GroceryMap: NavioScreen = observer(() => {
   // STYLES
   const styles = StyleSheet.create({
     page: {
       borderTopEndRadius: 30,
       borderTopStartRadius: 30,
-      height: Dimensions.get("window").height
+      height: Dimensions.get('window').height,
     },
     topContainer: {
       fontSize: 24,
@@ -47,30 +36,26 @@ export const GroceryMap: NavioScreen = observer(({}) => {
       tintColor: Colors.white,
     },
   });
-  
+
   return (
-    <View flex style={{ backgroundColor: '#578699'}}>
-      <StatusBar backgroundColor='#578699' />
+    <View flex style={{backgroundColor: '#578699'}}>
+      <StatusBar backgroundColor="#578699" />
       <ScrollView contentInsetAdjustmentBehavior="always">
         <View style={styles.topContainer}>
-          <View style={{flexDirection:"row"}}>
+          <View style={{flexDirection: 'row'}}>
             <TouchableHighlight
               underlayColor="Colors.transparent"
-                onPress={() => {
-                  navio.pop();
-                }}
-              >
-                <Icon
-                  size={18}
-                  source={Assets.icons.close}
-                  style={styles.backIcon}
-                  />
-              </TouchableHighlight>
+              onPress={() => {
+                navio.pop();
+              }}
+            >
+              <Icon size={18} source={Assets.icons.close} style={styles.backIcon} />
+            </TouchableHighlight>
             <Text style={styles.title} center>
               Carte
             </Text>
           </View>
-          <View style={{padding:10}}>
+          <View style={{padding: 10}}>
             <SearchBar />
           </View>
         </View>
@@ -84,7 +69,3 @@ export const GroceryMap: NavioScreen = observer(({}) => {
     </View>
   );
 });
-function setState(arg0: { error: string; }) {
-  throw new Error('Function not implemented.');
-}
-
