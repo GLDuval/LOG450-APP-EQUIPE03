@@ -1,19 +1,10 @@
 import React from 'react';
-import {ScrollView, SectionList, StyleSheet} from 'react-native';
-import {Assets, Avatar, Button, Colors, Icon, Picker, Text, View} from 'react-native-ui-lib';
+import {ScrollView, StyleSheet} from 'react-native';
+import {Assets, Avatar, Button, Icon, Text, View} from 'react-native-ui-lib';
 import {observer} from 'mobx-react';
 import {NavioScreen} from 'rn-navio';
 
-export const Profile: NavioScreen = observer(({}) => {
-  const username = "Félix-Antoine"
-
-  const groceryStores = [
-    {
-      title: 'Épiceries',
-      data: ['Super C', 'Maxi', 'IGA', 'Metro', 'Provigo', 'Loblaws'],
-    },
-  ];
-  
+export const Profile: NavioScreen = observer(({}) => {  
   const options = [
     {label: 'Français', value: 'fr'},
     {label: 'English', value: 'en'},
@@ -54,33 +45,33 @@ export const Profile: NavioScreen = observer(({}) => {
     <View flex bg-bgColor>
       <ScrollView contentInsetAdjustmentBehavior="always">
         <View style={styles.topContainer}>
-            <View style={{flexDirection:"row"}}>
-                <Text style={styles.title} center>
-                    Profile
-                </Text>
-                <Icon
-                    size={20}
-                    source={Assets.icons['search']}
-                    style={styles.backIcon}
-                    />
-            </View>
+          <View style={{flexDirection:"row"}}>
+              <Text style={styles.title} center>
+                  Profile
+              </Text>
+              <Icon
+                  size={20}
+                  source={Assets.icons['search']}
+                  style={styles.backIcon}
+                  />
+          </View>
         </View>
 
         <View center>
-            <Avatar 
-                source={{ uri: 'https://randomuser.me/api/portraits/men/1.jpg' }}
-                size={90} 
-                onPress={() => {
-                    console.log('You tapped the button!');
-            }} />
+          <Avatar 
+              source={{ uri: 'https://randomuser.me/api/portraits/men/1.jpg' }}
+              size={90} 
+              onPress={() => {
+                  console.log('You tapped the button!');
+          }} />
         </View>
 
         <Text style={styles.subtitle} center>
-            Félix-Antoine Tremblay
+          Félix-Antoine Tremblay
         </Text>
 
         <View center style={{marginTop: 15}}>
-            <Button label={'Déconnexion'} size={Button.sizes.medium} backgroundColor={'#578699'}/>
+          <Button label={'Déconnexion'} size={Button.sizes.medium} backgroundColor={'#578699'}/>
         </View>
 
         <View style={styles.container}>
