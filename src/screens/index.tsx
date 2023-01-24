@@ -8,6 +8,10 @@ import {GroceryMap} from './pages/grocery-map';
 import {GroceryList} from './pages/grocery-list';
 import {MyRecipes} from './pages/my-recipes';
 
+import {GroceryStoresList} from './components/grocery-stores-list';
+import {RecipesList} from './components/recipes-list';
+import {FoodInfosList} from './components/food-infos-list';
+
 import {useAppearance} from '../utils/hooks';
 import {screenDefaultOptions} from '../utils/designSystem';
 
@@ -20,10 +24,15 @@ export const navio = Navio.build({
     GroceryInfos,
     GroceryMap,
     GroceryList,
-    MyRecipes
+    MyRecipes,
+
+    // Components
+    GroceryStoresList,
+    RecipesList,
+    FoodInfosList,
   },
   stacks: {
-    MainStack: ['Dashboard','Login', 'Profile', 'GroceryInfos', 'GroceryMap', 'GroceryList', 'MyRecipes'],
+    MainStack: ['Dashboard','Login', 'Profile', 'GroceryInfos', 'GroceryMap', 'GroceryList', 'MyRecipes', 'GroceryStoresList', 'RecipesList', 'FoodInfosList'],
   },
   root: 'Tabs',
   hooks: [useAppearance],

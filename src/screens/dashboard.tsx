@@ -1,19 +1,13 @@
 import React from 'react';
-import {ScrollView, SectionList, StyleSheet, TouchableOpacity, StatusBar, TouchableHighlight} from 'react-native';
+import {ScrollView, StyleSheet, TouchableOpacity, StatusBar} from 'react-native';
 import {Assets, Avatar, Colors, Icon, Text, View} from 'react-native-ui-lib';
 import {observer} from 'mobx-react';
 import {NavioScreen} from 'rn-navio';
 import { navio } from '.';
+import { GroceryStoresList } from './components/grocery-stores-list';
 
 export const Dashboard: NavioScreen = observer(({}) => {
   const username = "Félix-Antoine"
-
-  const groceryStores = [
-    {
-      title: 'Épiceries',
-      data: ['Super C', 'Maxi', 'IGA', 'Metro', 'Provigo', 'Loblaws'],
-    },
-  ];
 
   // STYLES
   const styles = StyleSheet.create({
@@ -33,12 +27,6 @@ export const Dashboard: NavioScreen = observer(({}) => {
       flex: 1,
       color: '#264653',
     },
-    cardHeader: {
-      fontSize: 20,
-      flex: 1,
-      color: Colors.black,
-      fontWeight: 'bold',
-    },
     subtitle: {
       fontSize: 22,
       flex: 1,
@@ -47,29 +35,10 @@ export const Dashboard: NavioScreen = observer(({}) => {
       marginVertical: 10,
       marginHorizontal: 20,
     },
-    text: {
-      fontSize: 20,
-      flex: 1,
-    },
     menuText: {
       fontSize: 18,
       fontWeight: 'bold',
       color: '#FFFFFF',
-    },
-    infos: {
-      fontSize: 18,
-      flex: 1,
-      color: '#696d6e',
-    },
-    cardContainer: {
-      flex: 1,
-      marginHorizontal: 20,
-    },
-    card: {
-      backgroundColor: '#e0e0de',
-      padding: 15,
-      marginVertical: 3,
-      borderRadius: 10,
     },
     menuContainer: {
       marginTop: 20,
@@ -185,36 +154,7 @@ export const Dashboard: NavioScreen = observer(({}) => {
             Épiceries
           </Text>
           
-          <SectionList
-            sections={groceryStores}
-            keyExtractor={(item, index) => item + index}
-            renderItem={({item}) => (
-              <TouchableHighlight
-                underlayColor="Colors.transparent"
-                  onPress={() => {
-                    navio.show('GroceryInfos')
-                  }}
-                >
-                <View style={styles.cardContainer}>
-                  <View style={styles.card}>
-                    <View style={{flexDirection:"row"}}>
-                      <Text style={styles.cardHeader}>
-                        {item}
-                      </Text>
-                      <Icon
-                        size={22}
-                        tintColor={'#264653'}
-                        source={Assets.icons.heart}
-                      />
-                    </View>
-                    <Text style={styles.infos}>
-                      Jusqu'à mecredi
-                    </Text>
-                  </View>
-                </View>
-              </TouchableHighlight>
-            )}
-          />
+          <GroceryStoresList />
         </View>
       </ScrollView>
     </View>

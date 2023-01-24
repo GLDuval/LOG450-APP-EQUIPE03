@@ -1,9 +1,10 @@
 import React from 'react';
-import {ScrollView, SectionList, StatusBar, StyleSheet, TextInput, TouchableHighlight} from 'react-native';
+import {ScrollView, StatusBar, StyleSheet, TextInput, TouchableHighlight} from 'react-native';
 import {Assets, Colors, Icon, Text, View} from 'react-native-ui-lib';
 import {observer} from 'mobx-react';
 import {NavioScreen} from 'rn-navio';
 import { navio } from '..';
+import { RecipesList } from '../components/recipes-list';
 
 export const MyRecipes: NavioScreen = observer(({}) => {
   const onChangeText = (text: string) => {
@@ -41,27 +42,6 @@ export const MyRecipes: NavioScreen = observer(({}) => {
       flex: 1,
       color: Colors.white,
       paddingBottom: 15,
-    },
-    infos: {
-      fontSize: 18,
-      flex: 1,
-      color: '#696d6e',
-    },
-    cardHeader: {
-      fontSize: 20,
-      flex: 1,
-      color: Colors.black,
-      fontWeight: 'bold',
-    },
-    cardContainer: {
-      flex: 1,
-      marginHorizontal: 20,
-    },
-    card: {
-      backgroundColor: '#e0e0de',
-      padding: 15,
-      marginTop: 20,
-      borderRadius: 10,
     },
     backIcon: {
       marginTop: 8,
@@ -108,29 +88,7 @@ export const MyRecipes: NavioScreen = observer(({}) => {
         </View>
 
         <View style={styles.page} bg-bgColor>
-          <SectionList
-              sections={recipes}
-              keyExtractor={(item, index) => item + index}
-              renderItem={({item}) => (
-                <View style={styles.cardContainer}>
-                  <View style={styles.card}>
-                    <View style={{flexDirection:"row"}}>
-                      <Text style={styles.cardHeader}>
-                        {item}
-                      </Text>
-                      <Icon
-                        size={22}
-                        tintColor={'#264653'}
-                        source={Assets.icons.heart}
-                      />
-                    </View>
-                    <Text style={styles.infos}>
-                      Ingrédients (4)
-                    </Text>
-                  </View>
-                </View>
-              )}
-            />
+          <RecipesList />
         </View>
       </ScrollView>
     </View>
