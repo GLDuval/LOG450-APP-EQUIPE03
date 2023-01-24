@@ -12,7 +12,7 @@ export class OnStartService implements IService {
 
       this.inited = true;
     }
-  };
+  }
 
   private loadAssets() {
     Assets.loadAssetsGroup('icons', {
@@ -26,7 +26,8 @@ export class OnStartService implements IService {
     Assets.loadAssetsGroup('images', {
       superC: require('../../assets/super-c-logo.png'),
     });
-  };
+  }
+
   private incAppLaunches() {
     const {ui} = stores;
 
