@@ -5,11 +5,12 @@ import {observer} from 'mobx-react';
 import {NavioScreen} from 'rn-navio';
 import {navio} from '.';
 import {GroceryStoresList} from './components/grocery-stores-list';
-import { services } from '../services';
+import {services} from '../services';
+import {getTheme} from '../utils/designSystem';
 
 export const Dashboard: NavioScreen = observer(() => {
   const username = 'Félix-Antoine';
-
+  
   // STYLES
   const styles = StyleSheet.create({
     page: {
@@ -26,7 +27,7 @@ export const Dashboard: NavioScreen = observer(() => {
     title: {
       fontSize: 24,
       flex: 1,
-      color: '#264653',
+      color: getTheme().blueberry,
     },
     subtitle: {
       fontSize: 22,
@@ -39,7 +40,7 @@ export const Dashboard: NavioScreen = observer(() => {
     menuText: {
       fontSize: 18,
       fontWeight: 'bold',
-      color: '#FFFFFF',
+      color: getTheme().text,
     },
     menuContainer: {
       marginTop: 20,
@@ -47,20 +48,20 @@ export const Dashboard: NavioScreen = observer(() => {
     },
     recepesCard: {
       flex: 1,
-      backgroundColor: '#264653',
+      backgroundColor: getTheme().blueberry,
       borderRadius: 15,
       padding: 10,
       marginEnd: 10,
     },
     groceryListCard: {
       flex: 1,
-      backgroundColor: '#E76F51',
+      backgroundColor: getTheme().orange,
       borderRadius: 15,
       padding: 10,
     },
     mapCart: {
       flex: 1,
-      backgroundColor: '#578699',
+      backgroundColor: getTheme().blue,
       borderRadius: 15,
       padding: 10,
       marginTop: 10,
@@ -72,8 +73,8 @@ export const Dashboard: NavioScreen = observer(() => {
   });
 
   return (
-    <View flex style={{backgroundColor: '#E9C46A'}}>
-      <StatusBar backgroundColor="#E9C46A" />
+    <View flex style={{backgroundColor: getTheme().moustard}}>
+      <StatusBar backgroundColor={getTheme().moustard} />
       <ScrollView contentInsetAdjustmentBehavior="always">
         <View style={styles.topContainer}>
           <View style={{flexDirection: 'row'}}>

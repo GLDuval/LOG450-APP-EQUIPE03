@@ -2,6 +2,7 @@ import React from 'react';
 import {StyleSheet, TextInput} from 'react-native';
 import {observer} from 'mobx-react';
 import {NavioScreen} from 'rn-navio';
+import { getTheme } from '../../utils/designSystem';
 
 export const SearchBar: NavioScreen = observer(({}) => {
   const onChangeText = (text: string) => {
@@ -20,9 +21,9 @@ export const SearchBar: NavioScreen = observer(({}) => {
     textInput: {
       fontSize: 16,
       padding: 10,
-      backgroundColor: '#DADADA',
+      backgroundColor: getTheme().grey,
       borderRadius: 10,
-      color: '#7E7E7E',
+      color: getTheme().darkerGrey,
     },
   });
   

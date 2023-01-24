@@ -7,6 +7,7 @@ import {navio} from '..';
 import {RecipesList} from '../components/recipes-list';
 import {SearchBar} from '../components/search-bar';
 import { services } from '../../services';
+import { getTheme } from '../../utils/designSystem';
 
 export const MyRecipes: NavioScreen = observer(() => {
   // STYLES
@@ -35,8 +36,8 @@ export const MyRecipes: NavioScreen = observer(() => {
   });
 
   return (
-    <View flex style={{backgroundColor: '#264653'}}>
-      <StatusBar backgroundColor="#264653" />
+    <View flex style={{backgroundColor: getTheme().blueberry}}>
+      <StatusBar backgroundColor={getTheme().blueberry} />
       <ScrollView contentInsetAdjustmentBehavior="always">
         <View style={styles.topContainer}>
           <View style={{flexDirection: 'row'}}>

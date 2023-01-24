@@ -7,6 +7,7 @@ import {NavioScreen} from 'rn-navio';
 import {services} from '../services';
 import {useAppearance} from '../utils/hooks';
 import { TextInput } from 'react-native-gesture-handler';
+import { getTheme } from '../utils/designSystem';
 
 export const Login: NavioScreen = observer(({}) => {
   useAppearance();
@@ -22,40 +23,8 @@ export const Login: NavioScreen = observer(({}) => {
     headerTitle: {
       fontSize: 32,
       flex: 1,
-      color: '#264653',
+      color: getTheme().blueberry,
       textAlign: 'center',
-    },
-    container: {
-      fontSize: 24,
-      flex: 1,
-      paddingTop: 10,
-      marginHorizontal: 15,
-    },
-    title: {
-      fontSize: 24,
-      flex: 1,
-      color: '#264653',
-    },
-    subtitle: {
-      fontSize: 22,
-      flex: 1,
-      color: Colors.black,
-      fontWeight: 'bold',
-    },
-    text: {
-      fontSize: 20,
-      flex: 1,
-    },
-    infos: {
-      fontSize: 18,
-      flex: 1,
-      color: '#696d6e',
-    },
-    card: {
-      backgroundColor: '#E9C46A',
-      padding: 10,
-      marginVertical: 3,
-      borderRadius: 5,
     },
   });
   

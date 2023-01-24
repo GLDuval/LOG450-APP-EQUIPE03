@@ -6,6 +6,7 @@ import {NavioScreen} from 'rn-navio';
 import {navio} from '..';
 import {SearchBar} from '../components/search-bar';
 import { services } from '../../services';
+import { getTheme } from '../../utils/designSystem';
 
 export const GroceryMap: NavioScreen = observer(() => {
   // STYLES
@@ -39,7 +40,7 @@ export const GroceryMap: NavioScreen = observer(() => {
   });
 
   return (
-    <View flex style={{backgroundColor: '#578699'}}>
+    <View flex style={{backgroundColor: getTheme().blue}}>
       <StatusBar backgroundColor="#578699" />
       <ScrollView contentInsetAdjustmentBehavior="always">
         <View style={styles.topContainer}>

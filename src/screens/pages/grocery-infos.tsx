@@ -14,6 +14,7 @@ import {navio} from '..';
 import {RecipesList} from '../components/recipes-list';
 import {FoodInfosList} from '../components/food-infos-list';
 import { services } from '../../services';
+import { getTheme } from '../../utils/designSystem';
 
 export const GroceryInfos: NavioScreen = observer(() => {
   // STYLES
@@ -41,8 +42,8 @@ export const GroceryInfos: NavioScreen = observer(() => {
   });
 
   return (
-    <View flex style={{backgroundColor: '#DADADA'}}>
-      <StatusBar backgroundColor="#DADADA" />
+    <View flex style={{backgroundColor: getTheme().grey}}>
+      <StatusBar backgroundColor={getTheme().grey} />
       <ScrollView contentInsetAdjustmentBehavior="always">
         <View style={styles.topContainer}>
           <View style={{flexDirection: 'row'}}>
@@ -64,9 +65,7 @@ export const GroceryInfos: NavioScreen = observer(() => {
           <TabController items={[{label: services.t.do('groceryInfos.flyer')}, {label: services.t.do('groceryInfos.recipes')}]}>
             <TabController.TabBar
               enableShadows
-              indicatorStyle={{backgroundColor: '#E76F51'}}
-              textStyle={{Color: '#E76F51'}}
-              color="#E76F51"
+              indicatorStyle={{backgroundColor:getTheme().orange}}
             />
             <View flex>
               <TabController.TabPage index={0}>

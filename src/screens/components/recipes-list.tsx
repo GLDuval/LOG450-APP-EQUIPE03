@@ -3,6 +3,7 @@ import {SectionList, StyleSheet} from 'react-native';
 import {Assets, Colors, Icon, Text, View} from 'react-native-ui-lib';
 import {observer} from 'mobx-react';
 import {NavioScreen} from 'rn-navio';
+import { getTheme } from '../../utils/designSystem';
 
 export const RecipesList: NavioScreen = observer(({}) => {
   const recipes = [
@@ -16,7 +17,7 @@ export const RecipesList: NavioScreen = observer(({}) => {
     infos: {
       fontSize: 18,
       flex: 1,
-      color: '#696d6e',
+      color: getTheme().darkerGrey,
     },
     cardHeader: {
       fontSize: 20,
@@ -29,7 +30,7 @@ export const RecipesList: NavioScreen = observer(({}) => {
       marginHorizontal: 20,
     },
     card: {
-      backgroundColor: '#e0e0de',
+      backgroundColor: getTheme().grey,
       padding: 15,
       marginTop: 20,
       borderRadius: 10,
@@ -49,7 +50,7 @@ export const RecipesList: NavioScreen = observer(({}) => {
               </Text>
               <Icon
                 size={22}
-                tintColor={'#264653'}
+                tintColor={getTheme().darkerGrey}
                 source={Assets.icons.heart}
               />
             </View>

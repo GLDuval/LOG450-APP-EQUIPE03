@@ -23,4 +23,13 @@ type ThemeColors = {
   textColor: string;
   bgColor: string;
   bg2Color: string;
+  text: string;
+  blueberry: string;
+  moustard: string;
+  orange: string;
+  blue: string;
+  grey: string;
+  red: string;
+  darkerGrey: string;
+  details: string;
 };

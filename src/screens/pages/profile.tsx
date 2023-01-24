@@ -4,7 +4,7 @@ import {Assets, Avatar, Button, Icon, Text, View} from 'react-native-ui-lib';
 import {observer} from 'mobx-react';
 import {NavioScreen} from 'rn-navio';
 import {navio} from '..';
-import {getStatusBarBGColor} from '../../../src/utils/designSystem';
+import {getStatusBarBGColor, getTheme} from '../../../src/utils/designSystem';
 import { services } from '../../services';
 
 export const Profile: NavioScreen = observer(() => {
@@ -34,7 +34,7 @@ export const Profile: NavioScreen = observer(() => {
     subtitle: {
       fontSize: 22,
       fontWeight: 'bold',
-      Color: '#264653',
+      Color: getTheme().blue,
     },
     text: {
       fontSize: 20,
@@ -81,7 +81,7 @@ export const Profile: NavioScreen = observer(() => {
         </Text>
 
         <View center style={{marginTop: 15}}>
-          <Button label={services.t.do('actions.logout')} size={Button.sizes.medium} backgroundColor={'#578699'} />
+          <Button label={services.t.do('actions.logout')} size={Button.sizes.medium} backgroundColor={getTheme().blueberry} />
         </View>
 
         <View style={styles.container}>

@@ -3,6 +3,7 @@ import {StyleSheet, SectionList, Image, TextInput, FlatList} from 'react-native'
 import {Assets, Colors, Text, View} from 'react-native-ui-lib';
 import {observer} from 'mobx-react';
 import {NavioScreen} from 'rn-navio';
+import { getTheme } from '../../utils/designSystem';
 
 export const FoodInfosList: NavioScreen = observer(({}) => {
   const food = [
@@ -55,12 +56,12 @@ export const FoodInfosList: NavioScreen = observer(({}) => {
     infos: {
       fontSize: 18,
       flex: 1,
-      color: '#D77467',
+      color: getTheme().red,
     },
     oldPrice: {
       fontSize: 15,
       flex: 1,
-      color: '#696d6e',
+      color: getTheme().darkerGrey,
       textDecorationLine: 'line-through',
       textDecorationStyle: 'solid'
     },
@@ -75,7 +76,7 @@ export const FoodInfosList: NavioScreen = observer(({}) => {
       marginHorizontal: 20,
     },
     card: {
-      backgroundColor: '#e0e0de',
+      backgroundColor: getTheme().grey,
       padding: 10,
       marginTop: 20,
       borderRadius: 10,
@@ -83,7 +84,7 @@ export const FoodInfosList: NavioScreen = observer(({}) => {
     },
     textInput: {
       fontSize: 16,
-      backgroundColor: "#ffffff",
+      backgroundColor: getTheme().text,
       borderRadius: 20,
       width: 35,
       height: 40,
