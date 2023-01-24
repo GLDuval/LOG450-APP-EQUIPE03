@@ -103,5 +103,3 @@ export const Profile: NavioScreen = observer(({}) => {
     </View>
   );
 });
-Profile.options = () => ({
-});

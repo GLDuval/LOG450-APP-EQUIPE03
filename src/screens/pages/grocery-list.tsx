@@ -59,5 +59,4 @@ export const GroceryList: NavioScreen = observer(({}) => {
     </View>
   );
 });
-GroceryList.options = () => ({
-});
+

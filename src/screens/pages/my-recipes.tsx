@@ -59,5 +59,3 @@ export const MyRecipes: NavioScreen = observer(({}) => {
     </View>
   );
 });
-MyRecipes.options = () => ({
-});

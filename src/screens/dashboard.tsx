@@ -105,32 +105,28 @@ export const Dashboard: NavioScreen = observer(({}) => {
   return (
     <View flex style={{ backgroundColor: '#E9C46A'}}>
       <ScrollView contentInsetAdjustmentBehavior="always">
-        <View>
-          <View style={styles.topContainer}>
-            <View style={{flexDirection:"row"}}>
-              <Text style={styles.title}>
-                Bonjour, {"\n"}{username} !
-              </Text>
-              <View style={{flexDirection: 'row'}}>
-                  <Avatar 
-                    source={{ uri: 'https://randomuser.me/api/portraits/men/1.jpg' }}
-                    size={60}
-                    onPress={() => {
-                      navio.show('Profile');
-                    }}
-                  />
-              </View>
+        <View style={styles.topContainer}>
+          <View style={{flexDirection:"row"}}>
+            <Text style={styles.title}>
+              Bonjour, {"\n"}{username} !
+            </Text>
+            <View style={{flexDirection: 'row'}}>
+              <Avatar 
+                source={{ uri: 'https://randomuser.me/api/portraits/men/1.jpg' }}
+                size={60}
+                onPress={() => {
+                  navio.show('Profile');
+                }}
+              />
             </View>
           </View>
         </View>
 
         <View style={styles.page} bg-bgColor>
-          
-            <View style={styles.menuContainer}>
-              <View style={{flexDirection:"row"}}>
-                
+          <View style={styles.menuContainer}>
+            <View style={{flexDirection:"row"}}>
               <TouchableOpacity
-                 style={styles.recepesCard}
+                style={styles.recepesCard}
                 onPress={()=> {
                   navio.show('MyRecipes');
                 }}>
@@ -186,33 +182,31 @@ export const Dashboard: NavioScreen = observer(({}) => {
             </View>
           </View>
 
-          <View>
-            <Text style={styles.subtitle}>
-              Épiceries
-            </Text>
-          </View>
+          <Text style={styles.subtitle}>
+            Épiceries
+          </Text>
           
           <SectionList
             sections={groceryStores}
             keyExtractor={(item, index) => item + index}
             renderItem={({item}) => (
-                <View style={styles.cardContainer}>
-                  <View style={styles.card}>
-                    <View style={{flexDirection:"row"}}>
-                      <Text style={styles.cardHeader}>
-                        {item}
-                      </Text>
-                      <View>
-                        <Icon
-                            size={22}
-                            tintColor={'#264653'}
-                            source={Assets.icons['search']}
-                          />
-                      </View>
-                    </View>
-                    <Text style={styles.infos}>
-                      Jusqu'à mercredi
+              <View style={styles.cardContainer}>
+                <View style={styles.card}>
+                  <View style={{flexDirection:"row"}}>
+                    <Text style={styles.cardHeader}>
+                      {item}
                     </Text>
+                    <View>
+                      <Icon
+                        size={22}
+                        tintColor={'#264653'}
+                        source={Assets.icons['search']}
+                      />
+                    </View>
+                  </View>
+                  <Text style={styles.infos}>
+                    Jusqu'à mercredi
+                  </Text>
                 </View>
               </View>
             )}
@@ -221,6 +215,4 @@ export const Dashboard: NavioScreen = observer(({}) => {
       </ScrollView>
     </View>
   );
-});
-Dashboard.options = () => ({
 });
