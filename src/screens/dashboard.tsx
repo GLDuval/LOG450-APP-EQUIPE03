@@ -195,16 +195,14 @@ export const Dashboard: NavioScreen = observer(({}) => {
                     <Text style={styles.cardHeader}>
                       {item}
                     </Text>
-                    <View>
-                      <Icon
-                        size={22}
-                        tintColor={'#264653'}
-                        source={Assets.icons.heart}
-                      />
-                    </View>
+                    <Icon
+                      size={22}
+                      tintColor={'#264653'}
+                      source={Assets.icons.heart}
+                    />
                   </View>
                   <Text style={styles.infos}>
-                    JTest
+                    Jusqu'à mecredi
                   </Text>
                 </View>
               </View>

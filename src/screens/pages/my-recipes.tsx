@@ -1,5 +1,5 @@
 import React from 'react';
-import {Dimensions, ScrollView, SectionList, StatusBar, StyleSheet, TextInput, TouchableHighlight} from 'react-native';
+import {ScrollView, SectionList, StatusBar, StyleSheet, TextInput, TouchableHighlight} from 'react-native';
 import {Assets, Colors, Icon, Text, View} from 'react-native-ui-lib';
 import {observer} from 'mobx-react';
 import {NavioScreen} from 'rn-navio';
@@ -19,7 +19,6 @@ export const MyRecipes: NavioScreen = observer(({}) => {
 
   const recipes = [
     {
-      title: 'Épiceries',
       data: ['Caramilk et Orange', 'Pâté chinois', 'Lasage', 'Poulet parmesan', 'Pizzaghetti', 'Saumon fumé'],
     },
   ];
@@ -123,13 +122,11 @@ export const MyRecipes: NavioScreen = observer(({}) => {
                       <Text style={styles.cardHeader}>
                         {item}
                       </Text>
-                      <View>
-                        <Icon
-                          size={22}
-                          tintColor={'#264653'}
-                          source={Assets.icons.heart}
-                        />
-                      </View>
+                      <Icon
+                        size={22}
+                        tintColor={'#264653'}
+                        source={Assets.icons.heart}
+                      />
                     </View>
                     <Text style={styles.infos}>
                       Ingrédients (4)
