@@ -1,5 +1,5 @@
 import React from 'react';
-import {Dimensions, ScrollView, SectionList, StyleSheet, TextInput, TouchableHighlight} from 'react-native';
+import {Dimensions, ScrollView, SectionList, StatusBar, StyleSheet, TextInput, TouchableHighlight} from 'react-native';
 import {Assets, Colors, Icon, Text, View} from 'react-native-ui-lib';
 import {observer} from 'mobx-react';
 import {NavioScreen} from 'rn-navio';
@@ -83,6 +83,7 @@ export const MyRecipes: NavioScreen = observer(({}) => {
   
   return (
     <View flex style={{ backgroundColor: '#264653'}}>
+      <StatusBar backgroundColor='#264653' />
       <ScrollView contentInsetAdjustmentBehavior="always">
         <View style={styles.topContainer}>
           <View style={{flexDirection:"row"}}>

@@ -1,5 +1,5 @@
 import React from 'react';
-import {Dimensions, ScrollView, StyleSheet, TextInput, TouchableHighlight} from 'react-native';
+import {Dimensions, ScrollView, StyleSheet, TextInput, TouchableHighlight, StatusBar} from 'react-native';
 import {Assets, Colors, Icon, Text, View} from 'react-native-ui-lib';
 import {observer} from 'mobx-react';
 import {NavioScreen} from 'rn-navio';
@@ -56,6 +56,7 @@ export const GroceryMap: NavioScreen = observer(({}) => {
   
   return (
     <View flex style={{ backgroundColor: '#578699'}}>
+      <StatusBar backgroundColor='#578699' />
       <ScrollView contentInsetAdjustmentBehavior="always">
         <View style={styles.topContainer}>
           <View style={{flexDirection:"row"}}>

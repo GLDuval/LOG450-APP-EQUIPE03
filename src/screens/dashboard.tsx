@@ -1,5 +1,5 @@
 import React from 'react';
-import {ScrollView, SectionList, StyleSheet, TouchableOpacity} from 'react-native';
+import {ScrollView, SectionList, StyleSheet, TouchableOpacity, StatusBar} from 'react-native';
 import {Assets, Avatar, Colors, Icon, Text, View} from 'react-native-ui-lib';
 import {observer} from 'mobx-react';
 import {NavioScreen} from 'rn-navio';
@@ -103,6 +103,7 @@ export const Dashboard: NavioScreen = observer(({}) => {
   
   return (
     <View flex style={{ backgroundColor: '#E9C46A'}}>
+      <StatusBar backgroundColor='#E9C46A' />
       <ScrollView contentInsetAdjustmentBehavior="always">
         <View style={styles.topContainer}>
           <View style={{flexDirection:"row"}}>
