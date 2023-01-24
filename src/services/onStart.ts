@@ -4,17 +4,17 @@ import {stores} from '../stores';
 export class OnStartService implements IService {
   private inited = false;
 
-  init = async (): PVoid => {
+  init(): void {
     if (!this.inited) {
       this.incAppLaunches();
 
-      await this.loadAssets();
+      this.loadAssets();
 
       this.inited = true;
     }
   };
 
-  private loadAssets = async () => {
+  private loadAssets() {
     Assets.loadAssetsGroup('icons', {
       recipe: require('../../assets/icons/recipe.png'),
       list: require('../../assets/icons/list.png'),
