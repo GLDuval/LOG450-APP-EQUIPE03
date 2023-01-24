@@ -6,14 +6,6 @@ import {NavioScreen} from 'rn-navio';
 import { navio } from '.';
 
 export const Dashboard: NavioScreen = observer(({}) => {
-  Assets.loadAssetsGroup('icons', {
-    recipe: require('../../assets/icons/recipe.png'),
-    list: require('../../assets/icons/list.png'),
-    map: require('../../assets/icons/map.png'),
-    heart: require('../../assets/icons/heart.png'),
-    close: require('../../assets/icons/close.png'),
-  });
-
   const username = "Félix-Antoine"
 
   const groceryStores = [

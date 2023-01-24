@@ -1,5 +1,4 @@
-import * as Font from 'expo-font';
-import {IconComponent} from '../components/icon';
+import {Assets} from 'react-native-ui-lib';
 import {stores} from '../stores';
 
 export class OnStartService implements IService {
@@ -16,13 +15,14 @@ export class OnStartService implements IService {
   };
 
   private loadAssets = async () => {
-    const fonts = [IconComponent.font];
-
-    const fontAssets = fonts.map(font => Font.loadAsync(font));
-
-    await Promise.all([...fontAssets]);
+    Assets.loadAssetsGroup('icons', {
+      recipe: require('../../assets/icons/recipe.png'),
+      list: require('../../assets/icons/list.png'),
+      map: require('../../assets/icons/map.png'),
+      heart: require('../../assets/icons/heart.png'),
+      close: require('../../assets/icons/close.png'),
+    });
   };
-
   private incAppLaunches() {
     const {ui} = stores;
 
