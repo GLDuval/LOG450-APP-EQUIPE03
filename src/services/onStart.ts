@@ -1,6 +1,7 @@
 import * as Font from 'expo-font';
 import {IconComponent} from '../components/icon';
 import {stores} from '../stores';
+import {Assets} from 'react-native-ui-lib';
 
 export class OnStartService implements IService {
   private inited = false;
@@ -19,6 +20,10 @@ export class OnStartService implements IService {
     const fonts = [IconComponent.font];
 
     const fontAssets = fonts.map(font => Font.loadAsync(font));
+
+    Assets.loadAssetsGroup('images', {
+      google: require('../../assets/google.png'),
+    });
 
     await Promise.all([...fontAssets]);
   };

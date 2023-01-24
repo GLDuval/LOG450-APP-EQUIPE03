@@ -9,7 +9,7 @@ import {services, useServices} from '../services';
 import {useStores} from '../stores';
 import {useAppearance} from '../utils/hooks';
 
-export const Login: NavioScreen = observer(({}) => {
+export const Join: NavioScreen = observer(({}) => {
   useAppearance();
   const navigation = useNavigation();
   const {counter, ui} = useStores();
@@ -77,14 +77,14 @@ export const Login: NavioScreen = observer(({}) => {
       color: "#264653",
       padding: 5,
     },
-    joinText: {
-      paddingTop: 10,
-      fontSize: 18,
-      flex: 1,
-      fontWeight: 'bold',
-      color: '#264653',
-      textAlign: 'center',
-    },
+    backText: {
+        paddingTop: 10,
+        fontSize: 18,
+        flex: 1,
+        fontWeight: 'bold',
+        color: '#264653',
+        textAlign: 'center',
+      },
   });
   
   return (
@@ -93,45 +93,35 @@ export const Login: NavioScreen = observer(({}) => {
         <View style={styles.header}>
           <View style={{flexDirection:"row"}}>
             <Text style={styles.headerTitle}>
-              {services.t.do('login.title')}
+              {services.t.do('signup.title')}
             </Text>
           </View>
         </View>
         
         <View style={{flexDirection:"column"}}>
+            <View style={styles.input}>
+                <TextField 
+                style={styles.textField}
+                placeholder={services.t.do('signup.name')} />
+            </View>
           <View style={styles.input}>
             <TextField 
             style={styles.textField}
-            placeholder={services.t.do('login.email')} 
+            placeholder={services.t.do('signup.email')} 
             validate="email" 
-            errorMessage={services.t.do('login.invalidEmail')} />
+            errorMessage={services.t.do('signup.invalidEmail')} />
           </View>
           <View style={styles.input}>
             <TextField 
             style={styles.textField}
-            placeholder={services.t.do('login.password')}
+            placeholder={services.t.do('signup.password')}
             secureTextEntry={true} />
           </View>
         </View>
 
         <View style={styles.input}>
-          <View style={{flexDirection:"row", justifyContent:"space-between"}}>
-            <View>
-              <Checkbox 
-              value={false}
-              label={services.t.do('login.rememberMe')}/>
-            </View>
-            <View>
-              <Text>
-                {services.t.do('login.forgotPassword')}
-              </Text>
-            </View>
-          </View>
-        </View>
-
-        <View style={styles.input}>
           <Button 
-            label={services.t.do('login.login')}
+            label={services.t.do('signup.signup')}
             labelStyle={styles.loginButtonLabel}
             borderRadius={15}
             backgroundColor="#264653"
@@ -140,7 +130,7 @@ export const Login: NavioScreen = observer(({}) => {
         </View>
         <View style={styles.input}>
           <Button 
-            label={services.t.do('login.loginWithGoogle')}
+            label={services.t.do('signup.signUpWithGoogle')}
             labelStyle={styles.loginGoogleButtonLabel}
             borderRadius={15}
             backgroundColor="#FFFFFF"
@@ -150,14 +140,14 @@ export const Login: NavioScreen = observer(({}) => {
         </View>
         <View style={styles.input}>
           <Text 
-            onPress={() => navio.show('Join')} style={styles.joinText}>
-            {services.t.do('login.signup')}
+            onPress={() => navio.goBack()} style={styles.backText}>
+            {services.t.do('signup.back')}
           </Text>
         </View>
       </ScrollView>
     </View>
   );
 });
-Login.options = () => ({
+Join.options = () => ({
   
 });

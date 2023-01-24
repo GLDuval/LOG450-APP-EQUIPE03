@@ -2,6 +2,7 @@ import {Navio} from 'rn-navio';
 
 import {Main} from './main';
 import {Login} from './login';
+import { Join } from './join';
 
 import {useAppearance} from '../utils/hooks';
 import {screenDefaultOptions} from '../utils/designSystem';
@@ -11,9 +12,10 @@ export const navio = Navio.build({
   screens: {
     Main,
     Login,
+    Join,
   },
   stacks: {
-    MainStack: ['Login','Main'],
+    MainStack: ['Login', 'Join', 'Main'],
   },
   root: 'Tabs',
   hooks: [useAppearance],
