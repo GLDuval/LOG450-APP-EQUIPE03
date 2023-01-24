@@ -51,7 +51,7 @@ export const Profile: NavioScreen = observer(({}) => {
               </Text>
               <Icon
                   size={20}
-                  source={Assets.icons['search']}
+                  source={Assets.icons.close}
                   style={styles.backIcon}
                   />
           </View>

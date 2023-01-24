@@ -6,6 +6,14 @@ import {NavioScreen} from 'rn-navio';
 import { navio } from '.';
 
 export const Dashboard: NavioScreen = observer(({}) => {
+  Assets.loadAssetsGroup('icons', {
+    recipe: require('../../assets/icons/recipe.png'),
+    list: require('../../assets/icons/list.png'),
+    map: require('../../assets/icons/map.png'),
+    heart: require('../../assets/icons/heart.png'),
+    close: require('../../assets/icons/close.png'),
+  });
+
   const username = "Félix-Antoine"
 
   const groceryStores = [
@@ -133,8 +141,7 @@ export const Dashboard: NavioScreen = observer(({}) => {
                 <View style={{flexDirection:"row-reverse"}}>
                   <Icon
                       size={20}
-                      tintColor={Colors.white}
-                      source={Assets.icons['search']}
+                      source={Assets.icons.recipe}
                     />
                 </View>
                 <View style={styles.bottom}>
@@ -154,7 +161,7 @@ export const Dashboard: NavioScreen = observer(({}) => {
                     <Icon
                         size={20}
                         tintColor={Colors.white}
-                        source={Assets.icons['search']}
+                        source={Assets.icons.list}
                       />
                   </View>
                   <Text style={styles.menuText}>
@@ -171,7 +178,7 @@ export const Dashboard: NavioScreen = observer(({}) => {
                     <Icon
                         size={20}
                         tintColor={Colors.white}
-                        source={Assets.icons['search']}
+                        source={Assets.icons.map}
                       />
                   </View>
                   <Text style={styles.menuText}>
@@ -200,7 +207,7 @@ export const Dashboard: NavioScreen = observer(({}) => {
                       <Icon
                         size={22}
                         tintColor={'#264653'}
-                        source={Assets.icons['search']}
+                        source={Assets.icons.heart}
                       />
                     </View>
                   </View>

@@ -41,7 +41,7 @@ export const GroceryMap: NavioScreen = observer(({}) => {
             <View style={{flexDirection:"row"}}>
                 <Icon
                     size={20}
-                    source={Assets.icons['search']}
+                    source={Assets.icons.close}
                     style={styles.backIcon}
                     />
                 <Text style={styles.title} center>
