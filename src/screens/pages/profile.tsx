@@ -1,8 +1,11 @@
 import React from 'react';
-import {ScrollView, StyleSheet} from 'react-native';
+import {ScrollView, StyleSheet, StatusBar} from 'react-native';
 import {Assets, Avatar, Button, Icon, Text, View} from 'react-native-ui-lib';
 import {observer} from 'mobx-react';
 import {NavioScreen} from 'rn-navio';
+import {
+  getStatusBarBGColor,
+} from '../../../src/utils/designSystem';
 
 export const Profile: NavioScreen = observer(({}) => {  
   const options = [
@@ -43,6 +46,7 @@ export const Profile: NavioScreen = observer(({}) => {
   
   return (
     <View flex bg-bgColor>
+      <StatusBar backgroundColor={getStatusBarBGColor()} />
       <ScrollView contentInsetAdjustmentBehavior="always">
         <View style={styles.topContainer}>
           <View style={{flexDirection:"row"}}>

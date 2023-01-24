@@ -3,6 +3,7 @@ import {NativeStackNavigationOptions} from '@react-navigation/native-stack';
 import {StatusBarStyle} from 'expo-status-bar';
 import {Appearance as RNAppearance, Platform} from 'react-native';
 import {Colors, Typography} from 'react-native-ui-lib';
+import { navio } from '../screens';
 
 import {stores} from '../stores';
 import {Appearance} from './types/enums';
