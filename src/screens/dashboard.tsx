@@ -62,7 +62,6 @@ export const Dashboard: NavioScreen = observer(({}) => {
       color: '#696d6e',
     },
     cardContainer: {
-      fontSize: 24,
       flex: 1,
       marginHorizontal: 20,
     },
@@ -204,7 +203,7 @@ export const Dashboard: NavioScreen = observer(({}) => {
                     </View>
                   </View>
                   <Text style={styles.infos}>
-                    Jusqu'à mercredi
+                    JTest
                   </Text>
                 </View>
               </View>
