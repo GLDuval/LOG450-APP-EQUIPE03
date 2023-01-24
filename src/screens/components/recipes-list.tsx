@@ -5,17 +5,6 @@ import {observer} from 'mobx-react';
 import {NavioScreen} from 'rn-navio';
 
 export const RecipesList: NavioScreen = observer(({}) => {
-  const onChangeText = (text: string) => {
-    let message = '';
-    if (text === '') {
-      message = 'This field is mandatory';
-    }
-    if (text === 'Zzz') {
-      message = 'Please enter a valid text';
-    }
-    setState({error: message});
-  };
-
   const recipes = [
     {
       data: ['Caramilk et Orange', 'Pâté chinois', 'Lasage', 'Poulet parmesan', 'Pizzaghetti', 'Saumon fumé'],

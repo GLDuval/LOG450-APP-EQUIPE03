@@ -3,7 +3,7 @@ import {Dimensions, ScrollView, StyleSheet, TextInput, TouchableHighlight, Statu
 import {Assets, Colors, Icon, Text, View} from 'react-native-ui-lib';
 import {observer} from 'mobx-react';
 import {NavioScreen} from 'rn-navio';
-import { navio } from '..';
+import {navio} from '..';
 
 export const GroceryMap: NavioScreen = observer(({}) => {
   const onChangeText = (text: string) => {

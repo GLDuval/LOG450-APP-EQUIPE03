@@ -3,10 +3,8 @@ import {ScrollView, StyleSheet, TouchableHighlight, StatusBar} from 'react-nativ
 import {Assets, Avatar, Button, Icon, Text, View} from 'react-native-ui-lib';
 import {observer} from 'mobx-react';
 import {NavioScreen} from 'rn-navio';
-import { navio } from '..';
-import {
-  getStatusBarBGColor,
-} from '../../../src/utils/designSystem';
+import {navio} from '..';
+import {getStatusBarBGColor} from '../../../src/utils/designSystem';
 
 export const Profile: NavioScreen = observer(({}) => {  
   const options = [

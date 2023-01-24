@@ -3,14 +3,11 @@ import {SectionList, StyleSheet, TouchableHighlight} from 'react-native';
 import {Assets, Colors, Icon, Text, View} from 'react-native-ui-lib';
 import {observer} from 'mobx-react';
 import {NavioScreen} from 'rn-navio';
-import { navio } from '../';
+import {navio} from '../';
 
 export const GroceryStoresList: NavioScreen = observer(({}) => {
-  const username = "Félix-Antoine"
-
   const groceryStores = [
     {
-      title: 'Épiceries',
       data: ['Super C', 'Maxi', 'IGA', 'Metro', 'Provigo', 'Loblaws'],
     },
   ];

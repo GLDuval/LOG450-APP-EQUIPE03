@@ -3,8 +3,8 @@ import {ScrollView, StatusBar, StyleSheet, TextInput, TouchableHighlight} from '
 import {Assets, Colors, Icon, Text, View} from 'react-native-ui-lib';
 import {observer} from 'mobx-react';
 import {NavioScreen} from 'rn-navio';
-import { navio } from '..';
-import { RecipesList } from '../components/recipes-list';
+import {navio} from '..';
+import {RecipesList} from '../components/recipes-list';
 
 export const MyRecipes: NavioScreen = observer(({}) => {
   const onChangeText = (text: string) => {

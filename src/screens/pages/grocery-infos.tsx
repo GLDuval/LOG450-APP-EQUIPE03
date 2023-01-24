@@ -3,9 +3,9 @@ import {Dimensions, ScrollView, StyleSheet, TouchableHighlight, StatusBar, Image
 import {Assets, Colors, Icon, TabController, View} from 'react-native-ui-lib';
 import {observer} from 'mobx-react';
 import {NavioScreen} from 'rn-navio';
-import { navio } from '..';
-import { RecipesList } from '../components/recipes-list';
-import { FoodInfosList } from '../components/food-infos-list';
+import {navio} from '..';
+import {RecipesList} from '../components/recipes-list';
+import {FoodInfosList} from '../components/food-infos-list';
 
 export const GroceryInfos: NavioScreen = observer(({}) => {
   // STYLES

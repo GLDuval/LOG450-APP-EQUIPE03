@@ -3,16 +3,10 @@ import {Dimensions, ScrollView, StyleSheet, TouchableHighlight, StatusBar} from 
 import {Assets, Colors, Icon, Text, View} from 'react-native-ui-lib';
 import {observer} from 'mobx-react';
 import {NavioScreen} from 'rn-navio';
-import { navio } from '..';
-import { FoodInfosList } from '../components/food-infos-list';
+import {navio} from '..';
+import {FoodInfosList} from '../components/food-infos-list';
 
 export const GroceryList: NavioScreen = observer(({}) => {
-  const recipes = [
-    {
-      data: ['Cocombre', 'Tostitos Chunky Salsa', 'Banane', 'Poulet', 'Pâtes spaghetti', 'Saumon'],
-    },
-  ];
-  
   // STYLES
   const styles = StyleSheet.create({
     page: {

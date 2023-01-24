@@ -3,7 +3,6 @@ import {StyleSheet, SectionList, Image, TextInput} from 'react-native';
 import {Assets, Colors, Text, View} from 'react-native-ui-lib';
 import {observer} from 'mobx-react';
 import {NavioScreen} from 'rn-navio';
-import { navio } from '..';
 
 export const FoodInfosList: NavioScreen = observer(({}) => {
   const recipes = [
