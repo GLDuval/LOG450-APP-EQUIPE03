@@ -37,7 +37,7 @@ export const FoodInfosList: NavioScreen = observer(({}) => {
     },
     card: {
       backgroundColor: '#e0e0de',
-      padding: 15,
+      padding: 10,
       marginTop: 20,
       borderRadius: 10,
       flexDirection: 'row',
@@ -62,7 +62,7 @@ export const FoodInfosList: NavioScreen = observer(({}) => {
             <View style={{flexDirection:"column"}}>
               <Image
                   source={{ uri: 'https://randomuser.me/api/portraits/men/1.jpg' }}
-                  style={{ width: 100, height: 100, borderRadius: 10 }}
+                  style={{ width: 85, height: 85, borderRadius: 10 }}
                 />
             </View>
 
@@ -72,7 +72,7 @@ export const FoodInfosList: NavioScreen = observer(({}) => {
                   {item}
                 </Text>
                 <TextInput
-                  placeholder="1"
+                  placeholder="0"
                   style={styles.textInput}
                   maxLength={3}
                 />

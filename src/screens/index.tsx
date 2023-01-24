@@ -11,6 +11,7 @@ import {MyRecipes} from './pages/my-recipes';
 import {GroceryStoresList} from './components/grocery-stores-list';
 import {RecipesList} from './components/recipes-list';
 import {FoodInfosList} from './components/food-infos-list';
+import {SearchBar} from './components/search-bar';
 
 import {useAppearance} from '../utils/hooks';
 import {screenDefaultOptions} from '../utils/designSystem';
@@ -30,9 +31,10 @@ export const navio = Navio.build({
     GroceryStoresList,
     RecipesList,
     FoodInfosList,
+    SearchBar,
   },
   stacks: {
-    MainStack: ['Dashboard','Login', 'Profile', 'GroceryInfos', 'GroceryMap', 'GroceryList', 'MyRecipes', 'GroceryStoresList', 'RecipesList', 'FoodInfosList'],
+    MainStack: ['Dashboard','Login', 'Profile', 'GroceryInfos', 'GroceryMap', 'GroceryList', 'MyRecipes', 'GroceryStoresList', 'RecipesList', 'FoodInfosList', 'SearchBar'],
   },
   root: 'Tabs',
   hooks: [useAppearance],

@@ -5,6 +5,7 @@ import {observer} from 'mobx-react';
 import {NavioScreen} from 'rn-navio';
 import {navio} from '..';
 import {RecipesList} from '../components/recipes-list';
+import { SearchBar } from '../components/search-bar';
 
 export const MyRecipes: NavioScreen = observer(({}) => {
   const onChangeText = (text: string) => {
@@ -47,13 +48,6 @@ export const MyRecipes: NavioScreen = observer(({}) => {
       marginTop: 8,
       tintColor: Colors.white,
     },
-    textInput: {
-      fontSize: 16,
-      padding: 10,
-      backgroundColor: '#DADADA',
-      borderRadius: 10,
-      color: '#7E7E7E',
-    }
   });
   
   return (
@@ -79,11 +73,7 @@ export const MyRecipes: NavioScreen = observer(({}) => {
             </Text>
           </View>
           <View style={{padding:10}}>
-            <TextInput
-              placeholder="Rechercher"
-              onChangeText={() => onChangeText}
-              style={styles.textInput}
-            />
+            <SearchBar />
           </View>
         </View>
 
