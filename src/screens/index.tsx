@@ -15,7 +15,8 @@ export const navio = Navio.build({
     Join,
   },
   stacks: {
-    MainStack: ['Login', 'Join', 'Main'],
+    LoginStack: ['Login', 'Join'],
+    MainStack: ['Main'],
   },
   root: 'Tabs',
   hooks: [useAppearance],

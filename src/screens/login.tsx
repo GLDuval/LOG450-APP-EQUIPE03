@@ -47,7 +47,7 @@ export const Login: NavioScreen = observer(({}) => {
         const user = userCredential.user;
         console.log(user);
         setLoading(false);
-        navio.push('Main');
+        navio.pushStack('MainStack');
       })
       .catch((error) => {
         const errorCode = error.code;
