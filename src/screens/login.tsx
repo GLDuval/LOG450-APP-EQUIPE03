@@ -32,7 +32,7 @@ export const Login: NavioScreen = observer(() => {
           const user = userCredential.user;
           console.log(user);
           setLoading(false);
-          navio.pushStack('MainStack');
+          navio.setRoot('MainStack');
         })
         .catch((error: FirebaseError) => {
           const errorCode = error.code;
