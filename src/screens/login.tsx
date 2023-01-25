@@ -5,18 +5,14 @@ import {observer} from 'mobx-react';
 import {useNavigation} from '@react-navigation/native';
 import {NavioScreen} from 'rn-navio';
 
-import {services, useServices} from '../services';
-import {useStores} from '../stores';
-import {useAppearance} from '../utils/hooks';
+import { services } from '../services';
+import { useAppearance } from '../utils/hooks';
 import { TextInput } from 'react-native-gesture-handler';
 import { auth } from '../../firebaseConfig';
 import { signInWithEmailAndPassword } from 'firebase/auth';
 
-export const Login: NavioScreen = observer(({}) => {
+export const Login: NavioScreen = observer(() => {
   useAppearance();
-  const navigation = useNavigation();
-  const {counter, ui} = useStores();
-  const {t, api, navio} = useServices();
 
   // State (local)
   const [loading, setLoading] = useState(false);
@@ -118,15 +114,13 @@ export const Login: NavioScreen = observer(({}) => {
       paddingBottom: 16,
     }
   });
-  
+
   return (
     <View flex bg-bgColor>
       <ScrollView contentInsetAdjustmentBehavior="always">
         <View style={styles.header}>
-          <View style={{flexDirection:"row"}}>
-            <Text style={styles.headerTitle}>
-              {services.t.do('login.title')}
-            </Text>
+          <View style={{ flexDirection: 'row' }}>
+            <Text style={styles.headerTitle}>{services.t.do('login.title')}</Text>
           </View>
         </View>
         
@@ -197,6 +191,4 @@ export const Login: NavioScreen = observer(({}) => {
     </View>
   );
 });
-Login.options = () => ({
-  
-});
+Login.options = () => ({});

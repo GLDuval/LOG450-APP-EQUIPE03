@@ -1,9 +1,13 @@
-import React, {PropsWithChildren} from 'react';
+import React, { ReactNode } from 'react';
 
-import {ServicesProvider} from '../services';
-import {StoresProvider} from '../stores';
+import { ServicesProvider } from '../services';
+import { StoresProvider } from '../stores';
 
-export const SSProvider: React.FC<PropsWithChildren<{}>> = ({children}) => {
+interface Props {
+  children: ReactNode;
+}
+
+export const SSProvider = ({ children }: Props) => {
   return (
     <StoresProvider>
       <ServicesProvider>{children}</ServicesProvider>

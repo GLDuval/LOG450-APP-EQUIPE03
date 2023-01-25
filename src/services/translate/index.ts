@@ -1,14 +1,14 @@
 import * as Localization from 'expo-localization';
-import {I18n, Scope, TranslateOptions} from 'i18n-js';
+import { I18n, Scope, TranslateOptions } from 'i18n-js';
 
 import * as translations from './translations';
-import {stores} from '../../stores';
+import { stores } from '../../stores';
 
-export class TranslateService implements IService {
+export class TranslateService {
   private inited = false;
   private i18n = new I18n(translations);
 
-  init = async (): PVoid => {
+  init = () => {
     if (!this.inited) {
       this.setup();
 
@@ -19,7 +19,7 @@ export class TranslateService implements IService {
   do = (scope: Scope, options?: TranslateOptions | undefined) => this.i18n.t(scope, options);
 
   setup = (): void => {
-    const {ui} = stores;
+    const { ui } = stores;
     const lng = Localization.locale;
 
     this.i18n.enableFallback = true;
