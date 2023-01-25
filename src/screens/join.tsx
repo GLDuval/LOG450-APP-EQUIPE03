@@ -25,22 +25,26 @@ export const Join: NavioScreen = observer(() => {
   const [password, setPassword] = useState('');
 
   // Firebase Create
-  const createNewUser = useCallback((email: string, password: string) => {
-    setLoading(true);
-    createUserWithEmailAndPassword(auth, email, password)
-      .then((userCredential) => {
-        // Signed in
-        const user = userCredential.user;
-        setLoading(false);
-        console.log(user);
-      })
-      .catch((error: FirebaseError) => {
-        const errorCode = error.code;
-        const errorMessage = error.message;
-        setLoading(false);
-        console.log(errorCode, errorMessage);
-      });
-  }, []);
+  const createNewUser = useCallback(
+    (email: string, password: string) => {
+      setLoading(true);
+      createUserWithEmailAndPassword(auth, email, password)
+        .then((userCredential) => {
+          // Signed in
+          const user = userCredential.user;
+          setLoading(false);
+          navio.push('Login');
+          console.log(user);
+        })
+        .catch((error: FirebaseError) => {
+          const errorCode = error.code;
+          const errorMessage = error.message;
+          setLoading(false);
+          console.log(errorCode, errorMessage);
+        });
+    },
+    [navio],
+  );
 
   // STYLES
   const styles = StyleSheet.create({
