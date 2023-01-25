@@ -27,12 +27,12 @@ export const Dashboard: NavioScreen = observer(() => {
     title: {
       fontSize: 24,
       flex: 1,
-      color: getTheme().blueberry,
+      color: getTheme().textColor,
     },
     subtitle: {
       fontSize: 22,
       flex: 1,
-      color: Colors.black,
+      color: getTheme().textColor,
       fontWeight: 'bold',
       marginVertical: 10,
       marginHorizontal: 20,

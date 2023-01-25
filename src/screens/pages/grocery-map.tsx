@@ -26,7 +26,7 @@ export const GroceryMap: NavioScreen = observer(() => {
     title: {
       fontSize: 24,
       flex: 1,
-      color: Colors.white,
+      color: getTheme().textColor,
       paddingBottom: 15,
     },
     text: {

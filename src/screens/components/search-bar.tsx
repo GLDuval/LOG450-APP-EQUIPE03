@@ -27,7 +27,7 @@ export const SearchBar: NavioScreen = observer(() => {
       padding: 10,
       backgroundColor: getTheme().grey,
       borderRadius: 10,
-      color: getTheme().darkerGrey,
+      color: getTheme().details,
     },
   });
 

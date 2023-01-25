@@ -20,7 +20,7 @@ const colors = {
 
 const themes: Record<Appearance, { [key: string]: string }> = {
   system: {},
-  light: {
+  dark: {
     textColor: colors._black,
     bgColor: colors._white,
     bg2Color: colors._white2,
@@ -34,19 +34,19 @@ const themes: Record<Appearance, { [key: string]: string }> = {
     darkerGrey: '#264653',
     details: '#696d6e',
   },
-  dark: {
-    textColor: colors._white,
-    bgColor: colors._black,
+  light: {
+    textColor: '#DDDDDD',
+    bgColor: '#0B1418',
     bg2Color: colors._black2,
     text: colors._white,
-    blueberry: '#264653',
-    mustard: '#E9C46A',
-    orange: '#E76F51',
-    blue: '#8ECAE6',
-    grey: '#e0e0de',
-    red: 'd77467',
-    darkerGrey: '#264653',
-    details: '#696d6e',
+    blueberry: '#272640',
+    mustard: '#303333',
+    orange: '#5F1E0D',
+    blue: '#0C4B69',
+    grey: '#262A2A',
+    red: '#7d2b21',
+    darkerGrey: '#889093',
+    details: '#889093',
   },
 };
 

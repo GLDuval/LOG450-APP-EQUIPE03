@@ -19,6 +19,7 @@ export const GroceryStoresList: NavioScreen = observer(() => {
       fontSize: 20,
       flex: 1,
       fontWeight: 'bold',
+      color: getTheme().textColor,
     },
     infos: {
       fontSize: 18,

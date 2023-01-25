@@ -1,6 +1,6 @@
 import React from 'react';
 import { SectionList, StyleSheet } from 'react-native';
-import { Colors, Icon, Text, View } from 'react-native-ui-lib';
+import { Icon, Text, View } from 'react-native-ui-lib';
 import { observer } from 'mobx-react';
 import { NavioScreen } from 'rn-navio';
 import { getTheme } from '../../utils/designSystem';
@@ -24,12 +24,12 @@ export const RecipesList: NavioScreen = observer(() => {
     infos: {
       fontSize: 18,
       flex: 1,
-      color: getTheme().darkerGrey,
+      color: getTheme().details,
     },
     cardHeader: {
       fontSize: 20,
       flex: 1,
-      color: Colors.black,
+      color: getTheme().darkerGrey,
       fontWeight: 'bold',
     },
     cardContainer: {

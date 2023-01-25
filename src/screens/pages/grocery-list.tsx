@@ -25,7 +25,7 @@ export const GroceryList: NavioScreen = observer(() => {
     title: {
       fontSize: 24,
       flex: 1,
-      color: Colors.white,
+      color: getTheme().textColor,
     },
     backIcon: {
       marginTop: 8,
