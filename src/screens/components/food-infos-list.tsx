@@ -8,45 +8,45 @@ import { getTheme } from '../../utils/designSystem';
 export const FoodInfosList: NavioScreen = observer(() => {
   const food = [
     {
-      food: 'Mini concombres',
-      image: 'https://product-images.metro.ca/images/h97/h75/11204994465822.jpg',
-      price: '2,99 $ ch.',
-      oldPrice: '3,99 $ ch.',
+      product_name: 'Mini concombres',
+      image_url: 'https://product-images.metro.ca/images/h97/h75/11204994465822.jpg',
+      regular_price: '2,99 $ ch.',
+      sale_price: '3,99 $ ch.',
       quantity: 2,
     },
     {
-      food: 'Tomates rouges en grappe',
-      image: 'https://product-images.metro.ca/images/h09/h62/9276941893662.jpg',
-      price: '5,11 $ env. ch. (775 g env.)',
-      oldPrice: '8,80 $ env. kg',
+      product_name: 'Tomates rouges en grappe',
+      image_url: 'https://product-images.metro.ca/images/h09/h62/9276941893662.jpg',
+      regular_price: '5,11 $ env. ch. (775 g env.)',
+      sale_price: '8,80 $ env. kg',
       quantity: 4,
     },
     {
-      food: 'Bœuf haché mi-maigre',
-      image: 'https://product-images.metro.ca/images/h5b/hcb/9225276358686.jpg',
-      price: '3,96 $ / 450 g',
-      oldPrice: '13,87 $ / kg',
+      product_name: 'Bœuf haché mi-maigre',
+      image_url: 'https://product-images.metro.ca/images/h5b/hcb/9225276358686.jpg',
+      regular_price: '3,96 $ / 450 g',
+      sale_price: '13,87 $ / kg',
       quantity: 1,
     },
     {
-      food: 'Pistaches rôties et salées',
-      image: 'https://product-images.metro.ca/images/h97/h8c/9633873330206.jpg',
-      price: '4,99 $  ch.',
-      oldPrice: '5,99 $  ch.',
+      product_name: 'Pistaches rôties et salées',
+      image_url: 'https://product-images.metro.ca/images/h97/h8c/9633873330206.jpg',
+      regular_price: '4,99 $  ch.',
+      sale_price: '5,99 $  ch.',
       quantity: 1,
     },
     {
-      food: 'Macaroni et fromage original',
-      image: 'https://product-images.metro.ca/images/h29/h94/9986997256222.jpg',
-      price: '4 /  5,00 $',
-      oldPrice: '1,59 $  ch.',
+      product_name: 'Macaroni et fromage original',
+      image_url: 'https://product-images.metro.ca/images/h29/h94/9986997256222.jpg',
+      regular_price: '4 /  5,00 $',
+      sale_price: '1,59 $  ch.',
       quantity: 1,
     },
     {
-      food: 'Fromage à la crème original',
-      image: 'https://product-images.metro.ca/images/hde/h06/9986804482078.jpg',
-      price: '4,77 $  ch.',
-      oldPrice: '5,99 $  ch.',
+      product_name: 'Fromage à la crème original',
+      image_url: 'https://product-images.metro.ca/images/hde/h06/9986804482078.jpg',
+      regular_price: '4,77 $  ch.',
+      sale_price: '5,99 $  ch.',
       quantity: 1,
     },
   ];
@@ -105,14 +105,14 @@ export const FoodInfosList: NavioScreen = observer(() => {
             <View style={styles.card}>
               <View style={{ flexDirection: 'column' }}>
                 <Image
-                  source={{ uri: item.image }}
+                  source={{ uri: item.image_url }}
                   style={{ width: 85, height: 85, borderRadius: 10 }}
                 />
               </View>
 
               <View style={{ flexDirection: 'column', paddingLeft: 15, width: '70%' }}>
                 <View style={{ flexDirection: 'row' }}>
-                  <Text style={styles.cardHeader}>{item.food}</Text>
+                  <Text style={styles.cardHeader}>{item.product_name}</Text>
                   <TextInput
                     placeholder="0"
                     style={styles.textInput}
@@ -121,8 +121,8 @@ export const FoodInfosList: NavioScreen = observer(() => {
                   />
                 </View>
 
-                <Text style={styles.infos}>{item.price}</Text>
-                <Text style={styles.oldPrice}>{item.oldPrice}</Text>
+                <Text style={styles.infos}>{item.regular_price}</Text>
+                <Text style={styles.oldPrice}>{item.sale_price}</Text>
               </View>
             </View>
           </View>
