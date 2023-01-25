@@ -1,18 +1,20 @@
-import React, {useCallback, useState} from 'react';
-import {ScrollView, SectionList, StyleSheet} from 'react-native';
-import {TextField, Text, View, Button, Checkbox, Assets, LoaderScreen, Colors} from 'react-native-ui-lib';
-import {observer} from 'mobx-react';
-import {useNavigation} from '@react-navigation/native';
-import {NavioScreen} from 'rn-navio';
+import React, { useCallback, useState } from 'react';
+import { ScrollView, StyleSheet } from 'react-native';
+import { Text, View, Button, Checkbox, LoaderScreen, Colors } from 'react-native-ui-lib';
+import { observer } from 'mobx-react';
+import { NavioScreen } from 'rn-navio';
 
-import { services } from '../services';
+import { services, useServices } from '../services';
 import { useAppearance } from '../utils/hooks';
 import { TextInput } from 'react-native-gesture-handler';
 import { auth } from '../../firebaseConfig';
 import { signInWithEmailAndPassword } from 'firebase/auth';
+import { FirebaseError } from 'firebase/app';
+import { getTheme } from '../utils/designSystem';
 
 export const Login: NavioScreen = observer(() => {
   useAppearance();
+  const { navio } = useServices();
 
   // State (local)
   const [loading, setLoading] = useState(false);
@@ -20,38 +22,27 @@ export const Login: NavioScreen = observer(() => {
   const [password, setPassword] = useState('');
   const [remember, setRemember] = useState(false);
 
-  // API Methods
-  const getCounterValue = useCallback(async () => {
-    setLoading(true);
-    try {
-      const {value} = await api.counter.get();
-
-      counter.set('value', value);
-    } catch (e) {
-      console.log('[ERROR]', e);
-    } finally {
-      setLoading(false);
-    }
-  }, [api.counter, counter]);
-
-  const login = useCallback(async (email: string, password: string) => {
-    console.log(email, password);
-    setLoading(true);
-    await signInWithEmailAndPassword(auth, email, password)
-      .then((userCredential) => {
-        // Signed in 
-        const user = userCredential.user;
-        console.log(user);
-        setLoading(false);
-        navio.pushStack('MainStack');
-      })
-      .catch((error) => {
-        const errorCode = error.code;
-        const errorMessage = error.message;
-        setLoading(false);
-        console.log(errorCode, errorMessage);
-      });
-  }, [])
+  const login = useCallback(
+    async (email: string, password: string) => {
+      console.log(email, password);
+      setLoading(true);
+      await signInWithEmailAndPassword(auth, email, password)
+        .then((userCredential) => {
+          // Signed in
+          const user = userCredential.user;
+          console.log(user);
+          setLoading(false);
+          navio.pushStack('MainStack');
+        })
+        .catch((error: FirebaseError) => {
+          const errorCode = error.code;
+          const errorMessage = error.message;
+          setLoading(false);
+          console.log(errorCode, errorMessage);
+        });
+    },
+    [navio],
+  );
 
   // STYLES
   const styles = StyleSheet.create({
@@ -65,7 +56,7 @@ export const Login: NavioScreen = observer(() => {
       fontSize: 32,
       flex: 1,
       fontWeight: 'bold',
-      color: '#264653',
+      color: getTheme().blueberry,
       textAlign: 'center',
     },
     container: {
@@ -80,15 +71,15 @@ export const Login: NavioScreen = observer(() => {
     },
     textField: {
       fontSize: 20,
-      backgroundColor: '#F6F6F6',
-      borderColor: '#E8E8E8',
+      backgroundColor: getTheme().bgColor,
+      borderColor: getTheme().grey,
       borderWidth: 1.5,
       borderRadius: 10,
       paddingHorizontal: 15,
       paddingVertical: 10,
     },
     loginButton: {
-      backgroundColor: '#264653',
+      backgroundColor: getTheme().blueberry,
       borderRadius: 10,
     },
     loginButtonLabel: {
@@ -97,7 +88,7 @@ export const Login: NavioScreen = observer(() => {
     },
     loginGoogleButtonLabel: {
       fontSize: 20,
-      color: "#264653",
+      color: getTheme().blueberry,
       padding: 5,
     },
     joinText: {
@@ -105,14 +96,14 @@ export const Login: NavioScreen = observer(() => {
       fontSize: 18,
       flex: 1,
       fontWeight: 'bold',
-      color: '#264653',
+      color: getTheme().blueberry,
       textAlign: 'center',
     },
     loginOptions: {
-      flexDirection: "row",
-      justifyContent: "space-between",
+      flexDirection: 'row',
+      justifyContent: 'space-between',
       paddingBottom: 16,
-    }
+    },
   });
 
   return (
@@ -123,54 +114,55 @@ export const Login: NavioScreen = observer(() => {
             <Text style={styles.headerTitle}>{services.t.do('login.title')}</Text>
           </View>
         </View>
-        
-        <View style={{flexDirection:"column"}}>
+
+        <View style={{ flexDirection: 'column' }}>
           <View style={styles.input}>
-            <TextInput 
-            value={email}
-            onChangeText={(email) => setEmail(email)}
-            style={styles.textField}
-            placeholder={services.t.do('login.email')} />
+            <TextInput
+              value={email}
+              onChangeText={(email) => setEmail(email)}
+              style={styles.textField}
+              placeholder={services.t.do('login.email')}
+            />
           </View>
           <View style={styles.input}>
-            <TextInput 
-            value={password}
-            onChangeText={(password) => setPassword(password)}
-            style={styles.textField}
-            placeholder={services.t.do('login.password')}
-            secureTextEntry={true} />
+            <TextInput
+              value={password}
+              onChangeText={(password) => setPassword(password)}
+              style={styles.textField}
+              placeholder={services.t.do('login.password')}
+              secureTextEntry={true}
+            />
           </View>
         </View>
 
         <View style={styles.input}>
           <View style={styles.loginOptions}>
             <View>
-              <Checkbox 
-              value={remember}
-              onValueChange={(remember: boolean) => setRemember(remember)}
-              label={services.t.do('login.rememberMe')}/>
+              <Checkbox
+                value={remember}
+                onValueChange={(remember: boolean) => setRemember(remember)}
+                label={services.t.do('login.rememberMe')}
+              />
             </View>
             <View>
-              <Text>
-                {services.t.do('login.forgotPassword')}
-              </Text>
+              <Text>{services.t.do('login.forgotPassword')}</Text>
             </View>
           </View>
         </View>
 
         <View style={styles.input}>
-          <Button 
+          <Button
             label={services.t.do('login.login')}
             labelStyle={styles.loginButtonLabel}
             borderRadius={15}
             backgroundColor="#264653"
-            style={{marginBottom: 10}}
+            style={{ marginBottom: 10 }}
             onPress={() => login(email, password)}
           />
         </View>
-        {/*}
+        {/* }
         <View style={styles.input}>
-          <Button 
+          <Button
             label={services.t.do('login.loginWithGoogle')}
             labelStyle={styles.loginGoogleButtonLabel}
             borderRadius={15}
@@ -181,8 +173,7 @@ export const Login: NavioScreen = observer(() => {
         </View>
         {*/}
         <View style={styles.input}>
-          <Text 
-            onPress={() => navio.show('Join')} style={styles.joinText}>
+          <Text onPress={() => navio.show('Join')} style={styles.joinText}>
             {services.t.do('login.signup')}
           </Text>
         </View>
