@@ -8,7 +8,7 @@ type StoreKeysOf<S> = keyof Omit<S, StoreDefaultKeys>;
 
 // `services` layer
 interface IService {
-  init:() => void;
+  init: () => void;
 }
 
 // System

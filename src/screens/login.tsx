@@ -1,15 +1,15 @@
-import React, {useCallback, useState} from 'react';
-import {ScrollView, StyleSheet} from 'react-native';
-import {Colors, Text, View} from 'react-native-ui-lib';
-import {observer} from 'mobx-react';
-import {NavioScreen} from 'rn-navio';
+import React from 'react';
+import { ScrollView, StyleSheet } from 'react-native';
+import { Text, View } from 'react-native-ui-lib';
+import { observer } from 'mobx-react';
+import { NavioScreen } from 'rn-navio';
 
-import {services} from '../services';
-import {useAppearance} from '../utils/hooks';
+import { services } from '../services';
+import { useAppearance } from '../utils/hooks';
 import { TextInput } from 'react-native-gesture-handler';
 import { getTheme } from '../utils/designSystem';
 
-export const Login: NavioScreen = observer(({}) => {
+export const Login: NavioScreen = observer(() => {
   useAppearance();
 
   // STYLES
@@ -27,18 +27,16 @@ export const Login: NavioScreen = observer(({}) => {
       textAlign: 'center',
     },
   });
-  
+
   return (
     <View flex bg-bgColor>
       <ScrollView contentInsetAdjustmentBehavior="always">
         <View style={styles.header}>
-          <View style={{flexDirection:"row"}}>
-            <Text style={styles.headerTitle}>
-              {services.t.do('login.title')}
-            </Text>
+          <View style={{ flexDirection: 'row' }}>
+            <Text style={styles.headerTitle}>{services.t.do('login.title')}</Text>
           </View>
         </View>
-        
+
         <View>
           <TextInput placeholder={services.t.do('login.email')} />
           <TextInput placeholder={services.t.do('login.password')} />
@@ -47,6 +45,4 @@ export const Login: NavioScreen = observer(({}) => {
     </View>
   );
 });
-Login.options = () => ({
-  
-});
+Login.options = () => ({});

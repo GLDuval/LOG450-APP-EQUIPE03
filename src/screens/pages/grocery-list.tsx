@@ -1,10 +1,10 @@
 import React from 'react';
-import {ScrollView, StyleSheet, TouchableHighlight, StatusBar} from 'react-native';
-import {Assets, Colors, Icon, Text, View} from 'react-native-ui-lib';
-import {observer} from 'mobx-react';
-import {NavioScreen} from 'rn-navio';
-import {navio} from '..';
-import {FoodInfosList} from '../components/food-infos-list';
+import { ScrollView, StyleSheet, TouchableHighlight, StatusBar } from 'react-native';
+import { Colors, Icon, Text, View } from 'react-native-ui-lib';
+import { observer } from 'mobx-react';
+import { NavioScreen } from 'rn-navio';
+import { navio } from '..';
+import { FoodInfosList } from '../components/food-infos-list';
 import { services } from '../../services';
 import { getTheme } from '../../utils/designSystem';
 
@@ -34,18 +34,18 @@ export const GroceryList: NavioScreen = observer(() => {
   });
 
   return (
-    <View flex style={{backgroundColor: getTheme().orange}}>
+    <View flex style={{ backgroundColor: getTheme().orange }}>
       <StatusBar backgroundColor={getTheme().orange} />
       <ScrollView contentInsetAdjustmentBehavior="always">
         <View style={styles.topContainer}>
-          <View style={{flexDirection: 'row'}}>
+          <View style={{ flexDirection: 'row' }}>
             <TouchableHighlight
               underlayColor="Colors.transparent"
               onPress={() => {
                 navio.pop();
               }}
             >
-              <Icon size={18} source={Assets.icons.close} style={styles.backIcon} />
+              <Icon size={18} assetName={'close'} style={styles.backIcon} />
             </TouchableHighlight>
             <Text style={styles.title} center>
               {services.t.do('groceryList.title')}

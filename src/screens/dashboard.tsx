@@ -1,16 +1,16 @@
 import React from 'react';
-import {ScrollView, StyleSheet, TouchableOpacity, StatusBar} from 'react-native';
-import {Assets, Avatar, Colors, Icon, Text, View} from 'react-native-ui-lib';
-import {observer} from 'mobx-react';
-import {NavioScreen} from 'rn-navio';
-import {navio} from '.';
-import {GroceryStoresList} from './components/grocery-stores-list';
-import {services} from '../services';
-import {getTheme} from '../utils/designSystem';
+import { ScrollView, StyleSheet, TouchableOpacity, StatusBar } from 'react-native';
+import { Avatar, Colors, Icon, Text, View } from 'react-native-ui-lib';
+import { observer } from 'mobx-react';
+import { NavioScreen } from 'rn-navio';
+import { navio } from '.';
+import { GroceryStoresList } from './components/grocery-stores-list';
+import { services } from '../services';
+import { getTheme } from '../utils/designSystem';
 
 export const Dashboard: NavioScreen = observer(() => {
   const username = 'Félix-Antoine';
-  
+
   // STYLES
   const styles = StyleSheet.create({
     page: {
@@ -73,18 +73,18 @@ export const Dashboard: NavioScreen = observer(() => {
   });
 
   return (
-    <View flex style={{backgroundColor: getTheme().moustard}}>
+    <View flex style={{ backgroundColor: getTheme().moustard }}>
       <StatusBar backgroundColor={getTheme().moustard} />
       <ScrollView contentInsetAdjustmentBehavior="always">
         <View style={styles.topContainer}>
-          <View style={{flexDirection: 'row'}}>
+          <View style={{ flexDirection: 'row' }}>
             <Text style={styles.title}>
               {services.t.do('dashboard.hello')}
               {username} !
             </Text>
-            <View style={{flexDirection: 'row'}}>
+            <View style={{ flexDirection: 'row' }}>
               <Avatar
-                source={{uri: 'https://randomuser.me/api/portraits/men/1.jpg'}}
+                source={{ uri: 'https://randomuser.me/api/portraits/men/1.jpg' }}
                 size={60}
                 onPress={() => {
                   navio.show('Profile');
@@ -96,29 +96,30 @@ export const Dashboard: NavioScreen = observer(() => {
 
         <View style={styles.page} bg-bgColor>
           <View style={styles.menuContainer}>
-            <View style={{flexDirection: 'row'}}>
+            <View style={{ flexDirection: 'row' }}>
               <TouchableOpacity
                 style={styles.recepesCard}
                 onPress={() => {
                   navio.show('MyRecipes');
                 }}
               >
-                <View style={{flexDirection: 'row-reverse'}}>
-                  <Icon size={20} source={Assets.icons.recipe} />
+                <View style={{ flexDirection: 'row-reverse' }}>
+                  <Icon size={20} assetName={'recipe'} />
                 </View>
                 <View style={styles.bottom}>
                   <Text style={styles.menuText}>{services.t.do('dashboard.myRecipes')}</Text>
                 </View>
               </TouchableOpacity>
 
-              <View style={{flexDirection: 'column', width: '50%'}}>
+              <View style={{ flexDirection: 'column', width: '50%' }}>
                 <TouchableOpacity
                   style={styles.groceryListCard}
-                  onPress={()=> {
+                  onPress={() => {
                     navio.show('GroceryList');
-                  }}>
-                  <View style={{flexDirection:'row-reverse'}}>
-                    <Icon size={20} tintColor={Colors.white} source={Assets.icons.list} />
+                  }}
+                >
+                  <View style={{ flexDirection: 'row-reverse' }}>
+                    <Icon size={20} tintColor={Colors.white} assetName={'list'} />
                   </View>
                   <Text style={styles.menuText}>{services.t.do('dashboard.groceryList')}</Text>
                 </TouchableOpacity>
@@ -129,8 +130,8 @@ export const Dashboard: NavioScreen = observer(() => {
                     navio.show('GroceryMap');
                   }}
                 >
-                  <View style={{flexDirection:'row-reverse'}}>
-                    <Icon size={20} tintColor={Colors.white} source={Assets.icons.map} />
+                  <View style={{ flexDirection: 'row-reverse' }}>
+                    <Icon size={20} tintColor={Colors.white} assetName={'map'} />
                   </View>
                   <Text style={styles.menuText}>{services.t.do('dashboard.map')}</Text>
                 </TouchableOpacity>

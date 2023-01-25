@@ -1,14 +1,21 @@
 import React from 'react';
-import {SectionList, StyleSheet} from 'react-native';
-import {Assets, Colors, Icon, Text, View} from 'react-native-ui-lib';
-import {observer} from 'mobx-react';
-import {NavioScreen} from 'rn-navio';
+import { SectionList, StyleSheet } from 'react-native';
+import { Colors, Icon, Text, View } from 'react-native-ui-lib';
+import { observer } from 'mobx-react';
+import { NavioScreen } from 'rn-navio';
 import { getTheme } from '../../utils/designSystem';
 
-export const RecipesList: NavioScreen = observer(({}) => {
+export const RecipesList: NavioScreen = observer(() => {
   const recipes = [
     {
-      data: ['Caramilk et Orange', 'Pâté chinois', 'Lasage', 'Poulet parmesan', 'Pizzaghetti', 'Saumon fumé'],
+      data: [
+        'Caramilk et Orange',
+        'Pâté chinois',
+        'Lasage',
+        'Poulet parmesan',
+        'Pizzaghetti',
+        'Saumon fumé',
+      ],
     },
   ];
 
@@ -36,34 +43,22 @@ export const RecipesList: NavioScreen = observer(({}) => {
       borderRadius: 10,
     },
   });
-  
+
   return (
     <SectionList
       sections={recipes}
-      keyExtractor={(item, index) => item + index}
-      renderItem={({item}) => (
+      keyExtractor={(item, index) => `${item}${index}`}
+      renderItem={({ item }) => (
         <View style={styles.cardContainer}>
           <View style={styles.card}>
-            <View style={{flexDirection:"row"}}>
-              <Text style={styles.cardHeader}>
-                {item}
-              </Text>
-              <Icon
-                size={22}
-                tintColor={getTheme().darkerGrey}
-                source={Assets.icons.heart}
-              />
+            <View style={{ flexDirection: 'row' }}>
+              <Text style={styles.cardHeader}>{item}</Text>
+              <Icon size={22} tintColor={getTheme().darkerGrey} assetName={'heart'} />
             </View>
-            <Text style={styles.infos}>
-              Ingrédients (4)
-            </Text>
+            <Text style={styles.infos}>Ingrédients (4)</Text>
           </View>
         </View>
       )}
     />
   );
 });
-function setState(arg0: { error: string; }) {
-  throw new Error('Function not implemented.');
-}
-

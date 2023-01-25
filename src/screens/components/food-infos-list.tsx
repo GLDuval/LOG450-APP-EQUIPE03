@@ -1,11 +1,11 @@
 import React from 'react';
-import {StyleSheet, SectionList, Image, TextInput, FlatList} from 'react-native';
-import {Assets, Colors, Text, View} from 'react-native-ui-lib';
-import {observer} from 'mobx-react';
-import {NavioScreen} from 'rn-navio';
+import { StyleSheet, Image, TextInput, FlatList } from 'react-native';
+import { Colors, Text, View } from 'react-native-ui-lib';
+import { observer } from 'mobx-react';
+import { NavioScreen } from 'rn-navio';
 import { getTheme } from '../../utils/designSystem';
 
-export const FoodInfosList: NavioScreen = observer(({}) => {
+export const FoodInfosList: NavioScreen = observer(() => {
   const food = [
     {
       food: 'Mini concombres',
@@ -50,7 +50,7 @@ export const FoodInfosList: NavioScreen = observer(({}) => {
       quantity: 1,
     },
   ];
-  
+
   // STYLES
   const styles = StyleSheet.create({
     infos: {
@@ -63,7 +63,7 @@ export const FoodInfosList: NavioScreen = observer(({}) => {
       flex: 1,
       color: getTheme().darkerGrey,
       textDecorationLine: 'line-through',
-      textDecorationStyle: 'solid'
+      textDecorationStyle: 'solid',
     },
     cardHeader: {
       fontSize: 20,
@@ -95,26 +95,24 @@ export const FoodInfosList: NavioScreen = observer(({}) => {
       paddingTop: 22,
     },
   });
-  
+
   return (
     <View style={styles.container}>
       <FlatList
         data={food}
-        renderItem={({item}) => 
+        renderItem={({ item }) => (
           <View style={styles.cardContainer}>
             <View style={styles.card}>
-              <View style={{flexDirection:"column"}}>
+              <View style={{ flexDirection: 'column' }}>
                 <Image
-                    source={{ uri: item.image }}
-                    style={{ width: 85, height: 85, borderRadius: 10 }}
-                  />
+                  source={{ uri: item.image }}
+                  style={{ width: 85, height: 85, borderRadius: 10 }}
+                />
               </View>
 
-              <View style={{flexDirection:"column", paddingLeft:15, width: '70%'}}>
-                <View style={{flexDirection:"row"}}>
-                  <Text style={styles.cardHeader}>
-                    {item.food}
-                  </Text>
+              <View style={{ flexDirection: 'column', paddingLeft: 15, width: '70%' }}>
+                <View style={{ flexDirection: 'row' }}>
+                  <Text style={styles.cardHeader}>{item.food}</Text>
                   <TextInput
                     placeholder="0"
                     style={styles.textInput}
@@ -122,19 +120,14 @@ export const FoodInfosList: NavioScreen = observer(({}) => {
                     keyboardType="numeric"
                   />
                 </View>
-                
-                <Text style={styles.infos}>
-                  {item.price}
-                </Text>
-                <Text style={styles.oldPrice}>
-                  {item.oldPrice}
-                </Text>
+
+                <Text style={styles.infos}>{item.price}</Text>
+                <Text style={styles.oldPrice}>{item.oldPrice}</Text>
               </View>
             </View>
           </View>
-      }
+        )}
       />
-  </View>
+    </View>
   );
 });
-

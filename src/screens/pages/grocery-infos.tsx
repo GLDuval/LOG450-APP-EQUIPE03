@@ -1,18 +1,11 @@
 import React from 'react';
-import {
-  Dimensions,
-  ScrollView,
-  StyleSheet,
-  TouchableHighlight,
-  StatusBar,
-  Image,
-} from 'react-native';
-import {Assets, Colors, Icon, TabController, View} from 'react-native-ui-lib';
-import {observer} from 'mobx-react';
-import {NavioScreen} from 'rn-navio';
-import {navio} from '..';
-import {RecipesList} from '../components/recipes-list';
-import {FoodInfosList} from '../components/food-infos-list';
+import { Dimensions, ScrollView, StyleSheet, TouchableHighlight, StatusBar } from 'react-native';
+import { Colors, Icon, TabController, View, Image } from 'react-native-ui-lib';
+import { observer } from 'mobx-react';
+import { NavioScreen } from 'rn-navio';
+import { navio } from '..';
+import { RecipesList } from '../components/recipes-list';
+import { FoodInfosList } from '../components/food-infos-list';
 import { services } from '../../services';
 import { getTheme } from '../../utils/designSystem';
 
@@ -42,30 +35,35 @@ export const GroceryInfos: NavioScreen = observer(() => {
   });
 
   return (
-    <View flex style={{backgroundColor: getTheme().grey}}>
+    <View flex style={{ backgroundColor: getTheme().grey }}>
       <StatusBar backgroundColor={getTheme().grey} />
       <ScrollView contentInsetAdjustmentBehavior="always">
         <View style={styles.topContainer}>
-          <View style={{flexDirection: 'row'}}>
+          <View style={{ flexDirection: 'row' }}>
             <TouchableHighlight
               underlayColor="Colors.transparent"
               onPress={() => {
                 navio.pop();
               }}
             >
-              <Icon size={18} source={Assets.icons.close} style={styles.backIcon} />
+              <Icon size={18} assetName={'close'} style={styles.backIcon} />
             </TouchableHighlight>
-            <View style={{flexDirection: 'row', width: '100%'}} center>
-              <Image source={Assets.images.superC} style={styles.image} />
+            <View style={{ flexDirection: 'row', width: '100%' }} center>
+              <Image assetName={'superC'} style={styles.image} />
             </View>
           </View>
         </View>
 
         <View style={styles.page} bg-bgColor>
-          <TabController items={[{label: services.t.do('groceryInfos.flyer')}, {label: services.t.do('groceryInfos.recipes')}]}>
+          <TabController
+            items={[
+              { label: services.t.do('groceryInfos.flyer') },
+              { label: services.t.do('groceryInfos.recipes') },
+            ]}
+          >
             <TabController.TabBar
               enableShadows
-              indicatorStyle={{backgroundColor:getTheme().orange}}
+              indicatorStyle={{ backgroundColor: getTheme().orange }}
             />
             <View flex>
               <TabController.TabPage index={0}>

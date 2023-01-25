@@ -1,10 +1,10 @@
 import React from 'react';
-import {Dimensions, ScrollView, StyleSheet, TouchableHighlight, StatusBar} from 'react-native';
-import {Assets, Colors, Icon, Text, View} from 'react-native-ui-lib';
-import {observer} from 'mobx-react';
-import {NavioScreen} from 'rn-navio';
-import {navio} from '..';
-import {SearchBar} from '../components/search-bar';
+import { Dimensions, ScrollView, StyleSheet, TouchableHighlight, StatusBar } from 'react-native';
+import { Colors, Icon, Text, View } from 'react-native-ui-lib';
+import { observer } from 'mobx-react';
+import { NavioScreen } from 'rn-navio';
+import { navio } from '..';
+import { SearchBar } from '../components/search-bar';
 import { services } from '../../services';
 import { getTheme } from '../../utils/designSystem';
 
@@ -40,24 +40,24 @@ export const GroceryMap: NavioScreen = observer(() => {
   });
 
   return (
-    <View flex style={{backgroundColor: getTheme().blue}}>
+    <View flex style={{ backgroundColor: getTheme().blue }}>
       <StatusBar backgroundColor="#578699" />
       <ScrollView contentInsetAdjustmentBehavior="always">
         <View style={styles.topContainer}>
-          <View style={{flexDirection: 'row'}}>
+          <View style={{ flexDirection: 'row' }}>
             <TouchableHighlight
               underlayColor="Colors.transparent"
               onPress={() => {
                 navio.pop();
               }}
             >
-              <Icon size={18} source={Assets.icons.close} style={styles.backIcon} />
+              <Icon size={18} assetName={'close'} style={styles.backIcon} />
             </TouchableHighlight>
             <Text style={styles.title} center>
-            {services.t.do('map.title')}
+              {services.t.do('map.title')}
             </Text>
           </View>
-          <View style={{padding: 10}}>
+          <View style={{ padding: 10 }}>
             <SearchBar />
           </View>
         </View>

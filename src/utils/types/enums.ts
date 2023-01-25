@@ -5,7 +5,7 @@ const _languages = {
   ru: 'RU',
 } as const;
 export type Language = keyof typeof _languages;
-export type LanguageUI = typeof _languages[Language];
+export type LanguageUI = (typeof _languages)[Language];
 export const languageToUI: Record<Language, LanguageUI> = {
   system: 'System',
   en: 'EN',
@@ -27,7 +27,7 @@ const _appearances = {
   dark: 'Dark',
 } as const;
 export type Appearance = keyof typeof _appearances;
-export type AppearanceUI = typeof _appearances[Appearance];
+export type AppearanceUI = (typeof _appearances)[Appearance];
 export const appearanceToUI: Record<Appearance, AppearanceUI> = {
   system: 'System',
   light: 'Light',

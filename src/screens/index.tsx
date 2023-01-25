@@ -1,20 +1,20 @@
-import {Navio} from 'rn-navio';
+import { Navio } from 'rn-navio';
 
-import {Dashboard} from './dashboard';
-import {Login} from './login';
-import {Profile} from './pages/profile';
-import {GroceryInfos} from './pages/grocery-infos';
-import {GroceryMap} from './pages/grocery-map';
-import {GroceryList} from './pages/grocery-list';
-import {MyRecipes} from './pages/my-recipes';
+import { Dashboard } from './dashboard';
+import { Login } from './login';
+import { Profile } from './pages/profile';
+import { GroceryInfos } from './pages/grocery-infos';
+import { GroceryMap } from './pages/grocery-map';
+import { GroceryList } from './pages/grocery-list';
+import { MyRecipes } from './pages/my-recipes';
 
-import {GroceryStoresList} from './components/grocery-stores-list';
-import {RecipesList} from './components/recipes-list';
-import {FoodInfosList} from './components/food-infos-list';
-import {SearchBar} from './components/search-bar';
+import { GroceryStoresList } from './components/grocery-stores-list';
+import { RecipesList } from './components/recipes-list';
+import { FoodInfosList } from './components/food-infos-list';
+import { SearchBar } from './components/search-bar';
 
-import {useAppearance} from '../utils/hooks';
-import {screenDefaultOptions} from '../utils/designSystem';
+import { useAppearance } from '../utils/hooks';
+import { screenDefaultOptions } from '../utils/designSystem';
 
 // NAVIO
 export const navio = Navio.build({

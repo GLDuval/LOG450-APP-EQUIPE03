@@ -1,14 +1,14 @@
 import React from 'react';
-import {ScrollView, StyleSheet, TouchableHighlight, StatusBar} from 'react-native';
-import {Assets, Avatar, Button, Icon, Text, View} from 'react-native-ui-lib';
-import {observer} from 'mobx-react';
-import {NavioScreen} from 'rn-navio';
-import {navio} from '..';
-import {getStatusBarBGColor, getTheme} from '../../../src/utils/designSystem';
+import { ScrollView, StyleSheet, TouchableHighlight, StatusBar } from 'react-native';
+import { Avatar, Button, Icon, Text, View } from 'react-native-ui-lib';
+import { observer } from 'mobx-react';
+import { NavioScreen } from 'rn-navio';
+import { navio } from '..';
+import { getStatusBarBGColor, getTheme } from '../../../src/utils/designSystem';
 import { services } from '../../services';
 
 export const Profile: NavioScreen = observer(() => {
-  /*const options = [
+  /* const options = [
     {label: 'Français', value: 'fr'},
     {label: 'English', value: 'en'},
   ];*/
@@ -51,14 +51,14 @@ export const Profile: NavioScreen = observer(() => {
       <StatusBar backgroundColor={getStatusBarBGColor()} />
       <ScrollView contentInsetAdjustmentBehavior="always">
         <View style={styles.topContainer}>
-          <View style={{flexDirection: 'row'}}>
+          <View style={{ flexDirection: 'row' }}>
             <TouchableHighlight
               underlayColor="Colors.transparent"
               onPress={() => {
                 navio.pop();
               }}
             >
-              <Icon size={18} source={Assets.icons.close} style={styles.backIcon} />
+              <Icon size={18} assetName={'close'} style={styles.backIcon} />
             </TouchableHighlight>
           </View>
         </View>
@@ -68,7 +68,7 @@ export const Profile: NavioScreen = observer(() => {
 
         <View center>
           <Avatar
-            source={{uri: 'https://randomuser.me/api/portraits/men/1.jpg'}}
+            source={{ uri: 'https://randomuser.me/api/portraits/men/1.jpg' }}
             size={90}
             onPress={() => {
               console.log('Change photo');
@@ -80,18 +80,22 @@ export const Profile: NavioScreen = observer(() => {
           Félix-Antoine Tremblay
         </Text>
 
-        <View center style={{marginTop: 15}}>
-          <Button label={services.t.do('actions.logout')} size={Button.sizes.medium} backgroundColor={getTheme().blueberry} />
+        <View center style={{ marginTop: 15 }}>
+          <Button
+            label={services.t.do('actions.logout')}
+            size={Button.sizes.medium}
+            backgroundColor={getTheme().blueberry}
+          />
         </View>
 
         <View style={styles.container}>
-          <View style={{flexDirection: 'row'}}>
-            <View style={{flexDirection: 'column', width: '60%'}}>
-              <View style={{flexDirection: 'row-reverse'}}>
+          <View style={{ flexDirection: 'row' }}>
+            <View style={{ flexDirection: 'column', width: '60%' }}>
+              <View style={{ flexDirection: 'row-reverse' }}>
                 <Text style={styles.text}>{services.t.do('profile.chooseLanguage')}</Text>
               </View>
             </View>
-            <View style={{flexDirection: 'column', width: '40%'}}>
+            <View style={{ flexDirection: 'column', width: '40%' }}>
               <Text Text style={styles.text}>
                 Todo
               </Text>

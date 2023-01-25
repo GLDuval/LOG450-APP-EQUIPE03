@@ -1,12 +1,12 @@
 import React from 'react';
-import {SectionList, StyleSheet, TouchableHighlight} from 'react-native';
-import {Assets, Colors, Icon, Text, View} from 'react-native-ui-lib';
-import {observer} from 'mobx-react';
-import {NavioScreen} from 'rn-navio';
-import {navio} from '../';
-import {getTheme} from '../../utils/designSystem';
+import { SectionList, StyleSheet, TouchableHighlight } from 'react-native';
+import { Icon, Text, View } from 'react-native-ui-lib';
+import { observer } from 'mobx-react';
+import { NavioScreen } from 'rn-navio';
+import { navio } from '../';
+import { getTheme } from '../../utils/designSystem';
 
-export const GroceryStoresList: NavioScreen = observer(({}) => {
+export const GroceryStoresList: NavioScreen = observer(() => {
   const groceryStores = [
     {
       data: ['Super C', 'Maxi', 'IGA', 'Metro', 'Provigo', 'Loblaws'],
@@ -40,8 +40,8 @@ export const GroceryStoresList: NavioScreen = observer(({}) => {
   return (
     <SectionList
       sections={groceryStores}
-      keyExtractor={(item, index) => item + index}
-      renderItem={({item}) => (
+      keyExtractor={(item, index) => `${item}${index}`}
+      renderItem={({ item }) => (
         <TouchableHighlight
           underlayColor="Colors.transparent"
           onPress={() => {
@@ -50,11 +50,11 @@ export const GroceryStoresList: NavioScreen = observer(({}) => {
         >
           <View style={styles.cardContainer}>
             <View style={styles.card}>
-              <View style={{flexDirection: 'row'}}>
+              <View style={{ flexDirection: 'row' }}>
                 <Text style={styles.cardHeader}>{item}</Text>
-                <Icon size={22} tintColor={getTheme().darkerGrey} source={Assets.icons.heart} />
+                <Icon size={22} tintColor={getTheme().darkerGrey} assetName={'heart'} />
               </View>
-              <Text style={styles.infos}>Jusqu'à mecredi</Text>
+              <Text style={styles.infos}>{"Jusqu'à mecredi"}</Text>
             </View>
           </View>
         </TouchableHighlight>

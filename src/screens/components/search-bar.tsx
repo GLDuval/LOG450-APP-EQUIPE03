@@ -1,10 +1,14 @@
-import React from 'react';
-import {StyleSheet, TextInput} from 'react-native';
-import {observer} from 'mobx-react';
-import {NavioScreen} from 'rn-navio';
+import React, { useState } from 'react';
+import { StyleSheet, TextInput } from 'react-native';
+import { observer } from 'mobx-react';
+import { NavioScreen } from 'rn-navio';
 import { getTheme } from '../../utils/designSystem';
+import { Text } from 'react-native-ui-lib';
 
-export const SearchBar: NavioScreen = observer(({}) => {
+export const SearchBar: NavioScreen = observer(() => {
+  const [state, setState] = useState({
+    error: '',
+  });
   const onChangeText = (text: string) => {
     let message = '';
     if (text === '') {
@@ -13,7 +17,7 @@ export const SearchBar: NavioScreen = observer(({}) => {
     if (text === 'Zzz') {
       message = 'Please enter a valid text';
     }
-    setState({error: message});
+    setState({ error: message });
   };
 
   // STYLES
@@ -26,16 +30,15 @@ export const SearchBar: NavioScreen = observer(({}) => {
       color: getTheme().darkerGrey,
     },
   });
-  
+
   return (
-    <TextInput
+    <>
+      <TextInput
         placeholder="Rechercher"
         onChangeText={() => onChangeText}
         style={styles.textInput}
-    />
+      />
+      <Text>{state.error}</Text>
+    </>
   );
 });
-function setState(arg0: { error: string; }) {
-  throw new Error('Function not implemented.');
-}
-
