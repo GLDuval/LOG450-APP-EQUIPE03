@@ -73,8 +73,8 @@ export const Dashboard: NavioScreen = observer(() => {
   });
 
   return (
-    <View flex style={{ backgroundColor: getTheme().moustard }}>
-      <StatusBar backgroundColor={getTheme().moustard} />
+    <View flex style={{ backgroundColor: getTheme().mustard }}>
+      <StatusBar backgroundColor={getTheme().mustard} />
       <ScrollView contentInsetAdjustmentBehavior="always">
         <View style={styles.topContainer}>
           <View style={{ flexDirection: 'row' }}>
