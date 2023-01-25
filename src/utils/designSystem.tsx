@@ -20,7 +20,7 @@ const colors = {
 
 const themes: Record<Appearance, { [key: string]: string }> = {
   system: {},
-  dark: {
+  light: {
     textColor: colors._black,
     bgColor: colors._white,
     bg2Color: colors._white2,
@@ -34,7 +34,7 @@ const themes: Record<Appearance, { [key: string]: string }> = {
     darkerGrey: '#264653',
     details: '#696d6e',
   },
-  light: {
+  dark: {
     textColor: '#DDDDDD',
     bgColor: '#0B1418',
     bg2Color: colors._black2,
