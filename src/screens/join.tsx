@@ -1,6 +1,6 @@
 import React, {useCallback, useState} from 'react';
 import {ScrollView, SectionList, StyleSheet} from 'react-native';
-import {TextField, Text, View, Button, Checkbox, Assets} from 'react-native-ui-lib';
+import {TextField, Text, View, Button, Checkbox, Assets, LoaderScreen, Colors} from 'react-native-ui-lib';
 import {observer} from 'mobx-react';
 import {useNavigation} from '@react-navigation/native';
 import {NavioScreen} from 'rn-navio';
@@ -19,26 +19,32 @@ export const Join: NavioScreen = observer(({}) => {
   const {counter, ui} = useStores();
   const {t, api, navio} = useServices();
 
+  // State (local)
+  const [loading, setLoading] = useState(false);
+
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
   // Firebase Create
   const createNewUser = useCallback((email: string, password: string) => {
+    setLoading(true);
     createUserWithEmailAndPassword(auth, email, password)
     .then((userCredential) => {
       // Signed in 
       const user = userCredential.user;
+      setLoading(false);
       console.log(user);
     })
     .catch((error) => {
       const errorCode = error.code;
       const errorMessage = error.message;
+      setLoading(false);
       console.log(errorCode, errorMessage);
     });
   }, []);
 
-  const createNewUserGoogle = useCallback(() => {
+  /*const createNewUserGoogle = useCallback(() => {
     const provider = new GoogleAuthProvider();
     signInWithPopup(auth, provider)
     .then((result) => {
@@ -59,10 +65,7 @@ export const Join: NavioScreen = observer(({}) => {
       console.log(errorCode, errorMessage);
       console.log(credential);
     });
-  }, []);
-
-  // State (local)
-  const [loading, setLoading] = useState(false);
+  }, []);*/
 
   // API Methods
   const getCounterValue = useCallback(async () => {
@@ -203,6 +206,7 @@ export const Join: NavioScreen = observer(({}) => {
             {services.t.do('signup.back')}
           </Text>
         </View>
+        {loading && <LoaderScreen message={services.t.do('login.loading')} color={Colors.grey40} />}
       </ScrollView>
     </View>
   );

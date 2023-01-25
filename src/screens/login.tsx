@@ -1,6 +1,6 @@
 import React, {useCallback, useState} from 'react';
 import {ScrollView, SectionList, StyleSheet} from 'react-native';
-import {TextField, Text, View, Button, Checkbox, Assets} from 'react-native-ui-lib';
+import {TextField, Text, View, Button, Checkbox, Assets, LoaderScreen, Colors} from 'react-native-ui-lib';
 import {observer} from 'mobx-react';
 import {useNavigation} from '@react-navigation/native';
 import {NavioScreen} from 'rn-navio';
@@ -38,16 +38,22 @@ export const Login: NavioScreen = observer(({}) => {
     }
   }, [api.counter, counter]);
 
-  const login = useCallback((email: string, password: string) => {
+  const login = useCallback(async (email: string, password: string) => {
     console.log(email, password);
-    signInWithEmailAndPassword(auth, email, password)
+    setLoading(true);
+    await signInWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
         // Signed in 
         const user = userCredential.user;
+        console.log(user);
+        setLoading(false);
+        navio.push('Main');
       })
       .catch((error) => {
         const errorCode = error.code;
         const errorMessage = error.message;
+        setLoading(false);
+        console.log(errorCode, errorMessage);
       });
   }, [])
 
@@ -128,14 +134,14 @@ export const Login: NavioScreen = observer(({}) => {
           <View style={styles.input}>
             <TextInput 
             value={email}
-            onChangeText={setEmail}
+            onChangeText={(email) => setEmail(email)}
             style={styles.textField}
             placeholder={services.t.do('login.email')} />
           </View>
           <View style={styles.input}>
             <TextInput 
             value={password}
-            onChangeText={setPassword}
+            onChangeText={(password) => setPassword(password)}
             style={styles.textField}
             placeholder={services.t.do('login.password')}
             secureTextEntry={true} />
@@ -147,7 +153,7 @@ export const Login: NavioScreen = observer(({}) => {
             <View>
               <Checkbox 
               value={remember}
-              onValueChange={setRemember}
+              onValueChange={(remember: boolean) => setRemember(remember)}
               label={services.t.do('login.rememberMe')}/>
             </View>
             <View>
@@ -186,6 +192,7 @@ export const Login: NavioScreen = observer(({}) => {
             {services.t.do('login.signup')}
           </Text>
         </View>
+        {loading && <LoaderScreen message={services.t.do('login.loading')} color={Colors.grey40} />}
       </ScrollView>
     </View>
   );

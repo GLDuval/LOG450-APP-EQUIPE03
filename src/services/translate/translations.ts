@@ -10,6 +10,7 @@ export const en = {
     forgotPassword: "Forgot your password ?",
     rememberMe: "Remember me",
     signup: "Sign Up",
+    loading: "Loading...",
   },
   signup: {
     title: "Sign Up",
@@ -35,6 +36,7 @@ export const fr = {
     forgotPassword: "Mot de passe oublié ?",
     rememberMe: "Se souvenir de moi",
     join: "S'inscrire",
+    loading: "Chargement...",
   },
   signup: {
     title: "Inscrivez-vous",
