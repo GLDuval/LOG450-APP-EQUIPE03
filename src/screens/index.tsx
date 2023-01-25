@@ -2,7 +2,7 @@ import {Navio} from 'rn-navio';
 
 import {Main} from './main';
 import {Login} from './login';
-import { Join } from './join';
+import {Join} from './join';
 
 import {useAppearance} from '../utils/hooks';
 import {screenDefaultOptions} from '../utils/designSystem';
