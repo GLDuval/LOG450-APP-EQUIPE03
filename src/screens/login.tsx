@@ -18,6 +18,7 @@ export const Login: NavioScreen = observer(() => {
 
   // State (local)
   const [loading, setLoading] = useState(false);
+  const [isWrongLogin, setWrongLogin] = useState(false);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [remember, setRemember] = useState(false);
@@ -31,12 +32,14 @@ export const Login: NavioScreen = observer(() => {
           // Signed in
           const user = userCredential.user;
           console.log(user);
+          setWrongLogin(false);
           setLoading(false);
           navio.setRoot('MainStack');
         })
         .catch((error: FirebaseError) => {
           const errorCode = error.code;
           const errorMessage = error.message;
+          setWrongLogin(true);
           setLoading(false);
           console.log(errorCode, errorMessage);
         });
@@ -104,6 +107,15 @@ export const Login: NavioScreen = observer(() => {
       justifyContent: 'space-between',
       paddingBottom: 16,
     },
+    wrongLoginText: {
+      fontSize: 18,
+      flex: 1,
+      fontWeight: 'bold',
+      color: getTheme().red,
+      textAlign: 'left',
+      paddingHorizontal: 25,
+      paddingBottom: 15,
+    },
   });
 
   return (
@@ -133,6 +145,9 @@ export const Login: NavioScreen = observer(() => {
               secureTextEntry={true}
             />
           </View>
+          {isWrongLogin && (
+            <Text style={styles.wrongLoginText}>{services.t.do('login.wrongLogin')}</Text>
+          )}
         </View>
 
         <View style={styles.input}>
