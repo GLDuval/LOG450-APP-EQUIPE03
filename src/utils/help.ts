@@ -1,6 +1,6 @@
 export const randomNum = (max = 100): number => Math.floor(Math.random() * max);
 
-export const randomStr = (len: number = 16) => {
+export const randomStr = (len = 16) => {
   const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
   let result = '';
   const charsLength = chars.length;

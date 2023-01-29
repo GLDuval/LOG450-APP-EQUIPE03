@@ -8,7 +8,7 @@ type StoreKeysOf<S> = keyof Omit<S, StoreDefaultKeys>;
 
 // `services` layer
 interface IService {
-  init: () => PVoid;
+  init: () => void;
 }
 
 // System
@@ -23,4 +23,15 @@ type ThemeColors = {
   textColor: string;
   bgColor: string;
   bg2Color: string;
+  text: string;
+  text2: string;
+  blueberry: string;
+  mustard: string;
+  orange: string;
+  lightOrange: string;
+  blue: string;
+  groceryGrey: string;
+  grey: string;
+  red: string;
+  details: string;
 };

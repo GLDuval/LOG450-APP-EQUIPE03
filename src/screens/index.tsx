@@ -1,61 +1,60 @@
-import {Navio} from 'rn-navio';
+import { Navio } from 'rn-navio';
 
-import {Main} from './main';
-import {Playground} from './playground';
-import {Settings} from './settings';
-import {Example} from './_screen-sample';
+import { Dashboard } from './dashboard';
+import { Login } from './login';
+import { Profile } from './pages/profile';
+import { GroceryInfos } from './pages/grocery-infos';
+import { GroceryMap } from './pages/grocery-map';
+import { GroceryList } from './pages/grocery-list';
+import { MyRecipes } from './pages/my-recipes';
+import { RecipeDetails } from './pages/recipe-details';
 
-import {useAppearance} from '../utils/hooks';
-import {screenDefaultOptions, tabDefaultOptions, getTabBarIcon} from '../utils/designSystem';
+import { GroceryStoresList } from './components/grocery-stores-list';
+import { RecipesList } from './components/recipes-list';
+import { FoodInfosList } from './components/food-infos-list';
+import { SearchBar } from './components/search-bar';
+
+import { useAppearance } from '../utils/hooks';
+import { screenDefaultOptions } from '../utils/designSystem';
 
 // NAVIO
 export const navio = Navio.build({
   screens: {
-    Main,
-    Settings,
-    Example,
-    Playground: {
-      component: Playground,
-      options: () => ({
-        title: 'Playground',
-      }),
-    },
+    Dashboard,
+    Login,
+    Profile,
+    GroceryInfos,
+    GroceryMap,
+    GroceryList,
+    MyRecipes,
+
+    // Components
+    GroceryStoresList,
+    RecipesList,
+    FoodInfosList,
+    SearchBar,
+    RecipeDetails,
   },
   stacks: {
-    MainStack: ['Main', 'Example'],
-    ExampleStack: ['Example'],
-  },
-  tabs: {
-    MainTab: {
-      stack: 'MainStack',
-      options: {
-        title: 'Home',
-        tabBarIcon: getTabBarIcon('MainTab'),
-      },
-    },
-    PlaygroundTab: {
-      stack: ['Playground'],
-      options: () => ({
-        title: 'Playground',
-        tabBarIcon: getTabBarIcon('PlaygroundTab'),
-      }),
-    },
-    SettingsTab: {
-      stack: ['Settings'],
-      options: () => ({
-        title: 'Settings',
-        tabBarIcon: getTabBarIcon('SettingsTab'),
-      }),
-    },
-  },
-  modals: {
-    ExampleModal: 'ExampleStack',
+    MainStack: [
+      'Dashboard',
+      'Login',
+      'Profile',
+      'GroceryInfos',
+      'GroceryMap',
+      'GroceryList',
+      'MyRecipes',
+      'GroceryStoresList',
+      'RecipesList',
+      'FoodInfosList',
+      'SearchBar',
+      'RecipeDetails',
+    ],
   },
   root: 'Tabs',
   hooks: [useAppearance],
   options: {
     stack: screenDefaultOptions,
-    tab: tabDefaultOptions,
   },
 });
 

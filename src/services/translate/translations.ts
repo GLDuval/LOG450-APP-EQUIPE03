@@ -1,69 +1,89 @@
 export const en = {
-  home: {
-    title: 'Home',
+  login: {
+    title: 'Welcome back',
+    email: 'Email address',
+    password: 'Password',
   },
-  settings: {
-    title: 'Settings',
+  dashboard: {
+    title: 'Dashboard',
+    hello: 'Hello, \n',
+    myRecipes: 'My \nRecipes',
+    groceryList: 'Grocery \nList',
+    map: 'Map',
+    groceries: 'Groceries',
   },
-  example: {
-    title: 'Example',
+  myRecipes: {
+    title: 'My Recipes',
   },
-  section: {
-    navio: {
-      title: 'Navio',
-      button: {
-        push: 'Push →',
-        push_stack: 'Push stack →',
-        jump_to: 'Jump to ⤵',
-        show: 'Show ↑',
-        back: '← Back',
-      },
-    },
+  groceryList: {
+    title: 'Grocery List',
   },
-};
-
-export const de = {
-  home: {
-    title: 'Startseite',
+  recipeDetails: {
+    ingredients: 'Ingredients',
+    instructions: 'Instructions',
   },
-  settings: {
-    title: 'Einstellungen',
+  groceryInfos: {
+    flyer: 'Flyer',
+    recipes: 'Recipes',
   },
-  example: {
-    title: 'Beispiel',
+  map: {
+    title: 'Map',
   },
-  section: {
-    navio: {
-      title: 'Navio',
-      button: {
-        push: 'Schieben →',
-        push_stack: 'Schieben (stack) →',
-        show: 'Zeigen ↑',
-        back: '← Zurück',
-      },
-    },
+  profile: {
+    title: 'Profile',
+    chooseLanguage: 'Choose your language',
+    chooseTheme: 'Choose your theme',
+  },
+  actions: {
+    logout: 'Logout',
+    connexion: 'Connexion',
+    search: 'Rechercher',
+    show: 'Show',
+    close: 'Close',
   },
 };
 
-export const ru = {
-  home: {
-    title: 'Хоум',
+export const fr = {
+  login: {
+    title: 'Content de te revoir',
+    email: 'Courriel',
+    password: 'Mot de passe',
   },
-  settings: {
-    title: 'Настройки',
+  dashboard: {
+    title: 'Tableau de bord',
+    hello: 'Bonjour,\n',
+    myRecipes: 'Mes \nrecettes',
+    groceryList: "Liste \nd'épiceries",
+    map: 'Carte',
+    groceries: 'Épiceries',
   },
-  example: {
-    title: 'Пример',
+  myRecipes: {
+    title: 'Mes recettes',
   },
-  section: {
-    navio: {
-      title: 'Навио',
-      button: {
-        push: 'Запушить →',
-        push_stack: 'Запушить стэк →',
-        show: 'Показать ↑',
-        back: '← Назад',
-      },
-    },
+  groceryList: {
+    title: "Liste d'épiceries",
+  },
+  recipeDetails: {
+    ingredients: 'Ingrédients',
+    instructions: 'Instructions',
+  },
+  map: {
+    title: 'Carte',
+  },
+  groceryInfos: {
+    flyer: 'Circulaire',
+    recipes: 'Recettes',
+  },
+  profile: {
+    title: 'Profil',
+    chooseLanguage: 'Choisissez votre langue',
+    chooseTheme: 'Choisissez votre thème',
+  },
+  actions: {
+    logout: 'Se déconnecter',
+    connexion: 'Connexion',
+    search: 'Rechercher',
+    show: 'Afficher',
+    close: 'Fermer',
   },
 };
