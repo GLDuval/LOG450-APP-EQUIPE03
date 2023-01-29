@@ -1,6 +1,6 @@
 import React from 'react';
 import { Dimensions, StyleSheet, TouchableHighlight, StatusBar, Text } from 'react-native';
-import { Colors, Icon, TabController, View, Image } from 'react-native-ui-lib';
+import { Icon, TabController, View, Image } from 'react-native-ui-lib';
 import { observer } from 'mobx-react';
 import { NavioScreen } from 'rn-navio';
 import { navio } from '..';
@@ -17,10 +17,6 @@ export const GroceryInfos: NavioScreen = observer(() => {
       borderTopEndRadius: 30,
       borderTopStartRadius: 30,
       height: Dimensions.get('window').height,
-    },
-    backIcon: {
-      marginTop: 13,
-      tintColor: Colors.white,
     },
     image: {
       width: 150,
@@ -39,7 +35,7 @@ export const GroceryInfos: NavioScreen = observer(() => {
               navio.pop();
             }}
           >
-            <Icon size={18} assetName={'close'} style={styles.backIcon} />
+            <Icon size={18} assetName={'close'} style={styleSheet.backIcon} />
           </TouchableHighlight>
           <View style={{ flexDirection: 'row', width: '100%' }} center>
             <Image assetName={'superC'} style={styles.image} />

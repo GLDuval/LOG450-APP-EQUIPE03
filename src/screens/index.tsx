@@ -7,6 +7,7 @@ import { GroceryInfos } from './pages/grocery-infos';
 import { GroceryMap } from './pages/grocery-map';
 import { GroceryList } from './pages/grocery-list';
 import { MyRecipes } from './pages/my-recipes';
+import { RecipeDetails } from './pages/recipe-details';
 
 import { GroceryStoresList } from './components/grocery-stores-list';
 import { RecipesList } from './components/recipes-list';
@@ -32,6 +33,7 @@ export const navio = Navio.build({
     RecipesList,
     FoodInfosList,
     SearchBar,
+    RecipeDetails,
   },
   stacks: {
     MainStack: [
@@ -46,6 +48,7 @@ export const navio = Navio.build({
       'RecipesList',
       'FoodInfosList',
       'SearchBar',
+      'RecipeDetails',
     ],
   },
   root: 'Tabs',

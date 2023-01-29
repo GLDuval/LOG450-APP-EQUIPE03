@@ -18,6 +18,10 @@ export const en = {
   groceryList: {
     title: 'Grocery List',
   },
+  recipeDetails: {
+    ingredients: 'Ingredients',
+    instructions: 'Instructions',
+  },
   groceryInfos: {
     flyer: 'Flyer',
     recipes: 'Recipes',
@@ -58,6 +62,10 @@ export const fr = {
   },
   groceryList: {
     title: "Liste d'épiceries",
+  },
+  recipeDetails: {
+    ingredients: 'Ingrédients',
+    instructions: 'Instructions',
   },
   map: {
     title: 'Carte',

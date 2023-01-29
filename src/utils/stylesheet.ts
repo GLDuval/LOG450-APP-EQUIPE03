@@ -17,8 +17,8 @@ export const styleSheet = StyleSheet.create({
     tintColor: Colors.white,
   },
   text: {
-    fontSize: 20,
-    flex: 1,
+    fontSize: 18,
+    textAlign: 'justify',
   },
   header: {
     fontSize: 24,
