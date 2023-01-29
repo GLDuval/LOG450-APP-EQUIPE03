@@ -11,13 +11,12 @@ module.exports = {
   rules: {
     indent: 'off',
     'spaced-comment': ['error', 'always'],
-    quotes: ['error', 'single', {avoidEscape: true}],
+    quotes: ['error', 'single', { avoidEscape: true }],
     semi: ['error', 'always'],
     '@typescript-eslint/no-var-requires': 'off',
     'react-native/no-inline-styles': 'off',
     'react-native/no-single-element-style-arrays': ['error'],
     'react-native/no-color-literals': ['error'],
-    'no-undef': 'off',
   },
   parser: '@typescript-eslint/parser',
   parserOptions: {
