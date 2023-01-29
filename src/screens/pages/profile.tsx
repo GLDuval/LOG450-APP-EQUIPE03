@@ -6,6 +6,7 @@ import { NavioScreen } from 'rn-navio';
 import { navio } from '..';
 import { getStatusBarBGColor, getTheme } from '../../../src/utils/designSystem';
 import { services } from '../../services';
+import { styleSheet } from '../../utils/stylesheet';
 
 export const Profile: NavioScreen = observer(() => {
   /* const options = [
@@ -15,13 +16,6 @@ export const Profile: NavioScreen = observer(() => {
 
   // STYLES
   const styles = StyleSheet.create({
-    topContainer: {
-      fontSize: 24,
-      flex: 1,
-      paddingTop: 60,
-      paddingBottom: 30,
-      marginHorizontal: 20,
-    },
     container: {
       padding: 20,
       marginTop: 20,
@@ -36,10 +30,6 @@ export const Profile: NavioScreen = observer(() => {
       fontWeight: 'bold',
       Color: getTheme().blue,
     },
-    text: {
-      fontSize: 20,
-      flex: 1,
-    },
     backIcon: {
       marginTop: 8,
       marginLeft: 10,
@@ -50,7 +40,7 @@ export const Profile: NavioScreen = observer(() => {
     <View flex bg-bgColor>
       <StatusBar backgroundColor={getStatusBarBGColor()} />
       <ScrollView contentInsetAdjustmentBehavior="always">
-        <View style={styles.topContainer}>
+        <View style={styleSheet.topContainer}>
           <View style={{ flexDirection: 'row' }}>
             <TouchableHighlight
               underlayColor="Colors.transparent"
@@ -92,11 +82,24 @@ export const Profile: NavioScreen = observer(() => {
           <View style={{ flexDirection: 'row' }}>
             <View style={{ flexDirection: 'column', width: '60%' }}>
               <View style={{ flexDirection: 'row-reverse' }}>
-                <Text style={styles.text}>{services.t.do('profile.chooseLanguage')}</Text>
+                <Text style={styleSheet.text}>{services.t.do('profile.chooseLanguage')}</Text>
               </View>
             </View>
             <View style={{ flexDirection: 'column', width: '40%' }}>
-              <Text Text style={styles.text}>
+              <Text Text style={styleSheet.text}>
+                Todo
+              </Text>
+            </View>
+          </View>
+
+          <View style={{ flexDirection: 'row', marginTop: 30 }}>
+            <View style={{ flexDirection: 'column', width: '60%' }}>
+              <View style={{ flexDirection: 'row-reverse' }}>
+                <Text style={styleSheet.text}>{services.t.do('profile.chooseTheme')}</Text>
+              </View>
+            </View>
+            <View style={{ flexDirection: 'column', width: '40%' }}>
+              <Text Text style={styleSheet.text}>
                 Todo
               </Text>
             </View>

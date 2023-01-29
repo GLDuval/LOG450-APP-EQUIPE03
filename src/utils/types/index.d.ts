@@ -24,12 +24,14 @@ type ThemeColors = {
   bgColor: string;
   bg2Color: string;
   text: string;
+  text2: string;
   blueberry: string;
   mustard: string;
   orange: string;
+  lightOrange: string;
   blue: string;
+  groceryGrey: string;
   grey: string;
   red: string;
-  darkerGrey: string;
   details: string;
 };

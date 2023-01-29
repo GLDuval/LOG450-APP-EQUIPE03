@@ -49,12 +49,26 @@ export const FoodInfosList: NavioScreen = observer(() => {
       sale_price: '5,99 $  ch.',
       quantity: 1,
     },
+    {
+      product_name: 'Macaroni et fromage original',
+      image_url: 'https://product-images.metro.ca/images/h29/h94/9986997256222.jpg',
+      regular_price: '4 /  5,00 $',
+      sale_price: '1,59 $  ch.',
+      quantity: 1,
+    },
+    {
+      product_name: 'Fromage à la crème original',
+      image_url: 'https://product-images.metro.ca/images/hde/h06/9986804482078.jpg',
+      regular_price: '4,77 $  ch.',
+      sale_price: '5,99 $  ch.',
+      quantity: 1,
+    },
   ];
 
   // STYLES
   const styles = StyleSheet.create({
     infos: {
-      fontSize: 18,
+      fontSize: 16,
       flex: 1,
       color: getTheme().red,
     },
@@ -92,42 +106,45 @@ export const FoodInfosList: NavioScreen = observer(() => {
     },
     container: {
       flex: 1,
-      paddingTop: 22,
+      paddingTop: 5,
+    },
+    item: {
+      padding: 20,
+      marginTop: 5,
+      fontSize: 15,
     },
   });
 
   return (
-    <View style={styles.container}>
-      <FlatList
-        data={food}
-        renderItem={({ item }) => (
-          <View style={styles.cardContainer}>
-            <View style={styles.card}>
-              <View style={{ flexDirection: 'column' }}>
-                <Image
-                  source={{ uri: item.image_url }}
-                  style={{ width: 85, height: 85, borderRadius: 10 }}
+    <FlatList
+      data={food}
+      renderItem={({ item }) => (
+        <View style={styles.cardContainer}>
+          <View style={styles.card}>
+            <View style={{ flexDirection: 'column' }}>
+              <Image
+                source={{ uri: item.image_url }}
+                style={{ width: 85, height: 85, borderRadius: 10 }}
+              />
+            </View>
+
+            <View style={{ flexDirection: 'column', paddingLeft: 15, width: '70%' }}>
+              <View style={{ flexDirection: 'row' }}>
+                <Text style={styles.cardHeader}>{item.product_name}</Text>
+                <TextInput
+                  placeholder="0"
+                  style={styles.textInput}
+                  maxLength={3}
+                  keyboardType="numeric"
                 />
               </View>
 
-              <View style={{ flexDirection: 'column', paddingLeft: 15, width: '70%' }}>
-                <View style={{ flexDirection: 'row' }}>
-                  <Text style={styles.cardHeader}>{item.product_name}</Text>
-                  <TextInput
-                    placeholder="0"
-                    style={styles.textInput}
-                    maxLength={3}
-                    keyboardType="numeric"
-                  />
-                </View>
-
-                <Text style={styles.infos}>{item.regular_price}</Text>
-                <Text style={styles.oldPrice}>{item.sale_price}</Text>
-              </View>
+              <Text style={styles.infos}>{item.regular_price}</Text>
+              <Text style={styles.oldPrice}>{item.sale_price}</Text>
             </View>
           </View>
-        )}
-      />
-    </View>
+        </View>
+      )}
+    />
   );
 });

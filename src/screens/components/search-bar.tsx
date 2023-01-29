@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { StyleSheet, TextInput } from 'react-native';
+import { StyleSheet, TextInput, View } from 'react-native';
 import { observer } from 'mobx-react';
 import { NavioScreen } from 'rn-navio';
 import { getTheme } from '../../utils/designSystem';
@@ -25,20 +25,20 @@ export const SearchBar: NavioScreen = observer(() => {
     textInput: {
       fontSize: 16,
       padding: 10,
-      backgroundColor: getTheme().grey,
       borderRadius: 10,
+      backgroundColor: getTheme().grey,
       color: getTheme().details,
     },
   });
 
   return (
-    <>
+    <View style={{ paddingTop: 20 }}>
       <TextInput
         placeholder="Rechercher"
         onChangeText={() => onChangeText}
         style={styles.textInput}
       />
       <Text>{state.error}</Text>
-    </>
+    </View>
   );
 });

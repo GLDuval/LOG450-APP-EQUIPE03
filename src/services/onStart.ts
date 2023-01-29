@@ -22,6 +22,7 @@ export class OnStartService {
       map: require('../../assets/icons/map.png') as Image,
       heart: require('../../assets/icons/heart.png') as Image,
       close: require('../../assets/icons/close.png') as Image,
+      superC: require('../../assets/super-c-logo.png') as Image, // TODO: À enlever quand le loadAssetsGroup en dessous va fonctionner
     });
 
     Assets.loadAssetsGroup('images', {

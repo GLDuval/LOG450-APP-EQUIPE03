@@ -28,12 +28,14 @@ export const en = {
   profile: {
     title: 'Profile',
     chooseLanguage: 'Choose your language',
+    chooseTheme: 'Choose your theme',
   },
   actions: {
     logout: 'Logout',
     connexion: 'Connexion',
     search: 'Rechercher',
     show: 'Show',
+    close: 'Close',
   },
 };
 
@@ -67,11 +69,13 @@ export const fr = {
   profile: {
     title: 'Profil',
     chooseLanguage: 'Choisissez votre langue',
+    chooseTheme: 'Choisissez votre thème',
   },
   actions: {
     logout: 'Se déconnecter',
     connexion: 'Connexion',
     search: 'Rechercher',
     show: 'Afficher',
+    close: 'Fermer',
   },
 };
