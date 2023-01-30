@@ -92,7 +92,7 @@ export const FoodInfosList: NavioScreen = observer(() => {
     card: {
       backgroundColor: getTheme().grey,
       padding: 10,
-      marginTop: 20,
+      marginBottom: 20,
       borderRadius: 10,
       flexDirection: 'row',
     },
@@ -103,15 +103,6 @@ export const FoodInfosList: NavioScreen = observer(() => {
       width: 35,
       height: 40,
       textAlign: 'center',
-    },
-    container: {
-      flex: 1,
-      paddingTop: 5,
-    },
-    item: {
-      padding: 20,
-      marginTop: 5,
-      fontSize: 15,
     },
   });
 

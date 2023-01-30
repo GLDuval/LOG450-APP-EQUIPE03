@@ -9,6 +9,7 @@ import { FoodInfosList } from '../components/food-infos-list';
 import { services } from '../../services';
 import { getTheme } from '../../utils/designSystem';
 import { styleSheet } from '../../utils/stylesheet';
+import { SearchBar } from '../components/search-bar';
 
 export const GroceryInfos: NavioScreen = observer(() => {
   // STYLES
@@ -61,9 +62,15 @@ export const GroceryInfos: NavioScreen = observer(() => {
           />
           <View flex>
             <TabController.TabPage index={0}>
+              <View style={{ paddingTop: 20, paddingStart: 20, paddingEnd: 20 }}>
+                <SearchBar />
+              </View>
               <FoodInfosList />
             </TabController.TabPage>
             <TabController.TabPage index={1} lazy>
+              <View style={{ paddingTop: 20, paddingStart: 20, paddingEnd: 20 }}>
+                <SearchBar />
+              </View>
               <RecipesList />
             </TabController.TabPage>
           </View>

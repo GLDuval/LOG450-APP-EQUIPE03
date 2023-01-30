@@ -28,10 +28,12 @@ export const MyRecipes: NavioScreen = observer(() => {
             {services.t.do('myRecipes.title')}
           </Text>
         </View>
-        <SearchBar />
       </View>
 
       <View style={styleSheet.roundedTopCornersContainer} bg-bgColor>
+        <View style={{ paddingTop: 20, paddingStart: 20, paddingEnd: 20 }}>
+          <SearchBar />
+        </View>
         <RecipesList />
       </View>
     </View>

@@ -57,7 +57,7 @@ export const RecipesList: NavioScreen = observer(() => {
     card: {
       backgroundColor: getTheme().grey,
       padding: 15,
-      marginTop: 20,
+      marginBottom: 20,
       borderRadius: 10,
     },
   });

@@ -8,13 +8,14 @@ import { services } from '../../services';
 import { getTheme } from '../../utils/designSystem';
 import { styleSheet } from '../../utils/stylesheet';
 import { FoodInfosList } from '../components/food-infos-list';
+import { SearchBar } from '../components/search-bar';
 
 export const GroceryList: NavioScreen = observer(() => {
   return (
     <View flex style={{ backgroundColor: getTheme().orange }}>
       <StatusBar backgroundColor={getTheme().orange} />
       <View style={styleSheet.topContainer}>
-        <View style={{ flexDirection: 'row', paddingBottom: 20 }}>
+        <View style={{ flexDirection: 'row' }}>
           <TouchableHighlight
             underlayColor="Colors.transparent"
             onPress={() => {
@@ -29,6 +30,9 @@ export const GroceryList: NavioScreen = observer(() => {
         </View>
       </View>
       <View style={styleSheet.roundedTopCornersContainer} bg-bgColor>
+        <View style={{ paddingTop: 20, paddingStart: 20, paddingEnd: 20 }}>
+          <SearchBar />
+        </View>
         <FoodInfosList />
       </View>
     </View>

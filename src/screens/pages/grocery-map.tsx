@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, TouchableHighlight, StatusBar } from 'react-native';
+import { TouchableHighlight, StatusBar } from 'react-native';
 import { Icon, Text, View } from 'react-native-ui-lib';
 import { observer } from 'mobx-react';
 import { NavioScreen } from 'rn-navio';
@@ -10,21 +10,10 @@ import { getTheme } from '../../utils/designSystem';
 import { styleSheet } from '../../utils/stylesheet';
 
 export const GroceryMap: NavioScreen = observer(() => {
-  // STYLES
-  const styles = StyleSheet.create({
-    topContainer: {
-      fontSize: 24,
-      flex: 1,
-      paddingTop: 60,
-      paddingBottom: 20,
-      marginHorizontal: 20,
-    },
-  });
-
   return (
     <View flex style={{ backgroundColor: getTheme().blue }}>
       <StatusBar backgroundColor="#578699" />
-      <View style={styles.topContainer}>
+      <View style={styleSheet.topContainer}>
         <View style={{ flexDirection: 'row' }}>
           <TouchableHighlight
             underlayColor="Colors.transparent"
@@ -38,10 +27,12 @@ export const GroceryMap: NavioScreen = observer(() => {
             {services.t.do('map.title')}
           </Text>
         </View>
-        <SearchBar />
       </View>
 
       <View style={styleSheet.roundedTopCornersContainer} bg-bgColor>
+        <View style={{ paddingTop: 20, paddingStart: 20, paddingEnd: 20 }}>
+          <SearchBar />
+        </View>
         <Text center>
           {'\n'} {'\n'} {'\n'} {'\n'} {'\n'} {'\n'} {'\n'} {'\n'} {'\n'} {'\n'} {'\n'} {'\n'} {'\n'}{' '}
           {'\n'} {'\n'} {'\n'} {'\n'} {'\n'} {'\n'} {'\n'} {'\n'} {'\n'} {'\n'} {'\n'} {'\n'} {'\n'}{' '}
