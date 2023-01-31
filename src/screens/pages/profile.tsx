@@ -75,6 +75,9 @@ export const Profile: NavioScreen = observer(() => {
             label={services.t.do('actions.logout')}
             size={Button.sizes.medium}
             backgroundColor={getTheme().blueberry}
+            onPress={() => {
+              navio.show('Login');
+            }}
           />
         </View>
 

@@ -23,11 +23,19 @@ export class OnStartService {
       heart: require('../../assets/icons/heart.png') as Image,
       close: require('../../assets/icons/close.png') as Image,
       back: require('../../assets/icons/back.png') as Image,
+      dot: require('../../assets/icons/dot.png') as Image,
+      rightArrow: require('../../assets/icons/right-arrow.png') as Image,
       superC: require('../../assets/super-c-logo.png') as Image, // TODO: À enlever quand le loadAssetsGroup en dessous va fonctionner
+      onboarding1: require('../../assets/onboarding1.jpg') as Image,
+      onboarding2: require('../../assets/onboarding2.jpg') as Image,
+      onboarding3: require('../../assets/onboarding3.jpg') as Image,
     });
 
     Assets.loadAssetsGroup('images', {
       superC: require('../../assets/super-c-logo.png') as Image,
+      onboarding1: require('../../assets/onboarding1.jpg') as Image,
+      onboarding2: require('../../assets/onboarding2.jpg') as Image,
+      onboarding3: require('../../assets/onboarding3.jpg') as Image,
     });
   }
 

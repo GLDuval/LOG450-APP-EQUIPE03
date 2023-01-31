@@ -1,6 +1,6 @@
 import React from 'react';
 import { ScrollView, StyleSheet } from 'react-native';
-import { Text, View } from 'react-native-ui-lib';
+import { Button, Text, View } from 'react-native-ui-lib';
 import { observer } from 'mobx-react';
 import { NavioScreen } from 'rn-navio';
 
@@ -8,6 +8,7 @@ import { services } from '../services';
 import { useAppearance } from '../utils/hooks';
 import { TextInput } from 'react-native-gesture-handler';
 import { getTheme } from '../utils/designSystem';
+import { navio } from '.';
 
 export const Login: NavioScreen = observer(() => {
   useAppearance();
@@ -41,6 +42,13 @@ export const Login: NavioScreen = observer(() => {
           <TextInput placeholder={services.t.do('login.email')} />
           <TextInput placeholder={services.t.do('login.password')} />
         </View>
+
+        <Button
+          label={services.t.do('actions.connexion')}
+          onPress={() => {
+            navio.show('Dashboard');
+          }}
+        />
       </ScrollView>
     </View>
   );
