@@ -1,6 +1,6 @@
-import React, { useCallback, useState } from 'react';
-import { ScrollView, StatusBar, StyleSheet } from 'react-native';
-import { Text, View, Button, Checkbox, LoaderScreen, Colors } from 'react-native-ui-lib';
+import React, { useCallback, useEffect, useState } from 'react';
+import { ScrollView, StyleSheet } from 'react-native';
+import { Text, View, Button, LoaderScreen, Colors } from 'react-native-ui-lib';
 import { observer } from 'mobx-react';
 import { NavioScreen } from 'rn-navio';
 
@@ -11,36 +11,37 @@ import { auth } from '../../firebaseConfig';
 import { signInWithEmailAndPassword } from 'firebase/auth';
 import { FirebaseError } from 'firebase/app';
 import { getTheme } from '../utils/designSystem';
-import { styleSheet } from '../utils/stylesheet';
+import { useAuthState } from 'react-firebase-hooks/auth';
 
 export const Login: NavioScreen = observer(() => {
   useAppearance();
   const { navio } = useServices();
 
   // State (local)
-  const [loading, setLoading] = useState(false);
   const [isWrongLogin, setWrongLogin] = useState(false);
   const [emailInput, setEmail] = useState('');
   const [passwordInput, setPassword] = useState('');
-  const [remember, setRemember] = useState(false);
+  const [user, loading] = useAuthState(auth);
+
+  useEffect(() => {
+    if (user) {
+      navio.setRoot('MainStack');
+    }
+  }, [user, navio]);
 
   const login = useCallback(
     async (email: string, password: string) => {
-      setLoading(true);
       await signInWithEmailAndPassword(auth, email, password)
-        .then((userCredential) => {
+        .then(() => {
           // Signed in
-          const user = userCredential.user;
-          console.log(user);
+          // const user = userCredential.user;
           setWrongLogin(false);
-          setLoading(false);
           navio.setRoot('MainStack');
         })
         .catch((error: FirebaseError) => {
           const errorCode = error.code;
           const errorMessage = error.message;
           setWrongLogin(true);
-          setLoading(false);
           console.log(errorCode, errorMessage);
         });
     },
@@ -120,14 +121,6 @@ export const Login: NavioScreen = observer(() => {
 
         <View style={styleSheet.loginInput}>
           <View style={styles.loginOptions}>
-            <View>
-              <Checkbox
-                value={remember}
-                onValueChange={setRemember}
-                color={getTheme().blue}
-                label={services.t.do('login.rememberMe')}
-              />
-            </View>
             <View>
               <Text>{services.t.do('login.forgotPassword')}</Text>
             </View>
