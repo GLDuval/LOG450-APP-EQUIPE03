@@ -7,6 +7,8 @@ import { navio } from '..';
 import { getTheme } from '../../../src/utils/designSystem';
 import { services } from '../../services';
 import { signOut } from 'firebase/auth';
+import { styleSheet } from '../../utils/stylesheet';
+import SwitchScreen from '../components/switch-screen';
 import { auth } from '../../../firebaseConfig';
 import { FirebaseError } from 'firebase/app';
 
