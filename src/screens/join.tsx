@@ -21,8 +21,8 @@ export const Join: NavioScreen = observer(() => {
   const [loading, setLoading] = useState(false);
 
   const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [emailInput, setEmail] = useState('');
+  const [passwordInput, setPassword] = useState('');
 
   // Firebase Create
   const createNewUser = useCallback(
@@ -126,7 +126,7 @@ export const Join: NavioScreen = observer(() => {
               style={styles.textField}
               placeholder={services.t.do('signup.email')}
               onChangeText={(text: string) => setEmail(text)}
-              value={email}
+              value={emailInput}
             />
           </View>
           <View style={styles.input}>
@@ -135,7 +135,7 @@ export const Join: NavioScreen = observer(() => {
               placeholder={services.t.do('signup.password')}
               secureTextEntry={true}
               onChangeText={(text: string) => setPassword(text)}
-              value={password}
+              value={passwordInput}
             />
           </View>
         </View>
@@ -147,7 +147,7 @@ export const Join: NavioScreen = observer(() => {
             borderRadius={15}
             backgroundColor="#264653"
             style={{ marginBottom: 10 }}
-            onPress={() => createNewUser(email, password)}
+            onPress={() => createNewUser(emailInput, passwordInput)}
           />
         </View>
         <View style={styles.input}>

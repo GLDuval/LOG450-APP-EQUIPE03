@@ -11,7 +11,6 @@ import { auth } from '../../firebaseConfig';
 import { signInWithEmailAndPassword } from 'firebase/auth';
 import { FirebaseError } from 'firebase/app';
 import { getTheme } from '../utils/designSystem';
-import { navio } from '.';
 
 export const Login: NavioScreen = observer(() => {
   useAppearance();
@@ -20,13 +19,12 @@ export const Login: NavioScreen = observer(() => {
   // State (local)
   const [loading, setLoading] = useState(false);
   const [isWrongLogin, setWrongLogin] = useState(false);
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [emailInput, setEmail] = useState('');
+  const [passwordInput, setPassword] = useState('');
   const [remember, setRemember] = useState(false);
 
   const login = useCallback(
     async (email: string, password: string) => {
-      console.log(email, password);
       setLoading(true);
       await signInWithEmailAndPassword(auth, email, password)
         .then((userCredential) => {
@@ -131,7 +129,7 @@ export const Login: NavioScreen = observer(() => {
         <View style={{ flexDirection: 'column' }}>
           <View style={styles.input}>
             <TextInput
-              value={email}
+              value={emailInput}
               onChangeText={(email) => setEmail(email)}
               style={styles.textField}
               placeholder={services.t.do('login.email')}
@@ -139,7 +137,7 @@ export const Login: NavioScreen = observer(() => {
           </View>
           <View style={styles.input}>
             <TextInput
-              value={password}
+              value={passwordInput}
               onChangeText={(password) => setPassword(password)}
               style={styles.textField}
               placeholder={services.t.do('login.password')}
@@ -156,7 +154,7 @@ export const Login: NavioScreen = observer(() => {
             <View>
               <Checkbox
                 value={remember}
-                onValueChange={(remember: boolean) => setRemember(remember)}
+                onValueChange={setRemember}
                 label={services.t.do('login.rememberMe')}
               />
             </View>
@@ -173,7 +171,7 @@ export const Login: NavioScreen = observer(() => {
             borderRadius={15}
             backgroundColor="#264653"
             style={{ marginBottom: 10 }}
-            onPress={() => login(email, password)}
+            onPress={() => login(emailInput, passwordInput)}
           />
         </View>
         {/* }
