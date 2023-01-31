@@ -1,19 +1,38 @@
-import React from 'react';
+import React, { useCallback, useState } from 'react';
 import { ScrollView, StyleSheet, TouchableHighlight, StatusBar } from 'react-native';
-import { Avatar, Button, Icon, Text, View } from 'react-native-ui-lib';
+import { Avatar, Button, Colors, Icon, LoaderScreen, Text, View } from 'react-native-ui-lib';
 import { observer } from 'mobx-react';
 import { NavioScreen } from 'rn-navio';
 import { navio } from '..';
 import { getTheme } from '../../../src/utils/designSystem';
 import { services } from '../../services';
-import { styleSheet } from '../../utils/stylesheet';
-import SwitchScreen from '../components/switch-screen';
+import { signOut } from 'firebase/auth';
+import { auth } from '../../../firebaseConfig';
+import { FirebaseError } from 'firebase/app';
 
 export const Profile: NavioScreen = observer(() => {
   /* const options = [
     {label: 'Français', value: 'fr'},
     {label: 'English', value: 'en'},
   ];*/
+
+  const [loading, setLoading] = useState(false);
+
+  const buttonSignOut = useCallback(async () => {
+    setLoading(true);
+    await signOut(auth)
+      .then(() => {
+        // Signed out
+        setLoading(false);
+        navio.setRoot('LoginStack');
+      })
+      .catch((error: FirebaseError) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        setLoading(false);
+        console.log(errorCode, errorMessage);
+      });
+  }, []);
 
   // STYLES
   const styles = StyleSheet.create({
@@ -104,9 +123,7 @@ export const Profile: NavioScreen = observer(() => {
             label={services.t.do('actions.logout')}
             size={Button.sizes.medium}
             backgroundColor={getTheme().blueberry}
-            onPress={() => {
-              navio.show('Login');
-            }}
+            onPress={buttonSignOut}
           />
         </View>
 
@@ -143,6 +160,7 @@ export const Profile: NavioScreen = observer(() => {
             </View>
           </View>
         </View>
+        {loading && <LoaderScreen message={services.t.do('login.loading')} color={Colors.grey40} />}
       </ScrollView>
     </View>
   );

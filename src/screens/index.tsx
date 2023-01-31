@@ -2,6 +2,7 @@ import { Navio } from 'rn-navio';
 
 import { Dashboard } from './dashboard';
 import { Login } from './login';
+import { Join } from './join';
 import { Profile } from './pages/profile';
 import { GroceryInfos } from './pages/grocery-infos';
 import { GroceryMap } from './pages/grocery-map';
@@ -26,6 +27,7 @@ export const navio = Navio.build({
   screens: {
     Dashboard,
     Login,
+    Join,
     Profile,
     GroceryInfos,
     GroceryMap,
@@ -44,6 +46,7 @@ export const navio = Navio.build({
     RecipeDetails,
   },
   stacks: {
+    LoginStack: ['Login', 'Join'],
     MainStack: [
       'Dashboard',
       'Login',

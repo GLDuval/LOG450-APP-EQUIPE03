@@ -14,7 +14,9 @@
     "updates": {
       "fallbackToCacheTimeout": 0
     },
-    "assetBundlePatterns": ["**/*"],
+    "assetBundlePatterns": [
+      "**/*"
+    ],
     "ios": {
       "supportsTablet": true,
       "bundleIdentifier": "coco.is.cool"
@@ -25,6 +27,11 @@
         "backgroundColor": "#FFFFFF"
       },
       "package": "coco.is.cool"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "348d774f-01f8-4e16-9806-bf7d2649805a"
+      }
     }
   }
 }
