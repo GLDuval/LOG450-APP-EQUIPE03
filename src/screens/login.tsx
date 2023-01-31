@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useState } from 'react';
-import { ScrollView, StyleSheet } from 'react-native';
+import { ScrollView, StatusBar, StyleSheet } from 'react-native';
 import { Text, View, Button, LoaderScreen, Colors } from 'react-native-ui-lib';
 import { observer } from 'mobx-react';
 import { NavioScreen } from 'rn-navio';
@@ -12,6 +12,7 @@ import { signInWithEmailAndPassword } from 'firebase/auth';
 import { FirebaseError } from 'firebase/app';
 import { getTheme } from '../utils/designSystem';
 import { useAuthState } from 'react-firebase-hooks/auth';
+import { styleSheet } from '../utils/stylesheet';
 
 export const Login: NavioScreen = observer(() => {
   useAppearance();
