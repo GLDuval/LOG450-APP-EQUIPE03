@@ -38,7 +38,7 @@ const themes: Record<Appearance, { [key: string]: string }> = {
     blue: '#578699',
     grey: '#e0e0de',
     red: '#d77467',
-    darkerGrey: '#264653',
+    darkerGrey: '#FFFFFF',
     details: '#696d6e',
   },
   dark: {

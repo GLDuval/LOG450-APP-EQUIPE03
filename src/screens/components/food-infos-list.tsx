@@ -75,7 +75,7 @@ export const FoodInfosList: NavioScreen = observer(() => {
     oldPrice: {
       fontSize: 15,
       flex: 1,
-      color: getTheme().darkerGrey,
+      color: getTheme().details,
       textDecorationLine: 'line-through',
       textDecorationStyle: 'solid',
     },

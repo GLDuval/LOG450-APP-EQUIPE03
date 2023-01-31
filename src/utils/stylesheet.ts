@@ -23,7 +23,7 @@ export const styleSheet = StyleSheet.create({
   header: {
     fontSize: 24,
     flex: 1,
-    color: getTheme().text,
+    color: getTheme().text2,
   },
   onboardingTitle: {
     fontSize: 24,

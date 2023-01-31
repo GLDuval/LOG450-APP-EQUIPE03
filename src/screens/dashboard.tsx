@@ -29,7 +29,7 @@ export const Dashboard: NavioScreen = observer(() => {
     menuText: {
       fontSize: 18,
       fontWeight: 'bold',
-      color: getTheme().text,
+      color: getTheme().text2,
     },
     menuContainer: {
       marginTop: 20,
