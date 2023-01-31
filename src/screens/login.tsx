@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { ScrollView, StyleSheet } from 'react-native';
 import { Text, View, Button, LoaderScreen, Colors } from 'react-native-ui-lib';
 import { observer } from 'mobx-react';
@@ -11,33 +11,37 @@ import { auth } from '../../firebaseConfig';
 import { signInWithEmailAndPassword } from 'firebase/auth';
 import { FirebaseError } from 'firebase/app';
 import { getTheme } from '../utils/designSystem';
+import { useAuthState } from 'react-firebase-hooks/auth';
 
 export const Login: NavioScreen = observer(() => {
   useAppearance();
   const { navio } = useServices();
 
   // State (local)
-  const [loading, setLoading] = useState(false);
   const [isWrongLogin, setWrongLogin] = useState(false);
   const [emailInput, setEmail] = useState('');
   const [passwordInput, setPassword] = useState('');
+  const [user, loading] = useAuthState(auth);
+
+  useEffect(() => {
+    if (user) {
+      navio.setRoot('MainStack');
+    }
+  }, [user, navio]);
 
   const login = useCallback(
     async (email: string, password: string) => {
-      setLoading(true);
       await signInWithEmailAndPassword(auth, email, password)
         .then(() => {
           // Signed in
           // const user = userCredential.user;
           setWrongLogin(false);
-          setLoading(false);
           navio.setRoot('MainStack');
         })
         .catch((error: FirebaseError) => {
           const errorCode = error.code;
           const errorMessage = error.message;
           setWrongLogin(true);
-          setLoading(false);
           console.log(errorCode, errorMessage);
         });
     },
