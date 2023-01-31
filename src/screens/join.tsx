@@ -7,7 +7,7 @@ import { NavioScreen } from 'rn-navio';
 import { services, useServices } from '../services';
 import { useAppearance } from '../utils/hooks';
 
-import { createUserWithEmailAndPassword } from 'firebase/auth';
+import { createUserWithEmailAndPassword, updateProfile } from 'firebase/auth';
 import { auth } from '../../firebaseConfig';
 import { TextInput } from 'react-native-gesture-handler';
 import { FirebaseError } from 'firebase/app';
@@ -29,9 +29,12 @@ export const Join: NavioScreen = observer(() => {
     (email: string, password: string) => {
       setLoading(true);
       createUserWithEmailAndPassword(auth, email, password)
-        .then((userCredential) => {
+        .then(async (userCredential) => {
           // Signed in
           const user = userCredential.user;
+          await updateProfile(user, {
+            displayName: name,
+          });
           setLoading(false);
           navio.push('Login');
           console.log(user);
@@ -43,7 +46,7 @@ export const Join: NavioScreen = observer(() => {
           console.log(errorCode, errorMessage);
         });
     },
-    [navio],
+    [name, navio],
   );
 
   // STYLES
