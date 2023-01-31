@@ -19,6 +19,7 @@ export const Join: NavioScreen = observer(() => {
 
   // State (local)
   const [loading, setLoading] = useState(false);
+  const [credentialsError, setCredentialsError] = useState(false);
 
   const [name, setName] = useState('');
   const [emailInput, setEmail] = useState('');
@@ -35,6 +36,7 @@ export const Join: NavioScreen = observer(() => {
           await updateProfile(user, {
             displayName: name,
           });
+          setCredentialsError(false);
           setLoading(false);
           navio.push('Login');
           console.log(user);
@@ -42,6 +44,7 @@ export const Join: NavioScreen = observer(() => {
         .catch((error: FirebaseError) => {
           const errorCode = error.code;
           const errorMessage = error.message;
+          setCredentialsError(true);
           setLoading(false);
           console.log(errorCode, errorMessage);
         });
@@ -104,6 +107,15 @@ export const Join: NavioScreen = observer(() => {
       color: getTheme().blueberry,
       textAlign: 'center',
     },
+    credentialsErrorText: {
+      fontSize: 18,
+      flex: 1,
+      fontWeight: 'bold',
+      color: getTheme().red,
+      textAlign: 'left',
+      paddingHorizontal: 25,
+      paddingBottom: 15,
+    },
   });
 
   return (
@@ -141,6 +153,11 @@ export const Join: NavioScreen = observer(() => {
               value={passwordInput}
             />
           </View>
+          {credentialsError && (
+            <Text style={styles.credentialsErrorText}>
+              {services.t.do('signup.passwordLength')}
+            </Text>
+          )}
         </View>
 
         <View style={styles.input}>

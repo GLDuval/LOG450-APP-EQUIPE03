@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from 'react';
+import React, { useCallback, useContext, useState } from 'react';
 import { ScrollView, StyleSheet, TouchableHighlight, StatusBar } from 'react-native';
 import { Avatar, Button, Colors, Icon, LoaderScreen, Text, View } from 'react-native-ui-lib';
 import { observer } from 'mobx-react';
@@ -11,12 +11,15 @@ import { styleSheet } from '../../utils/stylesheet';
 import SwitchScreen from '../components/switch-screen';
 import { auth } from '../../../firebaseConfig';
 import { FirebaseError } from 'firebase/app';
+import { UserContext } from '../../contexts/UserContext';
 
 export const Profile: NavioScreen = observer(() => {
   /* const options = [
     {label: 'Français', value: 'fr'},
     {label: 'English', value: 'en'},
   ];*/
+
+  const username = useContext(UserContext)?.displayName;
 
   const [loading, setLoading] = useState(false);
 
@@ -117,7 +120,7 @@ export const Profile: NavioScreen = observer(() => {
         </View>
 
         <Text style={styles.name} center>
-          Félix-Antoine Tremblay
+          {username}
         </Text>
 
         <View center style={{ marginTop: 15 }}>
