@@ -40,6 +40,7 @@ export const en = {
     signup: 'Sign Up',
     signUpWithGoogle: 'Sign Up with Google',
     back: 'Back',
+    passwordLength: 'Password must be at least 6 characters',
   },
   dashboard: {
     title: 'Dashboard',
@@ -114,6 +115,7 @@ export const fr = {
     join: "S'inscrire",
     loading: 'Chargement...',
     wrongLogin: 'Courriel ou mot de passe invalide',
+    continueAsGuest: "Continuer en tant qu'invité",
   },
   signup: {
     title: 'Inscrivez-vous',
@@ -124,7 +126,7 @@ export const fr = {
     join: "S'inscrire",
     joinWithGoogle: "S'inscrire avec Google",
     back: 'Retour',
-    continueAsGuest: "Continuer en tant qu'invité",
+    passwordLength: 'Le mot de passe doit contenir au moins 6 caractères',
   },
   dashboard: {
     title: 'Tableau de bord',
