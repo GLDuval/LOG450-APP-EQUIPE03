@@ -8,7 +8,7 @@ import { services, useServices } from '../services';
 import { useAppearance } from '../utils/hooks';
 import { TextInput } from 'react-native-gesture-handler';
 import { auth } from '../../firebaseConfig';
-import { signInWithEmailAndPassword } from 'firebase/auth';
+import { browserLocalPersistence, setPersistence, signInWithEmailAndPassword } from 'firebase/auth';
 import { FirebaseError } from 'firebase/app';
 import { getTheme } from '../utils/designSystem';
 
@@ -27,10 +27,9 @@ export const Login: NavioScreen = observer(() => {
     async (email: string, password: string) => {
       setLoading(true);
       await signInWithEmailAndPassword(auth, email, password)
-        .then((userCredential) => {
+        .then(() => {
           // Signed in
-          const user = userCredential.user;
-          console.log(user);
+          // const user = userCredential.user;
           setWrongLogin(false);
           setLoading(false);
           navio.setRoot('MainStack');
@@ -44,6 +43,19 @@ export const Login: NavioScreen = observer(() => {
         });
     },
     [navio],
+  );
+
+  const loginRememberMe = useCallback(
+    (email: string, password: string) => {
+      setPersistence(auth, browserLocalPersistence)
+        .then(() => {
+          return login(email, password);
+        })
+        .catch(() => {
+          // Handle Errors here.
+        });
+    },
+    [login],
   );
 
   // STYLES
@@ -171,7 +183,11 @@ export const Login: NavioScreen = observer(() => {
             borderRadius={15}
             backgroundColor="#264653"
             style={{ marginBottom: 10 }}
-            onPress={() => login(emailInput, passwordInput)}
+            onPress={() =>
+              remember
+                ? loginRememberMe(emailInput, passwordInput)
+                : login(emailInput, passwordInput)
+            }
           />
         </View>
         {/* }
