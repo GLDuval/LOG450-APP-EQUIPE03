@@ -29,7 +29,12 @@ export const SecondPage: NavioScreen = observer(() => {
         />
       </View>
       <View style={{ flex: 2 }} center>
-        <Image assetName={'onboarding2'} style={{ width: 350, height: 300 }} center />
+        <Image
+          assetGroup={'images'}
+          assetName={'onboarding2'}
+          style={{ width: 350, height: 300 }}
+          center
+        />
         <Text style={styleSheet.onboardingTitle}>
           {services.t.do('onboarding.secondPage.title')}
         </Text>

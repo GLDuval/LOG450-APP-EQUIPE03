@@ -29,7 +29,12 @@ export const ThirdPage: NavioScreen = observer(() => {
         />
       </View>
       <View style={{ flex: 2 }} center>
-        <Image assetName={'onboarding1'} style={{ width: 350, height: 300 }} center />
+        <Image
+          assetGroup={'images'}
+          assetName={'onboarding1'}
+          style={{ width: 350, height: 300 }}
+          center
+        />
         <Text style={styleSheet.onboardingTitle}>
           {services.t.do('onboarding.thirdPage.title')}
         </Text>
