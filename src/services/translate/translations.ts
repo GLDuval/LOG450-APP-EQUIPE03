@@ -1,4 +1,20 @@
 export const en = {
+  onboarding: {
+    firstPage: {
+      title: 'Visualize the discounts',
+      description:
+        'Visualize the circulars of participating grocery stores directly on your phone, helping you plan your purchases and take advantage of the best offers available.',
+    },
+    secondPage: {
+      title: 'Design your grocery list',
+      description:
+        'Efficiently design a grocery list by allowing you to save products from the circular.',
+    },
+    thirdPage: {
+      title: 'Save recipes',
+      description: 'Easily save your favorite recipes to find them at any time.',
+    },
+  },
   login: {
     title: 'Welcome back',
     email: 'Email address',
@@ -40,10 +56,28 @@ export const en = {
     search: 'Rechercher',
     show: 'Show',
     close: 'Close',
+    skip: 'Skip',
   },
 };
 
 export const fr = {
+  onboarding: {
+    firstPage: {
+      title: 'Visualiser les rabais',
+      description:
+        'Visualiser la circulaire des épiceries participantes directement sur votre téléphone, vous aidant à planifier vos achats et à profiter des meilleures offres disponibles.',
+    },
+    secondPage: {
+      title: 'Concevoir sa liste d’épicerie',
+      description:
+        "Concevez efficacement une liste d'épicerie en vous permettant de sauvegarder des produits de la circulaire.",
+    },
+    thirdPage: {
+      title: 'Sauvegarder des recettes',
+      description:
+        'Sauvegardez facilement vos recettes préférées pour les retrouver à tout moment.',
+    },
+  },
   login: {
     title: 'Content de te revoir',
     email: 'Courriel',
@@ -85,5 +119,6 @@ export const fr = {
     search: 'Rechercher',
     show: 'Afficher',
     close: 'Fermer',
+    skip: 'Sauter',
   },
 };

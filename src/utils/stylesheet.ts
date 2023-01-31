@@ -25,4 +25,15 @@ export const styleSheet = StyleSheet.create({
     flex: 1,
     color: getTheme().text,
   },
+  onboardingTitle: {
+    fontSize: 24,
+    fontWeight: 'bold',
+    color: getTheme().blueberry,
+  },
+  onboardingDescription: {
+    fontSize: 18,
+    textAlign: 'center',
+    padding: 30,
+    color: getTheme().blueberry,
+  },
 });

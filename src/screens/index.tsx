@@ -9,6 +9,10 @@ import { GroceryList } from './pages/grocery-list';
 import { MyRecipes } from './pages/my-recipes';
 import { RecipeDetails } from './pages/recipe-details';
 
+import { FirstPage } from './onboarding/firstPage';
+import { SecondPage } from './onboarding/secondPage';
+import { ThirdPage } from './onboarding/thirdPage';
+
 import { GroceryStoresList } from './components/grocery-stores-list';
 import { RecipesList } from './components/recipes-list';
 import { FoodInfosList } from './components/food-infos-list';
@@ -28,6 +32,10 @@ export const navio = Navio.build({
     GroceryList,
     MyRecipes,
 
+    FirstPage,
+    SecondPage,
+    ThirdPage,
+
     // Components
     GroceryStoresList,
     RecipesList,
@@ -37,6 +45,9 @@ export const navio = Navio.build({
   },
   stacks: {
     MainStack: [
+      'FirstPage',
+      'SecondPage',
+      'ThirdPage',
       'Dashboard',
       'Login',
       'Profile',
