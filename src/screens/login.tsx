@@ -1,6 +1,6 @@
 import React, { useCallback, useState } from 'react';
 import { ScrollView, StyleSheet } from 'react-native';
-import { Text, View, Button, Checkbox, LoaderScreen, Colors } from 'react-native-ui-lib';
+import { Text, View, Button, LoaderScreen, Colors } from 'react-native-ui-lib';
 import { observer } from 'mobx-react';
 import { NavioScreen } from 'rn-navio';
 
@@ -8,7 +8,7 @@ import { services, useServices } from '../services';
 import { useAppearance } from '../utils/hooks';
 import { TextInput } from 'react-native-gesture-handler';
 import { auth } from '../../firebaseConfig';
-import { browserLocalPersistence, setPersistence, signInWithEmailAndPassword } from 'firebase/auth';
+import { signInWithEmailAndPassword } from 'firebase/auth';
 import { FirebaseError } from 'firebase/app';
 import { getTheme } from '../utils/designSystem';
 
@@ -21,7 +21,6 @@ export const Login: NavioScreen = observer(() => {
   const [isWrongLogin, setWrongLogin] = useState(false);
   const [emailInput, setEmail] = useState('');
   const [passwordInput, setPassword] = useState('');
-  const [remember, setRemember] = useState(false);
 
   const login = useCallback(
     async (email: string, password: string) => {
@@ -43,19 +42,6 @@ export const Login: NavioScreen = observer(() => {
         });
     },
     [navio],
-  );
-
-  const loginRememberMe = useCallback(
-    (email: string, password: string) => {
-      setPersistence(auth, browserLocalPersistence)
-        .then(() => {
-          return login(email, password);
-        })
-        .catch(() => {
-          // Handle Errors here.
-        });
-    },
-    [login],
   );
 
   // STYLES
@@ -164,13 +150,6 @@ export const Login: NavioScreen = observer(() => {
         <View style={styles.input}>
           <View style={styles.loginOptions}>
             <View>
-              <Checkbox
-                value={remember}
-                onValueChange={setRemember}
-                label={services.t.do('login.rememberMe')}
-              />
-            </View>
-            <View>
               <Text>{services.t.do('login.forgotPassword')}</Text>
             </View>
           </View>
@@ -183,11 +162,7 @@ export const Login: NavioScreen = observer(() => {
             borderRadius={15}
             backgroundColor="#264653"
             style={{ marginBottom: 10 }}
-            onPress={() =>
-              remember
-                ? loginRememberMe(emailInput, passwordInput)
-                : login(emailInput, passwordInput)
-            }
+            onPress={() => login(emailInput, passwordInput)}
           />
         </View>
         {/* }
