@@ -8,7 +8,7 @@ import { services } from '../../services';
 import { navio } from '..';
 import { styleSheet } from '../../utils/stylesheet';
 
-export const SecondPage: NavioScreen = observer(() => {
+export const OnboardingSecondPage: NavioScreen = observer(() => {
   return (
     <View
       style={{
@@ -55,7 +55,7 @@ export const SecondPage: NavioScreen = observer(() => {
             <TouchableHighlight
               underlayColor={'transparent'}
               onPress={() => {
-                navio.show('FirstPage');
+                navio.show('OnboardingFirstPage');
               }}
             >
               <Icon
@@ -68,13 +68,13 @@ export const SecondPage: NavioScreen = observer(() => {
             <Icon
               size={10}
               assetName={'dot'}
-              tintColor={getTheme().text}
+              tintColor={getTheme().text2}
               style={{ marginEnd: 5 }}
             />
             <TouchableHighlight
               underlayColor={'transparent'}
               onPress={() => {
-                navio.show('ThirdPage');
+                navio.show('OnboardingThirdPage');
               }}
             >
               <Icon size={10} assetName={'dot'} tintColor={getTheme().blueberry} />
@@ -84,7 +84,7 @@ export const SecondPage: NavioScreen = observer(() => {
             <TouchableHighlight
               underlayColor={'transparent'}
               onPress={() => {
-                navio.show('ThirdPage');
+                navio.show('OnboardingThirdPage');
               }}
             >
               <Icon
