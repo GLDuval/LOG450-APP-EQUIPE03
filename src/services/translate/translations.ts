@@ -113,6 +113,7 @@ export const fr = {
     join: "S'inscrire",
     loading: 'Chargement...',
     wrongLogin: 'Courriel ou mot de passe invalide',
+    continueAsGuest: "Continuer en tant qu'invité",
   },
   signup: {
     title: 'Inscrivez-vous',
