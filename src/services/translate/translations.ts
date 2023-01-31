@@ -47,8 +47,10 @@ export const en = {
   },
   profile: {
     title: 'Profile',
-    chooseLanguage: 'Choose your language',
-    chooseTheme: 'Choose your theme',
+    email: 'Email',
+    paramaters: 'Paramaters',
+    chooseLanguage: 'Language',
+    chooseTheme: 'Dark mode',
   },
   actions: {
     logout: 'Logout',
@@ -110,8 +112,10 @@ export const fr = {
   },
   profile: {
     title: 'Profil',
-    chooseLanguage: 'Choisissez votre langue',
-    chooseTheme: 'Choisissez votre thème',
+    paramaters: 'Paramètres',
+    email: 'Courriel',
+    chooseLanguage: 'Langue',
+    chooseTheme: 'Mode sombre',
   },
   actions: {
     logout: 'Se déconnecter',

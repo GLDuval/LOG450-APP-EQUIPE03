@@ -22,7 +22,7 @@ export const MyRecipes: NavioScreen = observer(() => {
               navio.pop();
             }}
           >
-            <Icon size={18} assetName={'close'} style={styleSheet.backIcon} />
+            <Icon size={18} assetName={'close'} style={styleSheet.closeIcon} />
           </TouchableHighlight>
           <Text style={styleSheet.header} center>
             {services.t.do('myRecipes.title')}

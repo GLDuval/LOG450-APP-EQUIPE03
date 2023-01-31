@@ -28,6 +28,10 @@ type ThemeColors = {
   blueberry: string;
   mustard: string;
   orange: string;
+  orange2: string;
+  lighterOrange: string;
+  purple: string;
+  lightPurple: string;
   lightOrange: string;
   blue: string;
   groceryGrey: string;

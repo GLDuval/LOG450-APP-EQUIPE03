@@ -12,7 +12,7 @@ export const styleSheet = StyleSheet.create({
     borderTopEndRadius: 30,
     borderTopStartRadius: 30,
   },
-  backIcon: {
+  closeIcon: {
     marginTop: 8,
     tintColor: Colors.white,
   },

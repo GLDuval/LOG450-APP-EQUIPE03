@@ -95,7 +95,7 @@ export const RecipeDetails: NavioScreen = observer(() => {
               navio.pop();
             }}
           >
-            <Icon size={18} assetName={'back'} style={styleSheet.backIcon} />
+            <Icon size={18} assetName={'back'} style={styleSheet.closeIcon} />
           </TouchableHighlight>
           <Text center style={styleSheet.header}>
             Pâté chinois

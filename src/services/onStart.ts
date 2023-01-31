@@ -25,6 +25,8 @@ export class OnStartService {
       back: require('../../assets/icons/back.png') as Image,
       dot: require('../../assets/icons/dot.png') as Image,
       rightArrow: require('../../assets/icons/right-arrow.png') as Image,
+      moon: require('../../assets/icons/moon.png') as Image,
+      language: require('../../assets/icons/language.png') as Image,
       superC: require('../../assets/super-c-logo.png') as Image, // TODO: À enlever quand le loadAssetsGroup en dessous va fonctionner
       onboarding1: require('../../assets/onboarding1.jpg') as Image,
       onboarding2: require('../../assets/onboarding2.jpg') as Image,

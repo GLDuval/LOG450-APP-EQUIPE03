@@ -36,7 +36,7 @@ export const GroceryInfos: NavioScreen = observer(() => {
               navio.pop();
             }}
           >
-            <Icon size={18} assetName={'close'} style={styleSheet.backIcon} />
+            <Icon size={18} assetName={'close'} style={styleSheet.closeIcon} />
           </TouchableHighlight>
           <View style={{ flexDirection: 'row', width: '100%' }} center>
             <Image assetName={'superC'} style={styles.image} />

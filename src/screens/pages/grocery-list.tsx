@@ -22,7 +22,7 @@ export const GroceryList: NavioScreen = observer(() => {
               navio.pop();
             }}
           >
-            <Icon size={18} assetName={'close'} style={styleSheet.backIcon} />
+            <Icon size={18} assetName={'close'} style={styleSheet.closeIcon} />
           </TouchableHighlight>
           <Text center style={styleSheet.header}>
             {services.t.do('groceryList.title')}
