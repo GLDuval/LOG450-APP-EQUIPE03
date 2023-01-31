@@ -16,12 +16,16 @@ import { initServices } from './src/services';
 import { SSProvider } from './src/utils/providers';
 import { StatusBar } from 'expo-status-bar';
 import { useAppearance } from './src/utils/hooks';
+import { UserContext } from './src/contexts/UserContext';
+import { auth } from './firebaseConfig';
+import { useAuthState } from 'react-firebase-hooks/auth';
 
 LogBox.ignoreLogs(['Require']);
 
 export default (): JSX.Element => {
   useAppearance();
   const [ready, setReady] = useState(false);
+  const [user] = useAuthState(auth);
 
   const start = useCallback(async () => {
     await SplashScreen.preventAutoHideAsync();
@@ -44,8 +48,10 @@ export default (): JSX.Element => {
   return (
     <GestureHandlerRootView style={{ flex: 1 }}>
       <SSProvider>
-        <StatusBar style={getStatusBarStyle()} backgroundColor={getStatusBarBGColor()} />
-        <AppRoot navigationContainerProps={{ theme: getNavigationTheme() }} />
+        <UserContext.Provider value={user}>
+          <StatusBar style={getStatusBarStyle()} backgroundColor={getStatusBarBGColor()} />
+          <AppRoot navigationContainerProps={{ theme: getNavigationTheme() }} />
+        </UserContext.Provider>
       </SSProvider>
     </GestureHandlerRootView>
   );

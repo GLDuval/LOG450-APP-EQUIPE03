@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { StyleSheet, TouchableOpacity, StatusBar } from 'react-native';
 import { Avatar, Colors, Icon, Text, View } from 'react-native-ui-lib';
 import { observer } from 'mobx-react';
@@ -8,9 +8,10 @@ import { GroceryStoresList } from './components/grocery-stores-list';
 import { services } from '../services';
 import { getTheme } from '../utils/designSystem';
 import { styleSheet } from '../utils/stylesheet';
+import { UserContext } from '../contexts/UserContext';
 
 export const Dashboard: NavioScreen = observer(() => {
-  const username = 'Félix-Antoine';
+  const username = useContext(UserContext)?.displayName;
 
   // STYLES
   const styles = StyleSheet.create({
