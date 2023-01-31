@@ -1,12 +1,13 @@
 import React from 'react';
 import { ScrollView, StyleSheet, TouchableHighlight, StatusBar } from 'react-native';
-import { Avatar, Button, Icon, Switch, Text, View } from 'react-native-ui-lib';
+import { Avatar, Button, Icon, Text, View } from 'react-native-ui-lib';
 import { observer } from 'mobx-react';
 import { NavioScreen } from 'rn-navio';
 import { navio } from '..';
 import { getTheme } from '../../../src/utils/designSystem';
 import { services } from '../../services';
 import { styleSheet } from '../../utils/stylesheet';
+import SwitchScreen from '../components/switch-screen';
 
 export const Profile: NavioScreen = observer(() => {
   /* const options = [
@@ -24,12 +25,13 @@ export const Profile: NavioScreen = observer(() => {
       fontSize: 30,
       flex: 1,
       marginBottom: 20,
+      color: getTheme().mainHeader,
     },
-    subtitle: {
+    name: {
       fontSize: 22,
       fontWeight: 'bold',
       marginTop: 15,
-      Color: getTheme().blue,
+      color: getTheme().mainHeader,
     },
     closeIcon: {
       marginTop: 8,
@@ -70,7 +72,12 @@ export const Profile: NavioScreen = observer(() => {
                 navio.pop();
               }}
             >
-              <Icon size={18} assetName={'close'} style={styles.closeIcon} />
+              <Icon
+                size={18}
+                assetName={'close'}
+                style={styles.closeIcon}
+                tintColor={getTheme().text}
+              />
             </TouchableHighlight>
           </View>
         </View>
@@ -88,7 +95,7 @@ export const Profile: NavioScreen = observer(() => {
           />
         </View>
 
-        <Text style={styles.subtitle} center>
+        <Text style={styles.name} center>
           Félix-Antoine Tremblay
         </Text>
 
@@ -111,10 +118,12 @@ export const Profile: NavioScreen = observer(() => {
               </TouchableHighlight>
             </View>
             <View style={{ flex: 2, marginTop: 8 }}>
-              <Text style={{ fontSize: 18 }}>{services.t.do('profile.chooseLanguage')}</Text>
+              <Text style={{ fontSize: 18, color: getTheme().mainHeader }}>
+                {services.t.do('profile.chooseLanguage')}
+              </Text>
             </View>
             <View style={{ flex: 2, marginTop: 8 }}>
-              <Text style={styleSheet.text}>English</Text>
+              <Text style={(styleSheet.text, { color: getTheme().mainHeader })}>English</Text>
             </View>
           </View>
 
@@ -125,10 +134,12 @@ export const Profile: NavioScreen = observer(() => {
               </TouchableHighlight>
             </View>
             <View style={{ flex: 2, marginTop: 8 }}>
-              <Text style={{ fontSize: 18 }}>{services.t.do('profile.chooseTheme')}</Text>
+              <Text style={{ fontSize: 18, color: getTheme().mainHeader }}>
+                {services.t.do('profile.chooseTheme')}
+              </Text>
             </View>
             <View style={{ flex: 2, marginTop: 8 }}>
-              <Switch value={false} onValueChange={() => console.log('value changed')} />
+              <SwitchScreen />
             </View>
           </View>
         </View>

@@ -45,9 +45,6 @@ export const navio = Navio.build({
   },
   stacks: {
     MainStack: [
-      'FirstPage',
-      'SecondPage',
-      'ThirdPage',
       'Dashboard',
       'Login',
       'Profile',
@@ -60,6 +57,9 @@ export const navio = Navio.build({
       'FoodInfosList',
       'SearchBar',
       'RecipeDetails',
+      'FirstPage',
+      'SecondPage',
+      'ThirdPage',
     ],
   },
   root: 'Tabs',

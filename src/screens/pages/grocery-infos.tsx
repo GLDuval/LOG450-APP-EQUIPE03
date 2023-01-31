@@ -56,9 +56,9 @@ export const GroceryInfos: NavioScreen = observer(() => {
         >
           <TabController.TabBar
             enableShadows
-            indicatorStyle={{ backgroundColor: getTheme().blueberry }}
+            indicatorStyle={{ backgroundColor: getTheme().mainHeader }}
             backgroundColor={getTheme().bgColor}
-            selectedLabelColor={getTheme().blueberry}
+            selectedLabelColor={getTheme().mainHeader}
           />
           <View flex>
             <TabController.TabPage index={0}>

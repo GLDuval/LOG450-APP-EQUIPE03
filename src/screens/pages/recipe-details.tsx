@@ -115,9 +115,10 @@ export const RecipeDetails: NavioScreen = observer(() => {
         >
           <TabController.TabBar
             enableShadows
-            indicatorStyle={{ backgroundColor: getTheme().blueberry }}
+            labelColor={getTheme().mainHeader}
+            indicatorStyle={{ backgroundColor: getTheme().mainHeader }}
             backgroundColor={getTheme().bgColor}
-            selectedLabelColor={getTheme().blueberry}
+            selectedLabelColor={getTheme().mainHeader}
           />
           <View flex>
             <TabController.TabPage index={0}>
@@ -135,7 +136,9 @@ export const RecipeDetails: NavioScreen = observer(() => {
                     </View>
 
                     <View style={{ flexDirection: 'column', paddingLeft: 10 }}>
-                      <Text style={styleSheet.text}>{item.name}</Text>
+                      <Text style={(styleSheet.text, { color: getTheme().mainHeader })}>
+                        {item.name}
+                      </Text>
                     </View>
                   </View>
                 )}

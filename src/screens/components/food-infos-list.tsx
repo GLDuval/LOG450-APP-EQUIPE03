@@ -1,6 +1,6 @@
 import React from 'react';
 import { StyleSheet, Image, TextInput, FlatList } from 'react-native';
-import { Colors, Text, View } from 'react-native-ui-lib';
+import { Text, View } from 'react-native-ui-lib';
 import { observer } from 'mobx-react';
 import { NavioScreen } from 'rn-navio';
 import { getTheme } from '../../utils/designSystem';
@@ -82,7 +82,7 @@ export const FoodInfosList: NavioScreen = observer(() => {
     cardHeader: {
       fontSize: 20,
       flex: 1,
-      color: Colors.black,
+      color: getTheme().text,
       fontWeight: 'bold',
     },
     cardContainer: {
@@ -98,7 +98,8 @@ export const FoodInfosList: NavioScreen = observer(() => {
     },
     textInput: {
       fontSize: 16,
-      backgroundColor: getTheme().text,
+      backgroundColor: getTheme().darkerGrey,
+      color: getTheme().grey,
       borderRadius: 20,
       width: 35,
       height: 40,

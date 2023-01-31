@@ -47,7 +47,7 @@ export const RecipesList: NavioScreen = observer(() => {
     cardHeader: {
       fontSize: 20,
       flex: 1,
-      color: getTheme().text2,
+      color: getTheme().text,
       fontWeight: 'bold',
     },
     cardContainer: {

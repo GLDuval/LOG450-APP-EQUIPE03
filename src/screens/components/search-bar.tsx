@@ -9,6 +9,7 @@ export const SearchBar: NavioScreen = observer(() => {
   const [state, setState] = useState({
     error: '',
   });
+
   const onChangeText = (text: string) => {
     let message = '';
     if (text === '') {
@@ -35,6 +36,7 @@ export const SearchBar: NavioScreen = observer(() => {
     <>
       <TextInput
         placeholder="Rechercher"
+        placeholderTextColor={getTheme().details}
         onChangeText={() => onChangeText}
         style={styles.textInput}
       />

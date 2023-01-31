@@ -12,7 +12,7 @@ import { styleSheet } from '../../utils/stylesheet';
 export const GroceryMap: NavioScreen = observer(() => {
   return (
     <View flex style={{ backgroundColor: getTheme().blue }}>
-      <StatusBar backgroundColor="#578699" />
+      <StatusBar backgroundColor={getTheme().blue} />
       <View style={styleSheet.topContainer}>
         <View style={{ flexDirection: 'row' }}>
           <TouchableHighlight

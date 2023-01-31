@@ -17,7 +17,7 @@ export const Dashboard: NavioScreen = observer(() => {
     header: {
       fontSize: 24,
       flex: 1,
-      color: getTheme().blueberry,
+      color: getTheme().mainHeader,
     },
     subtitle: {
       fontSize: 22,

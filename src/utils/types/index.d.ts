@@ -25,6 +25,7 @@ type ThemeColors = {
   bg2Color: string;
   text: string;
   text2: string;
+  mainHeader: string;
   blueberry: string;
   mustard: string;
   orange: string;
