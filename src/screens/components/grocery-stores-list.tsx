@@ -71,6 +71,8 @@ export const GroceryStoresList: NavioScreen = observer(() => {
       <Text>{'\n'}</Text>
       <Text>{'\n'}</Text>
       <Text>{'\n'}</Text>
+      <Text>{'\n'}</Text>
+      <Text>{'\n'}</Text>
     </>
   );
 });

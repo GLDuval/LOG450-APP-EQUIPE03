@@ -58,6 +58,7 @@ export const en = {
   recipeDetails: {
     ingredients: 'Ingredients',
     instructions: 'Instructions',
+    addIngredient: 'Add ingredients',
   },
   groceryInfos: {
     flyer: 'Flyer',
@@ -142,6 +143,7 @@ export const fr = {
   recipeDetails: {
     ingredients: 'Ingrédients',
     instructions: 'Instructions',
+    addIngredient: 'Ajouter des ingrédients',
   },
   map: {
     title: 'Carte',
