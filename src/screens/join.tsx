@@ -12,6 +12,7 @@ import { auth } from '../../firebaseConfig';
 import { TextInput } from 'react-native-gesture-handler';
 import { FirebaseError } from 'firebase/app';
 import { getTheme } from '../utils/designSystem';
+import { styleSheet } from '../utils/stylesheet';
 
 export const Join: NavioScreen = observer(() => {
   useAppearance();
@@ -48,50 +49,11 @@ export const Join: NavioScreen = observer(() => {
 
   // STYLES
   const styles = StyleSheet.create({
-    header: {
-      flex: 1,
-      paddingTop: 90,
-      paddingBottom: 40,
-      marginHorizontal: 15,
-    },
-    headerTitle: {
-      fontSize: 32,
-      flex: 1,
-      fontWeight: 'bold',
-      color: getTheme().blueberry,
-      textAlign: 'center',
-    },
     container: {
       fontSize: 24,
       flex: 1,
       paddingTop: 10,
       marginHorizontal: 15,
-    },
-    input: {
-      paddingHorizontal: 25,
-      paddingBottom: 15,
-    },
-    textField: {
-      fontSize: 20,
-      backgroundColor: getTheme().bgColor,
-      borderColor: getTheme().grey,
-      borderWidth: 1.5,
-      borderRadius: 10,
-      paddingHorizontal: 15,
-      paddingVertical: 10,
-    },
-    loginButton: {
-      backgroundColor: getTheme().blueberry,
-      borderRadius: 10,
-    },
-    loginButtonLabel: {
-      fontSize: 20,
-      padding: 5,
-    },
-    loginGoogleButtonLabel: {
-      fontSize: 20,
-      color: getTheme().blueberry,
-      padding: 5,
     },
     backText: {
       paddingTop: 10,
@@ -106,32 +68,32 @@ export const Join: NavioScreen = observer(() => {
   return (
     <View flex bg-bgColor>
       <ScrollView contentInsetAdjustmentBehavior="always">
-        <View style={styles.header}>
+        <View style={styleSheet.loginHeader}>
           <View style={{ flexDirection: 'row' }}>
-            <Text style={styles.headerTitle}>{services.t.do('signup.title')}</Text>
+            <Text style={styleSheet.loginHeaderTitle}>{services.t.do('signup.title')}</Text>
           </View>
         </View>
 
         <View style={{ flexDirection: 'column' }}>
-          <View style={styles.input}>
+          <View style={styleSheet.loginInput}>
             <TextInput
-              style={styles.textField}
+              style={styleSheet.loginTextField}
               placeholder={services.t.do('signup.name')}
               onChangeText={(text: string) => setName(text)}
               value={name}
             />
           </View>
-          <View style={styles.input}>
+          <View style={styleSheet.loginInput}>
             <TextInput
-              style={styles.textField}
+              style={styleSheet.loginTextField}
               placeholder={services.t.do('signup.email')}
               onChangeText={(text: string) => setEmail(text)}
               value={emailInput}
             />
           </View>
-          <View style={styles.input}>
+          <View style={styleSheet.loginInput}>
             <TextInput
-              style={styles.textField}
+              style={styleSheet.loginTextField}
               placeholder={services.t.do('signup.password')}
               secureTextEntry={true}
               onChangeText={(text: string) => setPassword(text)}
@@ -140,17 +102,17 @@ export const Join: NavioScreen = observer(() => {
           </View>
         </View>
 
-        <View style={styles.input}>
+        <View style={styleSheet.loginInput}>
           <Button
             label={services.t.do('signup.signup')}
-            labelStyle={styles.loginButtonLabel}
+            labelStyle={styleSheet.loginButtonLabel}
             borderRadius={15}
             backgroundColor="#264653"
             style={{ marginBottom: 10 }}
             onPress={() => createNewUser(emailInput, passwordInput)}
           />
         </View>
-        <View style={styles.input}>
+        <View style={styleSheet.loginInput}>
           <Text onPress={() => navio.goBack()} style={styles.backText}>
             {services.t.do('signup.back')}
           </Text>

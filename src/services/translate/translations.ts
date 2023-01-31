@@ -16,7 +16,7 @@ export const en = {
     },
   },
   login: {
-    title: 'Welcome back',
+    title: 'Happy to see you',
     email: 'Email address',
     invalidEmail: 'Email is invalid',
     password: 'Password',
@@ -28,6 +28,7 @@ export const en = {
     signup: 'Sign Up',
     loading: 'Loading...',
     wrongLogin: 'Wrong email or password',
+    continueAsGuest: 'Continue as guest',
   },
   signup: {
     title: 'Sign Up',
@@ -101,7 +102,7 @@ export const fr = {
     },
   },
   login: {
-    title: 'Content de te revoir',
+    title: 'Content de te voir',
     email: 'Courriel',
     invalidEmail: 'Le courriel est invalide',
     password: 'Mot de passe',
@@ -122,6 +123,7 @@ export const fr = {
     join: "S'inscrire",
     joinWithGoogle: "S'inscrire avec Google",
     back: 'Retour',
+    continueAsGuest: "Continuer en tant qu'invité",
   },
   dashboard: {
     title: 'Tableau de bord',
