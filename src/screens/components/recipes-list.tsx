@@ -1,10 +1,11 @@
 import React from 'react';
 import { FlatList, StyleSheet, TouchableHighlight } from 'react-native';
-import { Icon, Text, View } from 'react-native-ui-lib';
+import { Text, View } from 'react-native-ui-lib';
 import { observer } from 'mobx-react';
 import { NavioScreen } from 'rn-navio';
 import { getTheme } from '../../utils/designSystem';
 import { navio } from '..';
+import FavoriteComponent from './favorite';
 
 export const RecipesList: NavioScreen = observer(() => {
   const recipes = [
@@ -76,10 +77,14 @@ export const RecipesList: NavioScreen = observer(() => {
             <View style={styles.cardContainer}>
               <View style={styles.card}>
                 <View style={{ flexDirection: 'row' }}>
-                  <Text style={styles.cardHeader}>{item.recipe_name}</Text>
-                  <Icon size={22} tintColor={getTheme().darkerGrey} assetName={'heart'} />
+                  <View style={{ flexDirection: 'column', width: '75%' }}>
+                    <Text style={styles.cardHeader}>{item.recipe_name}</Text>
+                    <Text style={styles.infos}>Ingrédients (4)</Text>
+                  </View>
+                  <View style={{ flexDirection: 'column', width: '25%' }}>
+                    <FavoriteComponent />
+                  </View>
                 </View>
-                <Text style={styles.infos}>Ingrédients (4)</Text>
               </View>
             </View>
           </TouchableHighlight>

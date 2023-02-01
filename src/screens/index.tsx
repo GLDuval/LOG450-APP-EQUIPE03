@@ -14,11 +14,6 @@ import { OnboardingFirstPage } from './onboarding/firstPage';
 import { OnboardingSecondPage } from './onboarding/secondPage';
 import { OnboardingThirdPage } from './onboarding/thirdPage';
 
-import { GroceryStoresList } from './components/grocery-stores-list';
-import { RecipesList } from './components/recipes-list';
-import { FoodInfosList } from './components/food-infos-list';
-import { SearchBar } from './components/search-bar';
-
 import { useAppearance } from '../utils/hooks';
 import { screenDefaultOptions } from '../utils/designSystem';
 
@@ -33,17 +28,11 @@ export const navio = Navio.build({
     GroceryMap,
     GroceryList,
     MyRecipes,
+    RecipeDetails,
 
     OnboardingFirstPage,
     OnboardingSecondPage,
     OnboardingThirdPage,
-
-    // Components
-    GroceryStoresList,
-    RecipesList,
-    FoodInfosList,
-    SearchBar,
-    RecipeDetails,
   },
   stacks: {
     LoginStack: [
@@ -61,10 +50,6 @@ export const navio = Navio.build({
       'GroceryMap',
       'GroceryList',
       'MyRecipes',
-      'GroceryStoresList',
-      'RecipesList',
-      'FoodInfosList',
-      'SearchBar',
       'RecipeDetails',
     ],
   },
