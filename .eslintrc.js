@@ -17,6 +17,7 @@ module.exports = {
     'react-native/no-inline-styles': 'off',
     'react-native/no-single-element-style-arrays': ['error'],
     'react-native/no-color-literals': ['error'],
+    'no-undef': 'off',
   },
   parser: '@typescript-eslint/parser',
   parserOptions: {

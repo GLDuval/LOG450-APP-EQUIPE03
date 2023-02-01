@@ -8,7 +8,7 @@ import { services } from '../../services';
 import { navio } from '..';
 import { styleSheet } from '../../utils/stylesheet';
 
-export const FirstPage: NavioScreen = observer(() => {
+export const OnboardingFirstPage: NavioScreen = observer(() => {
   return (
     <View
       style={{
@@ -20,7 +20,7 @@ export const FirstPage: NavioScreen = observer(() => {
       <View style={{ flex: 1 }}>
         <Button
           label={services.t.do('actions.skip')}
-          color={getTheme().blueberry}
+          color={getTheme().text}
           backgroundColor={Colors.transparent}
           style={{ justifyContent: 'flex-end', paddingTop: 50, paddingRight: 40 }}
           onPress={() => {
@@ -29,7 +29,12 @@ export const FirstPage: NavioScreen = observer(() => {
         />
       </View>
       <View style={{ flex: 2 }} center>
-        <Image assetName={'onboarding1'} style={{ width: 350, height: 300 }} center />
+        <Image
+          assetGroup={'images'}
+          assetName={'onboarding1'}
+          style={{ width: 350, height: 300 }}
+          center
+        />
         <Text style={styleSheet.onboardingTitle}>
           {services.t.do('onboarding.firstPage.title')}
         </Text>
@@ -51,12 +56,12 @@ export const FirstPage: NavioScreen = observer(() => {
               size={10}
               style={{ marginStart: 20, marginEnd: 5 }}
               assetName={'dot'}
-              tintColor={getTheme().text}
+              tintColor={getTheme().text2}
             />
             <TouchableHighlight
               underlayColor={'transparent'}
               onPress={() => {
-                navio.show('SecondPage');
+                navio.show('OnboardingSecondPage');
               }}
             >
               <Icon
@@ -69,7 +74,7 @@ export const FirstPage: NavioScreen = observer(() => {
             <TouchableHighlight
               underlayColor={'transparent'}
               onPress={() => {
-                navio.show('ThirdPage');
+                navio.show('OnboardingThirdPage');
               }}
             >
               <Icon size={10} assetName={'dot'} tintColor={getTheme().blueberry} />
@@ -79,7 +84,7 @@ export const FirstPage: NavioScreen = observer(() => {
             <TouchableHighlight
               underlayColor={'transparent'}
               onPress={() => {
-                navio.show('SecondPage');
+                navio.show('OnboardingSecondPage');
               }}
             >
               <Icon

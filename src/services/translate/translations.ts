@@ -16,7 +16,7 @@ export const en = {
     },
   },
   login: {
-    title: 'Welcome back',
+    title: 'Happy to see you',
     email: 'Email address',
     invalidEmail: 'Email is invalid',
     password: 'Password',
@@ -28,6 +28,7 @@ export const en = {
     signup: 'Sign Up',
     loading: 'Loading...',
     wrongLogin: 'Wrong email or password',
+    continueAsGuest: 'Continue as guest',
   },
   signup: {
     title: 'Sign Up',
@@ -39,6 +40,7 @@ export const en = {
     signup: 'Sign Up',
     signUpWithGoogle: 'Sign Up with Google',
     back: 'Back',
+    passwordLength: 'Password must be at least 6 characters',
   },
   dashboard: {
     title: 'Dashboard',
@@ -57,6 +59,7 @@ export const en = {
   recipeDetails: {
     ingredients: 'Ingredients',
     instructions: 'Instructions',
+    addIngredient: 'Add ingredients',
   },
   groceryInfos: {
     flyer: 'Flyer',
@@ -101,7 +104,7 @@ export const fr = {
     },
   },
   login: {
-    title: 'Content de te revoir',
+    title: 'Content de te voir',
     email: 'Courriel',
     invalidEmail: 'Le courriel est invalide',
     password: 'Mot de passe',
@@ -112,6 +115,7 @@ export const fr = {
     join: "S'inscrire",
     loading: 'Chargement...',
     wrongLogin: 'Courriel ou mot de passe invalide',
+    continueAsGuest: "Continuer en tant qu'invité",
   },
   signup: {
     title: 'Inscrivez-vous',
@@ -122,6 +126,7 @@ export const fr = {
     join: "S'inscrire",
     joinWithGoogle: "S'inscrire avec Google",
     back: 'Retour',
+    passwordLength: 'Le mot de passe doit contenir au moins 6 caractères',
   },
   dashboard: {
     title: 'Tableau de bord',
@@ -140,6 +145,7 @@ export const fr = {
   recipeDetails: {
     ingredients: 'Ingrédients',
     instructions: 'Instructions',
+    addIngredient: 'Ajouter des ingrédients',
   },
   map: {
     title: 'Carte',

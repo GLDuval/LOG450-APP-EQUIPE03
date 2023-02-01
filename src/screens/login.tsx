@@ -1,6 +1,6 @@
-import React, { useCallback, useState } from 'react';
-import { ScrollView, StyleSheet } from 'react-native';
-import { Text, View, Button, Checkbox, LoaderScreen, Colors } from 'react-native-ui-lib';
+import React, { useCallback, useEffect, useState } from 'react';
+import { ScrollView, StatusBar, StyleSheet } from 'react-native';
+import { Text, View, Button, LoaderScreen, Colors } from 'react-native-ui-lib';
 import { observer } from 'mobx-react';
 import { NavioScreen } from 'rn-navio';
 
@@ -11,37 +11,38 @@ import { auth } from '../../firebaseConfig';
 import { signInWithEmailAndPassword } from 'firebase/auth';
 import { FirebaseError } from 'firebase/app';
 import { getTheme } from '../utils/designSystem';
-import { navio } from '.';
+import { useAuthState } from 'react-firebase-hooks/auth';
+import { styleSheet } from '../utils/stylesheet';
 
 export const Login: NavioScreen = observer(() => {
   useAppearance();
   const { navio } = useServices();
 
   // State (local)
-  const [loading, setLoading] = useState(false);
   const [isWrongLogin, setWrongLogin] = useState(false);
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [remember, setRemember] = useState(false);
+  const [emailInput, setEmail] = useState('');
+  const [passwordInput, setPassword] = useState('');
+  const [user, loading] = useAuthState(auth);
+
+  useEffect(() => {
+    if (user) {
+      navio.setRoot('MainStack');
+    }
+  }, [user, navio]);
 
   const login = useCallback(
     async (email: string, password: string) => {
-      console.log(email, password);
-      setLoading(true);
       await signInWithEmailAndPassword(auth, email, password)
-        .then((userCredential) => {
+        .then(() => {
           // Signed in
-          const user = userCredential.user;
-          console.log(user);
+          // const user = userCredential.user;
           setWrongLogin(false);
-          setLoading(false);
           navio.setRoot('MainStack');
         })
         .catch((error: FirebaseError) => {
           const errorCode = error.code;
           const errorMessage = error.message;
           setWrongLogin(true);
-          setLoading(false);
           console.log(errorCode, errorMessage);
         });
     },
@@ -50,50 +51,11 @@ export const Login: NavioScreen = observer(() => {
 
   // STYLES
   const styles = StyleSheet.create({
-    header: {
-      flex: 1,
-      paddingTop: 90,
-      paddingBottom: 40,
-      marginHorizontal: 15,
-    },
-    headerTitle: {
-      fontSize: 32,
-      flex: 1,
-      fontWeight: 'bold',
-      color: getTheme().blueberry,
-      textAlign: 'center',
-    },
     container: {
       fontSize: 24,
       flex: 1,
       paddingTop: 10,
       marginHorizontal: 15,
-    },
-    input: {
-      paddingHorizontal: 25,
-      paddingBottom: 15,
-    },
-    textField: {
-      fontSize: 20,
-      backgroundColor: getTheme().bgColor,
-      borderColor: getTheme().grey,
-      borderWidth: 1.5,
-      borderRadius: 10,
-      paddingHorizontal: 15,
-      paddingVertical: 10,
-    },
-    loginButton: {
-      backgroundColor: getTheme().blueberry,
-      borderRadius: 10,
-    },
-    loginButtonLabel: {
-      fontSize: 20,
-      padding: 5,
-    },
-    loginGoogleButtonLabel: {
-      fontSize: 20,
-      color: getTheme().blueberry,
-      padding: 5,
     },
     joinText: {
       paddingTop: 10,
@@ -105,7 +67,7 @@ export const Login: NavioScreen = observer(() => {
     },
     loginOptions: {
       flexDirection: 'row',
-      justifyContent: 'space-between',
+      justifyContent: 'flex-end',
       paddingBottom: 16,
     },
     wrongLoginText: {
@@ -117,31 +79,38 @@ export const Login: NavioScreen = observer(() => {
       paddingHorizontal: 25,
       paddingBottom: 15,
     },
+    continueAsGuest: {
+      fontSize: 18,
+      flex: 1,
+      textAlign: 'center',
+      color: getTheme().blue,
+    },
   });
 
   return (
     <View flex bg-bgColor>
+      <StatusBar backgroundColor={getTheme().bgColor} />
       <ScrollView contentInsetAdjustmentBehavior="always">
-        <View style={styles.header}>
+        <View style={styleSheet.loginHeader}>
           <View style={{ flexDirection: 'row' }}>
-            <Text style={styles.headerTitle}>{services.t.do('login.title')}</Text>
+            <Text style={styleSheet.loginHeaderTitle}>{services.t.do('login.title')}</Text>
           </View>
         </View>
 
         <View style={{ flexDirection: 'column' }}>
-          <View style={styles.input}>
+          <View style={styleSheet.loginInput}>
             <TextInput
-              value={email}
+              value={emailInput}
               onChangeText={(email) => setEmail(email)}
-              style={styles.textField}
+              style={styleSheet.loginTextField}
               placeholder={services.t.do('login.email')}
             />
           </View>
-          <View style={styles.input}>
+          <View style={styleSheet.loginInput}>
             <TextInput
-              value={password}
+              value={passwordInput}
               onChangeText={(password) => setPassword(password)}
-              style={styles.textField}
+              style={styleSheet.loginTextField}
               placeholder={services.t.do('login.password')}
               secureTextEntry={true}
             />
@@ -151,33 +120,26 @@ export const Login: NavioScreen = observer(() => {
           )}
         </View>
 
-        <View style={styles.input}>
+        <View style={styleSheet.loginInput}>
           <View style={styles.loginOptions}>
-            <View>
-              <Checkbox
-                value={remember}
-                onValueChange={(remember: boolean) => setRemember(remember)}
-                label={services.t.do('login.rememberMe')}
-              />
-            </View>
             <View>
               <Text>{services.t.do('login.forgotPassword')}</Text>
             </View>
           </View>
         </View>
 
-        <View style={styles.input}>
+        <View style={styleSheet.loginInput}>
           <Button
             label={services.t.do('login.login')}
-            labelStyle={styles.loginButtonLabel}
+            labelStyle={styleSheet.loginButtonLabel}
             borderRadius={15}
             backgroundColor="#264653"
             style={{ marginBottom: 10 }}
-            onPress={() => login(email, password)}
+            onPress={() => login(emailInput, passwordInput)}
           />
         </View>
         {/* }
-        <View style={styles.input}>
+        <View style={styleSheet.loginInput}>
           <Button
             label={services.t.do('login.loginWithGoogle')}
             labelStyle={styles.loginGoogleButtonLabel}
@@ -188,9 +150,14 @@ export const Login: NavioScreen = observer(() => {
           />
         </View>
         {*/}
-        <View style={styles.input}>
+        <View style={styleSheet.loginInput}>
           <Text onPress={() => navio.show('Join')} style={styles.joinText}>
             {services.t.do('login.signup')}
+          </Text>
+        </View>
+        <View style={styleSheet.loginInput}>
+          <Text onPress={() => console.log('TODO')} style={styles.continueAsGuest}>
+            {services.t.do('login.continueAsGuest')}
           </Text>
         </View>
         {loading && <LoaderScreen message={services.t.do('login.loading')} color={Colors.grey40} />}

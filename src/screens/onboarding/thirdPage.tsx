@@ -8,7 +8,7 @@ import { services } from '../../services';
 import { navio } from '..';
 import { styleSheet } from '../../utils/stylesheet';
 
-export const ThirdPage: NavioScreen = observer(() => {
+export const OnboardingThirdPage: NavioScreen = observer(() => {
   return (
     <View
       style={{
@@ -29,7 +29,12 @@ export const ThirdPage: NavioScreen = observer(() => {
         />
       </View>
       <View style={{ flex: 2 }} center>
-        <Image assetName={'onboarding1'} style={{ width: 350, height: 300 }} center />
+        <Image
+          assetGroup={'images'}
+          assetName={'onboarding1'}
+          style={{ width: 350, height: 300 }}
+          center
+        />
         <Text style={styleSheet.onboardingTitle}>
           {services.t.do('onboarding.thirdPage.title')}
         </Text>
@@ -50,7 +55,7 @@ export const ThirdPage: NavioScreen = observer(() => {
             <TouchableHighlight
               underlayColor={'transparent'}
               onPress={() => {
-                navio.show('FirstPage');
+                navio.show('OnboardingFirstPage');
               }}
             >
               <Icon
@@ -63,7 +68,7 @@ export const ThirdPage: NavioScreen = observer(() => {
             <TouchableHighlight
               underlayColor={'transparent'}
               onPress={() => {
-                navio.show('SecondPage');
+                navio.show('OnboardingSecondPage');
               }}
             >
               <Icon
@@ -73,7 +78,7 @@ export const ThirdPage: NavioScreen = observer(() => {
                 tintColor={getTheme().blueberry}
               />
             </TouchableHighlight>
-            <Icon size={10} assetName={'dot'} tintColor={getTheme().text} />
+            <Icon size={10} assetName={'dot'} tintColor={getTheme().text2} />
           </View>
           <View style={{ flexDirection: 'column' }}>
             <TouchableHighlight
