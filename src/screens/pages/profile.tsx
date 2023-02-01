@@ -8,7 +8,7 @@ import { getTheme } from '../../../src/utils/designSystem';
 import { services } from '../../services';
 import { signOut } from 'firebase/auth';
 import { styleSheet } from '../../utils/stylesheet';
-import SwitchScreen from '../components/switch-screen';
+import Switch from '../components/switch';
 import { auth } from '../../../firebaseConfig';
 import { FirebaseError } from 'firebase/app';
 import { UserContext } from '../../contexts/UserContext';
@@ -161,7 +161,7 @@ export const Profile: NavioScreen = observer(() => {
               </Text>
             </View>
             <View style={{ flex: 2, marginTop: 8 }}>
-              <SwitchScreen />
+              <Switch />
             </View>
           </View>
         </View>
