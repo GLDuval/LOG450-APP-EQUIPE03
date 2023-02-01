@@ -113,7 +113,7 @@ export const FoodInfosList: NavioScreen = observer(() => {
       renderItem={({ item }) => (
         <View style={styles.cardContainer}>
           <View style={styles.card}>
-            <View style={{ flexDirection: 'column' }}>
+            <View style={{ flexDirection: 'column', justifyContent: 'flex-end' }}>
               <Image
                 source={{ uri: item.image_url }}
                 style={{ width: 85, height: 85, borderRadius: 10 }}
