@@ -1,6 +1,9 @@
 import { initializeApp } from 'firebase/app';
 import { browserLocalPersistence, getAuth } from 'firebase/auth';
 
+export const webClientID =
+  '71180759232-nm43shla5uvme0e88re0h68l6lsvtvoq.apps.googleusercontent.com';
+
 // Initialize Firebase
 const firebaseConfig = {
   apiKey: 'AIzaSyCmfnHXJDc9G_wE9xbKiInxKjR9VjTzhBQ',

@@ -7,9 +7,14 @@ import { NavioScreen } from 'rn-navio';
 import { services, useServices } from '../services';
 import { useAppearance } from '../utils/hooks';
 import { TextInput } from 'react-native-gesture-handler';
-import { auth } from '../../firebaseConfig';
-import { signInWithEmailAndPassword } from 'firebase/auth';
+import { auth, webClientID } from '../../firebaseConfig';
+import {
+  GoogleAuthProvider,
+  signInWithCredential,
+  signInWithEmailAndPassword,
+} from 'firebase/auth';
 import { FirebaseError } from 'firebase/app';
+import * as Google from 'expo-auth-session/providers/google';
 import { getTheme } from '../utils/designSystem';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { styleSheet } from '../utils/stylesheet';
@@ -23,6 +28,28 @@ export const Login: NavioScreen = observer(() => {
   const [emailInput, setEmail] = useState('');
   const [passwordInput, setPassword] = useState('');
   const [user, loading] = useAuthState(auth);
+
+  // Google login
+  const [request, googleResponse, promptAsync] = Google.useIdTokenAuthRequest({
+    clientId: webClientID,
+  });
+
+  useEffect(() => {
+    if (googleResponse?.type === 'success') {
+      const { id_token } = googleResponse.params;
+      const credential = GoogleAuthProvider.credential(id_token);
+      signInWithCredential(auth, credential)
+        .then((userCredential) => {
+          console.log(userCredential);
+          navio.setRoot('MainStack');
+        })
+        .catch((error: FirebaseError) => {
+          const errorCode = error.code;
+          const errorMessage = error.message;
+          console.log(errorCode, errorMessage);
+        });
+    }
+  }, [googleResponse, navio]);
 
   useEffect(() => {
     if (user) {
@@ -136,6 +163,17 @@ export const Login: NavioScreen = observer(() => {
             backgroundColor="#264653"
             style={{ marginBottom: 10 }}
             onPress={() => login(emailInput, passwordInput)}
+          />
+        </View>
+        <View style={styleSheet.loginInput}>
+          <Button
+            label={'Login with Google'}
+            labelStyle={styleSheet.loginButtonLabel}
+            borderRadius={15}
+            backgroundColor="#264653"
+            style={{ marginBottom: 10 }}
+            onPress={() => promptAsync()}
+            disabled={!request}
           />
         </View>
         {/* }
