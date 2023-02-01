@@ -67,7 +67,7 @@ export const Login: NavioScreen = observer(() => {
     },
     loginOptions: {
       flexDirection: 'row',
-      justifyContent: 'space-between',
+      justifyContent: 'flex-end',
       paddingBottom: 16,
     },
     wrongLoginText: {
