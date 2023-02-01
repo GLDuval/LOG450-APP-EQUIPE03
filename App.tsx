@@ -7,7 +7,6 @@ import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { AppRoot } from './src/screens';
 import {
   configureDesignSystem,
-  getNavigationTheme,
   getStatusBarBGColor,
   getStatusBarStyle,
 } from './src/utils/designSystem';
@@ -50,7 +49,7 @@ export default (): JSX.Element => {
       <SSProvider>
         <UserContext.Provider value={user}>
           <StatusBar style={getStatusBarStyle()} backgroundColor={getStatusBarBGColor()} />
-          <AppRoot navigationContainerProps={{ theme: getNavigationTheme() }} />
+          <AppRoot />
         </UserContext.Provider>
       </SSProvider>
     </GestureHandlerRootView>
