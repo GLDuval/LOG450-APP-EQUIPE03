@@ -32,7 +32,5 @@ export const getProductsNextBatch = async (lastProduct: Product) => {
     products.push(doc.data() as Product);
   });
 
-  console.log('fetched ' + products.length.toString() + ' products from firestore');
-
   return products;
 };
