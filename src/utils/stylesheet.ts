@@ -57,10 +57,18 @@ export const styleSheet = StyleSheet.create({
     fontSize: 20,
     padding: 5,
   },
-  loginGoogleButtonLabel: {
-    fontSize: 20,
-    color: getTheme().blueberry,
+  googleButtonLabel: {
     padding: 5,
+    paddingLeft: 30,
+    color: getTheme().mainHeader,
+    fontSize: 20,
+  },
+  // googleButton is a button with a google icon
+  googleButton: {
+    backgroundColor: getTheme().bgColor,
+    borderWidth: 1.5,
+    borderColor: getTheme().mainHeader,
+    borderRadius: 15,
   },
   loginInput: {
     paddingHorizontal: 25,

@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import { ScrollView, StatusBar, StyleSheet } from 'react-native';
-import { Text, View, Button, LoaderScreen, Colors } from 'react-native-ui-lib';
+import { Text, View, Button, LoaderScreen, Colors, Icon } from 'react-native-ui-lib';
 import { observer } from 'mobx-react';
 import { NavioScreen } from 'rn-navio';
 
@@ -167,13 +167,12 @@ export const Login: NavioScreen = observer(() => {
         </View>
         <View style={styleSheet.loginInput}>
           <Button
-            label={'Login with Google'}
-            labelStyle={styleSheet.loginButtonLabel}
-            borderRadius={15}
-            backgroundColor="#264653"
-            style={{ marginBottom: 10 }}
+            label={services.t.do('login.loginWithGoogle')}
+            labelStyle={styleSheet.googleButtonLabel}
+            style={styleSheet.googleButton}
             onPress={() => promptAsync()}
             disabled={!request}
+            iconSource={() => <Icon size={30} assetName={'google'} style={{ paddingLeft: 0 }} />}
           />
         </View>
         {/* }
