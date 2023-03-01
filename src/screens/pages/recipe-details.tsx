@@ -1,16 +1,23 @@
 import React from 'react';
 import { TouchableHighlight, StatusBar, StyleSheet, Dimensions } from 'react-native';
 import { Icon, TabController, Text, View } from 'react-native-ui-lib';
-import { observer } from 'mobx-react';
-import { NavioScreen } from 'rn-navio';
 import { navio } from '..';
 import { services } from '../../services';
 import { getTheme } from '../../utils/designSystem';
 import { styleSheet } from '../../utils/stylesheet';
 import { IngredientsList } from '../components/ingredients-list';
 import { InstructionsList } from '../components/instructions-list';
+import { Recipe } from '../../models/Recipe';
 
-export const RecipeDetails: NavioScreen = observer(() => {
+type RecipeDetailsProps = {
+  route: {
+    params: {
+      recipe: Recipe;
+    };
+  };
+};
+
+export const RecipeDetails = ({ route }: RecipeDetailsProps) => {
   const ingredientsLength = 8;
 
   // STYLES
@@ -36,7 +43,7 @@ export const RecipeDetails: NavioScreen = observer(() => {
             <Icon size={18} assetName={'back'} style={styleSheet.closeIcon} />
           </TouchableHighlight>
           <Text center style={styleSheet.header}>
-            Pâté chinois
+            {route.params.recipe.name}
           </Text>
         </View>
       </View>
@@ -60,14 +67,14 @@ export const RecipeDetails: NavioScreen = observer(() => {
           />
           <View flex>
             <TabController.TabPage index={0}>
-              <IngredientsList />
+              <IngredientsList ingredients={route.params.recipe.ingredients} />
             </TabController.TabPage>
             <TabController.TabPage index={1} lazy>
-              <InstructionsList />
+              <InstructionsList instructions={route.params.recipe.instructions} />
             </TabController.TabPage>
           </View>
         </TabController>
       </View>
     </View>
   );
-});
+};

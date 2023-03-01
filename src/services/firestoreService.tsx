@@ -1,6 +1,6 @@
 import { db } from '../../firebaseConfig';
 import { collection, getDocs, query, orderBy, limit, startAfter } from 'firebase/firestore';
-import { Product } from '../models/product';
+import { Product } from '../models/Product';
 
 export const getProducts = async () => {
   const products: Product[] = [];

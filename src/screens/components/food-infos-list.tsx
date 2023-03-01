@@ -1,37 +1,14 @@
 import React from 'react';
-import { useEffect } from 'react';
 import { StyleSheet, Image, TextInput, FlatList } from 'react-native';
 import { Text, View } from 'react-native-ui-lib';
-import { observer } from 'mobx-react';
-import { NavioScreen } from 'rn-navio';
 import { getTheme } from '../../utils/designSystem';
-import { getProducts, getProductsNextBatch } from '../../services/firestoreService';
-import { Product } from '../../models/product';
+import { Product } from '../../models/Product';
 
-export const FoodInfosList: NavioScreen = observer(() => {
-  const [product, setProduct] = React.useState<Product[]>([]);
+type FoodInfosListProps = {
+  products: Product[];
+};
 
-  useEffect(() => {
-    getProducts().then(
-      (products) => {
-        setProduct(products);
-      },
-      (err) => {
-        console.log(err);
-      },
-    );
-  }, []);
-
-  const fetchNextBatch = () => {
-    const lastProduct = product[product.length - 1];
-    getProductsNextBatch(lastProduct).then(
-      (nextBatch) => {
-        setProduct([...product, ...nextBatch]);
-      },
-      (err) => console.log(err),
-    );
-  };
-
+export const FoodInfosList = (props: FoodInfosListProps) => {
   // STYLES
   const styles = StyleSheet.create({
     infos: {
@@ -76,9 +53,8 @@ export const FoodInfosList: NavioScreen = observer(() => {
 
   return (
     <FlatList
-      onEndReached={fetchNextBatch}
       onEndReachedThreshold={0.5}
-      data={product}
+      data={props.products}
       renderItem={({ item }) => (
         <View style={styles.cardContainer}>
           <View style={styles.card}>
@@ -108,4 +84,4 @@ export const FoodInfosList: NavioScreen = observer(() => {
       )}
     />
   );
-});
+};

@@ -1,43 +1,16 @@
 import React from 'react';
 import { FlatList, StyleSheet, TouchableHighlight } from 'react-native';
 import { Text, View } from 'react-native-ui-lib';
-import { observer } from 'mobx-react';
-import { NavioScreen } from 'rn-navio';
 import { getTheme } from '../../utils/designSystem';
 import { navio } from '..';
 import FavoriteComponent from './favorite';
+import { Recipe } from '../../models/Recipe';
 
-export const RecipesList: NavioScreen = observer(() => {
-  const recipes = [
-    {
-      recipe_name: 'Pâtes à la carbonara',
-    },
-    {
-      recipe_name: 'Salade de fruits',
-    },
-    {
-      recipe_name: 'Riz au lait',
-    },
-    {
-      recipe_name: "Caramil et jus d'orange",
-    },
-    {
-      recipe_name: 'Macaroni et fromage original',
-    },
-    {
-      recipe_name: 'Quiche aux légumes',
-    },
-    {
-      recipe_name: 'Aiguillettes de poulet au curry',
-    },
-    {
-      recipe_name: 'Dinde rôtie au four',
-    },
-    {
-      recipe_name: 'Lasagnes au bœuf',
-    },
-  ];
+type RecipesListProps = {
+  recipes: Recipe[];
+};
 
+export const RecipesList = (props: RecipesListProps) => {
   // STYLES
   const styles = StyleSheet.create({
     infos: {
@@ -66,19 +39,19 @@ export const RecipesList: NavioScreen = observer(() => {
   return (
     <>
       <FlatList
-        data={recipes}
+        data={props.recipes}
         renderItem={({ item }) => (
           <TouchableHighlight
             underlayColor={'transparent'}
             onPress={() => {
-              navio.show('RecipeDetails');
+              navio.N.navigate('RecipeDetails', { recipe: item });
             }}
           >
             <View style={styles.cardContainer}>
               <View style={styles.card}>
                 <View style={{ flexDirection: 'row', marginBottom: 5 }}>
                   <View style={{ flexDirection: 'column', width: '75%' }}>
-                    <Text style={styles.cardHeader}>{item.recipe_name}</Text>
+                    <Text style={styles.cardHeader}>{item.name}</Text>
                     <Text style={styles.infos}>Ingrédients (4)</Text>
                   </View>
                   <View style={{ flexDirection: 'column', width: '25%' }}>
@@ -92,4 +65,4 @@ export const RecipesList: NavioScreen = observer(() => {
       />
     </>
   );
-});
+};
