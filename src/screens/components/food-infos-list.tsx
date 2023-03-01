@@ -66,7 +66,7 @@ export const FoodInfosList: NavioScreen = observer(() => {
     textInput: {
       fontSize: 16,
       backgroundColor: getTheme().darkerGrey,
-      color: getTheme().grey,
+      color: getTheme().text,
       borderRadius: 20,
       width: 35,
       height: 40,
@@ -82,14 +82,14 @@ export const FoodInfosList: NavioScreen = observer(() => {
       renderItem={({ item }) => (
         <View style={styles.cardContainer}>
           <View style={styles.card}>
-            <View style={{ flexDirection: 'column', justifyContent: 'flex-end' }}>
+            <View style={{ flexDirection: 'column', justifyContent: 'center' }}>
               <Image
                 source={{ uri: item.image_url }}
                 style={{ width: 85, height: 85, borderRadius: 10 }}
               />
             </View>
 
-            <View style={{ flexDirection: 'column', paddingLeft: 15, width: '70%' }}>
+            <View style={{ flexDirection: 'column', paddingLeft: 20, width: '75%' }}>
               <View style={{ flexDirection: 'row' }}>
                 <Text style={styles.cardHeader}>{item.product_name}</Text>
                 <TextInput
