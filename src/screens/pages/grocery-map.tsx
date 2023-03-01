@@ -30,14 +30,9 @@ export const GroceryMap: NavioScreen = observer(() => {
       </View>
 
       <View style={styleSheet.roundedTopCornersContainer} bg-bgColor>
-        <View style={{ paddingTop: 20, paddingStart: 20, paddingEnd: 20 }}>
+        <View style={{ paddingTop: 20, paddingStart: 20, paddingEnd: 20, height: 1000 }}>
           <SearchBar />
         </View>
-        <Text center>
-          {'\n'} {'\n'} {'\n'} {'\n'} {'\n'} {'\n'} {'\n'} {'\n'} {'\n'} {'\n'} {'\n'} {'\n'} {'\n'}{' '}
-          {'\n'} {'\n'} {'\n'} {'\n'} {'\n'} {'\n'} {'\n'} {'\n'} {'\n'} {'\n'} {'\n'} {'\n'} {'\n'}{' '}
-          {'\n'} {'\n'} {'\n'} {'\n'} {'\n'} {'\n'} {'\n'} {'\n'}
-        </Text>
       </View>
     </View>
   );

@@ -33,7 +33,10 @@ export const GroceryList: NavioScreen = observer(() => {
         <View style={{ paddingTop: 20, paddingStart: 20, paddingEnd: 20 }}>
           <SearchBar />
         </View>
-        <FoodInfosList />
+
+        <View style={{ height: 1000 }}>
+          <FoodInfosList />
+        </View>
       </View>
     </View>
   );

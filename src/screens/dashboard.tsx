@@ -9,9 +9,19 @@ import { services } from '../services';
 import { getTheme } from '../utils/designSystem';
 import { styleSheet } from '../utils/stylesheet';
 import { UserContext } from '../contexts/UserContext';
+import { Grocery } from '../models/Grocery';
 
 export const Dashboard: NavioScreen = observer(() => {
   const username = useContext(UserContext)?.displayName;
+
+  // TODO : Move in a repo
+  const groceries: Grocery[] = [
+    {
+      id: 0,
+      name: 'Super C',
+      until: 'mecredi',
+    },
+  ];
 
   // STYLES
   const styles = StyleSheet.create({
@@ -87,53 +97,55 @@ export const Dashboard: NavioScreen = observer(() => {
       </View>
 
       <View style={styleSheet.roundedTopCornersContainer} bg-bgColor>
-        <View style={styles.menuContainer}>
-          <View style={{ flexDirection: 'row' }}>
-            <TouchableOpacity
-              style={styles.recepesCard}
-              onPress={() => {
-                navio.show('MyRecipes');
-              }}
-            >
-              <View style={{ flexDirection: 'row-reverse' }}>
-                <Icon size={20} assetName={'recipe'} />
-              </View>
-              <View style={styles.alignTextAtBottom}>
-                <Text style={styles.menuText}>{services.t.do('dashboard.myRecipes')}</Text>
-              </View>
-            </TouchableOpacity>
-
-            <View style={{ flexDirection: 'column', width: '50%' }}>
+        <View style={{ height: 1000 }}>
+          <View style={styles.menuContainer}>
+            <View style={{ flexDirection: 'row' }}>
               <TouchableOpacity
-                style={styles.groceryListCard}
+                style={styles.recepesCard}
                 onPress={() => {
-                  navio.show('GroceryList');
+                  navio.show('MyRecipes');
                 }}
               >
                 <View style={{ flexDirection: 'row-reverse' }}>
-                  <Icon size={20} tintColor={Colors.white} assetName={'list'} />
+                  <Icon size={20} assetName={'recipe'} />
                 </View>
-                <Text style={styles.menuText}>{services.t.do('dashboard.groceryList')}</Text>
+                <View style={styles.alignTextAtBottom}>
+                  <Text style={styles.menuText}>{services.t.do('dashboard.myRecipes')}</Text>
+                </View>
               </TouchableOpacity>
 
-              <TouchableOpacity
-                style={styles.mapCart}
-                onPress={() => {
-                  navio.show('GroceryMap');
-                }}
-              >
-                <View style={{ flexDirection: 'row-reverse' }}>
-                  <Icon size={20} tintColor={Colors.white} assetName={'map'} />
-                </View>
-                <Text style={styles.menuText}>{services.t.do('dashboard.map')}</Text>
-              </TouchableOpacity>
+              <View style={{ flexDirection: 'column', width: '50%' }}>
+                <TouchableOpacity
+                  style={styles.groceryListCard}
+                  onPress={() => {
+                    navio.show('GroceryList');
+                  }}
+                >
+                  <View style={{ flexDirection: 'row-reverse' }}>
+                    <Icon size={20} tintColor={Colors.white} assetName={'list'} />
+                  </View>
+                  <Text style={styles.menuText}>{services.t.do('dashboard.groceryList')}</Text>
+                </TouchableOpacity>
+
+                <TouchableOpacity
+                  style={styles.mapCart}
+                  onPress={() => {
+                    navio.show('GroceryMap');
+                  }}
+                >
+                  <View style={{ flexDirection: 'row-reverse' }}>
+                    <Icon size={20} tintColor={Colors.white} assetName={'map'} />
+                  </View>
+                  <Text style={styles.menuText}>{services.t.do('dashboard.map')}</Text>
+                </TouchableOpacity>
+              </View>
             </View>
           </View>
+
+          <Text style={styles.subtitle}>{services.t.do('dashboard.groceries')}</Text>
+
+          <GroceryStoresList groceriesName={groceries} />
         </View>
-
-        <Text style={styles.subtitle}>{services.t.do('dashboard.groceries')}</Text>
-
-        <GroceryStoresList />
       </View>
     </View>
   );

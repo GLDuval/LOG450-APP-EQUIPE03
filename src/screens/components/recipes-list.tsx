@@ -76,7 +76,7 @@ export const RecipesList: NavioScreen = observer(() => {
           >
             <View style={styles.cardContainer}>
               <View style={styles.card}>
-                <View style={{ flexDirection: 'row' }}>
+                <View style={{ flexDirection: 'row', marginBottom: 5 }}>
                   <View style={{ flexDirection: 'column', width: '75%' }}>
                     <Text style={styles.cardHeader}>{item.recipe_name}</Text>
                     <Text style={styles.infos}>Ingrédients (4)</Text>

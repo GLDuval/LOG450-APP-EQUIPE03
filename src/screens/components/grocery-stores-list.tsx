@@ -1,18 +1,15 @@
 import React from 'react';
-import { SectionList, StyleSheet, TouchableHighlight } from 'react-native';
+import { FlatList, StyleSheet, TouchableHighlight } from 'react-native';
 import { Text, View } from 'react-native-ui-lib';
-import { observer } from 'mobx-react';
-import { NavioScreen } from 'rn-navio';
 import { navio } from '../';
 import { getTheme } from '../../utils/designSystem';
+import { Grocery } from '../../models/Grocery';
 
-export const GroceryStoresList: NavioScreen = observer(() => {
-  const groceryStores = [
-    {
-      data: ['Super C'],
-    },
-  ];
+type GroceryStoresListProps = {
+  groceriesName: Grocery[];
+};
 
+export const GroceryStoresList = (props: GroceryStoresListProps) => {
   // STYLES
   const styles = StyleSheet.create({
     cardHeader: {
@@ -40,9 +37,9 @@ export const GroceryStoresList: NavioScreen = observer(() => {
 
   return (
     <>
-      <SectionList
-        sections={groceryStores}
-        keyExtractor={(item, index) => `${item}${index}`}
+      <FlatList
+        data={props.groceriesName}
+        keyExtractor={(item, index) => `${index}`}
         renderItem={({ item }) => (
           <TouchableHighlight
             underlayColor="Colors.transparent"
@@ -53,26 +50,17 @@ export const GroceryStoresList: NavioScreen = observer(() => {
             <View style={styles.cardContainer}>
               <View style={styles.card}>
                 <Text Text style={styles.cardHeader}>
-                  {item}
+                  {item.name}
                 </Text>
-                <Text style={styles.infos}>{"Jusqu'à mecredi"}</Text>
+                <Text style={styles.infos}>
+                  {"Jusqu'à "}
+                  {item.until}
+                </Text>
               </View>
             </View>
           </TouchableHighlight>
         )}
       />
-      {/* TODO: Trouver une manière que la partie blanche va jusqu'au bas de la page */}
-      <Text>{'\n'}</Text>
-      <Text>{'\n'}</Text>
-      <Text>{'\n'}</Text>
-      <Text>{'\n'}</Text>
-      <Text>{'\n'}</Text>
-      <Text>{'\n'}</Text>
-      <Text>{'\n'}</Text>
-      <Text>{'\n'}</Text>
-      <Text>{'\n'}</Text>
-      <Text>{'\n'}</Text>
-      <Text>{'\n'}</Text>
     </>
   );
-});
+};
