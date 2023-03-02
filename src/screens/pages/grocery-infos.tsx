@@ -19,10 +19,11 @@ import { styleSheet } from '../../utils/stylesheet';
 import { SearchBar } from '../components/search-bar';
 import { Recipe } from '../../models/Recipe';
 import { Product } from '../../models/Product';
-import { getProducts, getProductsNextBatch } from '../../services/firestoreService';
+import { getProducts, getProductsNextBatch, getRecipes } from '../../services/firestoreService';
 
 export const GroceryInfos: NavioScreen = observer(() => {
   const [product, setProduct] = React.useState<Product[]>([]);
+  const [recipes, setRecipes] = React.useState<Recipe[]>([]);
 
   useEffect(() => {
     getProducts().then(
@@ -45,63 +46,16 @@ export const GroceryInfos: NavioScreen = observer(() => {
     );
   };
 
-  // TODO : Move to a repo + use real data
-  const recipes: Recipe[] = [
-    {
-      id: 1,
-      name: 'Pasta with Tomato Sauce',
-      ingredients: [
-        { name: 'Pasta', quantity: '8 oz', isCheck: false },
-        { name: 'Tomato Sauce', quantity: '1 can', isCheck: false },
-        { name: 'Garlic', quantity: '2 cloves', isCheck: true },
-        { name: 'Olive Oil', quantity: '2 tbsp', isCheck: true },
-        { name: 'Parmesan Cheese', quantity: '1/4 cup', isCheck: false },
-      ],
-      instructions: [
-        'Cook pasta according to package directions.',
-        'Meanwhile, in a large skillet, saute garlic in oil until tender.',
-        'Add tomato sauce and bring to a boil.',
-        'Reduce heat and simmer, uncovered, for 10 minutes.',
-        'Drain pasta; top with sauce and sprinkle with cheese.',
-      ],
-    },
-    {
-      id: 2,
-      name: 'Chicken Curry',
-      ingredients: [
-        { name: 'Chicken Breast', quantity: '1 lb', isCheck: false },
-        { name: 'Curry Powder', quantity: '2 tbsp', isCheck: false },
-        { name: 'Coconut Milk', quantity: '1 can', isCheck: false },
-        { name: 'Garlic', quantity: '2 cloves', isCheck: true },
-        { name: 'Onion', quantity: '1', isCheck: false },
-      ],
-      instructions: [
-        'In a large skillet, cook chicken over medium heat until no longer pink; drain.',
-        'Add garlic and onion; cook until onion is tender.',
-        'Stir in curry powder and coconut milk.',
-        'Bring to a boil; reduce heat and simmer, uncovered, for 10 minutes.',
-      ],
-    },
-    {
-      id: 3,
-      name: 'Classic Spaghetti Carbonara',
-      ingredients: [
-        { name: 'Spaghetti', quantity: '8 oz', isCheck: false },
-        { name: 'Bacon', quantity: '4 slices', isCheck: false },
-        { name: 'Egg yolks', quantity: '2', isCheck: false },
-        { name: 'Parmesan cheese', quantity: '1/2 cup', isCheck: false },
-        { name: 'Black pepper', quantity: '1/2 tsp', isCheck: false },
-      ],
-      instructions: [
-        'Cook spaghetti according to package directions.',
-        'Meanwhile, in a large skillet, cook bacon until crisp; remove and crumble.',
-        'In a small bowl, whisk egg yolks, cheese, and pepper.',
-        'Drain spaghetti; add to bacon drippings.',
-        'Stir in egg yolk mixture; cook and stir over low heat until heated through and slightly thickened.',
-        'Sprinkle with bacon.',
-      ],
-    },
-  ];
+  useEffect(() => {
+    getRecipes().then(
+      (allRecipes) => {
+        setRecipes(allRecipes);
+      },
+      (err) => {
+        console.log(err);
+      },
+    );
+  }, []);
 
   // STYLES
   const styles = StyleSheet.create({

@@ -52,7 +52,7 @@ export const RecipesList = (props: RecipesListProps) => {
                 <View style={{ flexDirection: 'row', marginBottom: 5 }}>
                   <View style={{ flexDirection: 'column', width: '75%' }}>
                     <Text style={styles.cardHeader}>{item.name}</Text>
-                    <Text style={styles.infos}>Ingrédients (4)</Text>
+                    <Text style={styles.infos}>Ingrédients ({item.ingredients.length})</Text>
                   </View>
                   <View style={{ flexDirection: 'column', width: '25%' }}>
                     <FavoriteComponent />
