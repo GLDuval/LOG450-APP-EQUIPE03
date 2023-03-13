@@ -1,6 +1,6 @@
 import { Navio } from 'rn-navio';
 
-import { Dashboard } from './pages/dashboard';
+import { Dashboard } from './pages/homeView';
 import { Login } from './pages/loginView';
 import { Join } from './pages/signUpView';
 import { Profile } from './pages/profileView';
@@ -8,7 +8,7 @@ import { GroceryInfos } from './pages/groceryView';
 import { GroceryMap } from './pages/mapView';
 import { GroceryList } from './pages/groceryListView';
 import { MyRecipes } from './pages/myRecipesView';
-import { RecipeDetails } from './pages/recipe-details';
+import { RecipeDetails } from './pages/recipeDetailView';
 
 import { OnboardingFirstPage } from './onboarding/firstPage';
 import { OnboardingSecondPage } from './onboarding/secondPage';
