@@ -2,7 +2,7 @@ import React, { ReactNode } from 'react';
 
 import { OnStartService } from './onStart';
 import { TranslateService } from './translate';
-import { getNavio } from '../screens';
+import { getNavio } from '../ui';
 
 class Services {
   t = new TranslateService();

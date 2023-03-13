@@ -3,26 +3,18 @@ import { StyleSheet, TouchableOpacity, StatusBar } from 'react-native';
 import { Avatar, Colors, Icon, Text, View } from 'react-native-ui-lib';
 import { observer } from 'mobx-react';
 import { NavioScreen } from 'rn-navio';
-import { navio } from '.';
-import { GroceryStoresList } from './components/grocery-stores-list';
-import { services } from '../services';
-import { getTheme } from '../utils/designSystem';
-import { styleSheet } from '../utils/stylesheet';
-import { UserContext } from '../contexts/UserContext';
-import { Grocery } from '../models/Grocery';
+import { navio } from '..';
+import { GroceryStoresList } from '../components/grocery-stores-list';
+import { services } from '../../services';
+import { getTheme } from '../../utils/designSystem';
+import { styleSheet } from '../../utils/stylesheet';
+import { UserContext } from '../../contexts/UserContext';
+import { useGroceries } from '../hooks/useGroceries';
 
 export const Dashboard: NavioScreen = observer(() => {
+  const groceries = useGroceries();
   const username = useContext(UserContext)?.displayName;
-
-  // TODO : Move in a repo
-  const groceries: Grocery[] = [
-    {
-      id: 0,
-      name: 'Super C',
-      until: 'mecredi',
-    },
-  ];
-
+  
   // STYLES
   const styles = StyleSheet.create({
     header: {

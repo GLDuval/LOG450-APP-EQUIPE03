@@ -7,9 +7,13 @@ import { navio } from '..';
 import { services } from '../../services';
 import { getTheme } from '../../utils/designSystem';
 import { styleSheet } from '../../utils/stylesheet';
+// import { useMap } from '../hooks/useMap';
 import MapView from 'react-native-maps';
 
 export const GroceryMap: NavioScreen = observer(() => {
+  // TODO : FOR CAMMMM
+  // const { positions } = useMap();
+
   const styles = StyleSheet.create({
     map: {
       flex: 1,

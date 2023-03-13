@@ -6,6 +6,7 @@ import { Product } from '../../models/Product';
 
 type FoodInfosListProps = {
   products: Product[];
+  modifyProduct: (product: Product, quantity: number) => Promise<void>;
 };
 
 export const FoodInfosList = (props: FoodInfosListProps) => {
@@ -51,6 +52,12 @@ export const FoodInfosList = (props: FoodInfosListProps) => {
     },
   });
 
+  const handleQuantityChange = (product: Product, value: string) => {
+    // TODO : Validate it works ? lol
+    const quantity = Number(value);
+    props.modifyProduct(product, quantity);
+  };
+
   return (
     <FlatList
       onEndReachedThreshold={0.5}
@@ -73,6 +80,7 @@ export const FoodInfosList = (props: FoodInfosListProps) => {
                   style={styles.textInput}
                   maxLength={3}
                   keyboardType="numeric"
+                  onChangeText={(value) => handleQuantityChange(item, value)}
                 />
               </View>
 

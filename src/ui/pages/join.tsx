@@ -4,15 +4,15 @@ import { Text, View, Button, LoaderScreen, Colors } from 'react-native-ui-lib';
 import { observer } from 'mobx-react';
 import { NavioScreen } from 'rn-navio';
 
-import { services, useServices } from '../services';
-import { useAppearance } from '../utils/hooks';
+import { services, useServices } from '../../services';
+import { useAppearance } from '../../utils/hooks';
 
 import { createUserWithEmailAndPassword, updateProfile } from 'firebase/auth';
-import { auth } from '../../firebaseConfig';
+import { auth } from '../../../firebaseConfig';
 import { TextInput } from 'react-native-gesture-handler';
 import { FirebaseError } from 'firebase/app';
-import { getTheme } from '../utils/designSystem';
-import { styleSheet } from '../utils/stylesheet';
+import { getTheme } from '../../utils/designSystem';
+import { styleSheet } from '../../utils/stylesheet';
 
 export const Join: NavioScreen = observer(() => {
   useAppearance();

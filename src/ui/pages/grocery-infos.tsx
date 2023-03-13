@@ -19,43 +19,12 @@ import { styleSheet } from '../../utils/stylesheet';
 import { SearchBar } from '../components/search-bar';
 import { Recipe } from '../../models/Recipe';
 import { Product } from '../../models/Product';
-import { getProducts, getProductsNextBatch, getRecipes } from '../../services/firestoreService';
+import { useProductList } from '../hooks/useFlyer';
+import { useRecipes } from '../hooks/useRecipes';
 
 export const GroceryInfos: NavioScreen = observer(() => {
-  const [product, setProduct] = React.useState<Product[]>([]);
-  const [recipes, setRecipes] = React.useState<Recipe[]>([]);
-
-  useEffect(() => {
-    getProducts().then(
-      (products) => {
-        setProduct(products);
-      },
-      (err) => {
-        console.log(err);
-      },
-    );
-  }, []);
-
-  const fetchNextBatch = () => {
-    const lastProduct = product[product.length - 1];
-    getProductsNextBatch(lastProduct).then(
-      (nextBatch) => {
-        setProduct([...product, ...nextBatch]);
-      },
-      (err) => console.log(err),
-    );
-  };
-
-  useEffect(() => {
-    getRecipes().then(
-      (allRecipes) => {
-        setRecipes(allRecipes);
-      },
-      (err) => {
-        console.log(err);
-      },
-    );
-  }, []);
+  const { productList, loadMore } = useProductList();
+  const recipes = useRecipes();
 
   // STYLES
   const styles = StyleSheet.create({
@@ -149,9 +118,9 @@ export const GroceryInfos: NavioScreen = observer(() => {
                 <SearchBar />
               </View>
               <FlatList
-                onEndReached={fetchNextBatch}
+                onEndReached={loadMore}
                 onEndReachedThreshold={0.5}
-                data={product}
+                data={productList}
                 renderItem={({ item }) => (
                   <View style={styles.cardContainer}>
                     <View style={styles.card}>
@@ -185,7 +154,12 @@ export const GroceryInfos: NavioScreen = observer(() => {
               <View style={{ paddingTop: 20, paddingStart: 20, paddingEnd: 20 }}>
                 <SearchBar />
               </View>
-              <RecipesList recipes={recipes} />
+              <RecipesList 
+                recipes={recipes} 
+                removeRecipe={function (recipe: Recipe): Promise<void> {
+                  throw new Error('Function not implemented.');
+                } }
+              />
             </TabController.TabPage>
           </View>
         </TabController>

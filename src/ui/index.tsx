@@ -1,8 +1,8 @@
 import { Navio } from 'rn-navio';
 
-import { Dashboard } from './dashboard';
-import { Login } from './login';
-import { Join } from './join';
+import { Dashboard } from './pages/dashboard';
+import { Login } from './pages/login';
+import { Join } from './pages/join';
 import { Profile } from './pages/profile';
 import { GroceryInfos } from './pages/grocery-infos';
 import { GroceryMap } from './pages/grocery-map';

@@ -10,38 +10,10 @@ import { styleSheet } from '../../utils/stylesheet';
 import { SearchBar } from '../components/search-bar';
 import { Product } from '../../models/Product';
 import { FoodInfosList } from '../components/food-infos-list';
+import { useGroceryList } from '../hooks/useGroceryList';
 
 export const GroceryList: NavioScreen = observer(() => {
-  // TODO : Move to a repo + use real data
-  const products: Product[] = [
-    {
-      id: '1',
-      product_name: 'Product 1',
-      image_url: 'https://example.com/product1.jpg',
-      regular_price: '$10.99',
-      sale_price: '$9.99',
-      quantity: 10,
-      created_at: new Date('2022-01-01'),
-    },
-    {
-      id: '2',
-      product_name: 'Product 2',
-      image_url: 'https://example.com/product2.jpg',
-      regular_price: '$5.99',
-      sale_price: '$4.99',
-      quantity: 20,
-      created_at: new Date('2022-01-02'),
-    },
-    {
-      id: '3',
-      product_name: 'Product 3',
-      image_url: 'https://example.com/product3.jpg',
-      regular_price: '$15.99',
-      sale_price: '$12.99',
-      quantity: 5,
-      created_at: new Date('2022-01-03'),
-    },
-  ];
+  const { groceryList, addProduct, modifyProduct } = useGroceryList();
 
   return (
     <View flex style={{ backgroundColor: getTheme().orange }}>
@@ -67,7 +39,9 @@ export const GroceryList: NavioScreen = observer(() => {
         </View>
 
         <View style={{ height: 1000 }}>
-          <FoodInfosList products={products} />
+          <FoodInfosList 
+            products={groceryList} 
+            modifyProduct={modifyProduct} />
         </View>
       </View>
     </View>

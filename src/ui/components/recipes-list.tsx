@@ -5,9 +5,11 @@ import { getTheme } from '../../utils/designSystem';
 import { navio } from '..';
 import FavoriteComponent from './favorite';
 import { Recipe } from '../../models/Recipe';
+import { removeRecipe } from '../../services/firestoreService';
 
 type RecipesListProps = {
   recipes: Recipe[];
+  removeRecipe: (recipe: Recipe) => Promise<void>; // TODO remove recipe
 };
 
 export const RecipesList = (props: RecipesListProps) => {
@@ -55,7 +57,7 @@ export const RecipesList = (props: RecipesListProps) => {
                     <Text style={styles.infos}>Ingrédients ({item.ingredients.length})</Text>
                   </View>
                   <View style={{ flexDirection: 'column', width: '25%' }}>
-                    <FavoriteComponent />
+                    <FavoriteComponent /> 
                   </View>
                 </View>
               </View>
