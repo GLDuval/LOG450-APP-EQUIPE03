@@ -4,11 +4,10 @@ import { Avatar, Button, Colors, Icon, LoaderScreen, Text, View } from 'react-na
 import { observer } from 'mobx-react';
 import { NavioScreen } from 'rn-navio';
 import { navio } from '..';
-import { getTheme } from '../../../src/utils/designSystem';
+import { getTheme } from '../../utils/designSystem';
 import { services } from '../../services';
 import { signOut } from 'firebase/auth';
 import { styleSheet } from '../../utils/stylesheet';
-import SwitchScreen from '../components/switch-screen';
 import { auth } from '../../../firebaseConfig';
 import { FirebaseError } from 'firebase/app';
 import { UserContext } from '../../contexts/UserContext';
@@ -146,22 +145,6 @@ export const Profile: NavioScreen = observer(() => {
             </View>
             <View style={{ flex: 2, marginTop: 8 }}>
               <Text style={(styleSheet.text, { color: getTheme().mainHeader })}>English</Text>
-            </View>
-          </View>
-
-          <View style={{ flexDirection: 'row' }}>
-            <View style={(styles.roundContainer, { flex: 1, marginLeft: 10 })}>
-              <TouchableHighlight style={styles.roundshape2}>
-                <Icon size={20} assetName={'moon'} tintColor={getTheme().purple} />
-              </TouchableHighlight>
-            </View>
-            <View style={{ flex: 2, marginTop: 8 }}>
-              <Text style={{ fontSize: 18, color: getTheme().mainHeader }}>
-                {services.t.do('profile.chooseTheme')}
-              </Text>
-            </View>
-            <View style={{ flex: 2, marginTop: 8 }}>
-              <SwitchScreen />
             </View>
           </View>
         </View>

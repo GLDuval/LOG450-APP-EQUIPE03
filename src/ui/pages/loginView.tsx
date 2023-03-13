@@ -4,20 +4,20 @@ import { Text, View, Button, LoaderScreen, Colors, Icon } from 'react-native-ui-
 import { observer } from 'mobx-react';
 import { NavioScreen } from 'rn-navio';
 
-import { services, useServices } from '../services';
-import { useAppearance } from '../utils/hooks';
+import { services, useServices } from '../../services';
+import { useAppearance } from '../../utils/hooks';
 import { TextInput } from 'react-native-gesture-handler';
-import { auth, webClientID } from '../../firebaseConfig';
 import {
   GoogleAuthProvider,
   signInWithCredential,
   signInWithEmailAndPassword,
 } from 'firebase/auth';
-import { FirebaseError } from 'firebase/app';
 import * as Google from 'expo-auth-session/providers/google';
-import { getTheme } from '../utils/designSystem';
+import { auth, webClientID } from '../../../firebaseConfig';
+import { FirebaseError } from 'firebase/app';
+import { getTheme } from '../../utils/designSystem';
 import { useAuthState } from 'react-firebase-hooks/auth';
-import { styleSheet } from '../utils/stylesheet';
+import { styleSheet } from '../../utils/stylesheet';
 
 export const Login: NavioScreen = observer(() => {
   useAppearance();

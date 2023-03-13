@@ -1,23 +1,18 @@
 import { Navio } from 'rn-navio';
 
-import { Dashboard } from './dashboard';
-import { Login } from './login';
-import { Join } from './join';
-import { Profile } from './pages/profile';
-import { GroceryInfos } from './pages/grocery-infos';
-import { GroceryMap } from './pages/grocery-map';
-import { GroceryList } from './pages/grocery-list';
-import { MyRecipes } from './pages/my-recipes';
-import { RecipeDetails } from './pages/recipe-details';
+import { Dashboard } from './pages/homeView';
+import { Login } from './pages/loginView';
+import { Join } from './pages/signUpView';
+import { Profile } from './pages/profileView';
+import { GroceryInfos } from './pages/groceryView';
+import { GroceryMap } from './pages/mapView';
+import { GroceryList } from './pages/groceryListView';
+import { MyRecipes } from './pages/myRecipesView';
+import { RecipeDetails } from './pages/recipeDetailView';
 
 import { OnboardingFirstPage } from './onboarding/firstPage';
 import { OnboardingSecondPage } from './onboarding/secondPage';
 import { OnboardingThirdPage } from './onboarding/thirdPage';
-
-import { GroceryStoresList } from './components/grocery-stores-list';
-import { RecipesList } from './components/recipes-list';
-import { FoodInfosList } from './components/food-infos-list';
-import { SearchBar } from './components/search-bar';
 
 import { useAppearance } from '../utils/hooks';
 import { screenDefaultOptions } from '../utils/designSystem';
@@ -33,17 +28,11 @@ export const navio = Navio.build({
     GroceryMap,
     GroceryList,
     MyRecipes,
+    RecipeDetails,
 
     OnboardingFirstPage,
     OnboardingSecondPage,
     OnboardingThirdPage,
-
-    // Components
-    GroceryStoresList,
-    RecipesList,
-    FoodInfosList,
-    SearchBar,
-    RecipeDetails,
   },
   stacks: {
     LoginStack: [
@@ -61,10 +50,6 @@ export const navio = Navio.build({
       'GroceryMap',
       'GroceryList',
       'MyRecipes',
-      'GroceryStoresList',
-      'RecipesList',
-      'FoodInfosList',
-      'SearchBar',
       'RecipeDetails',
     ],
   },

@@ -3,16 +3,18 @@ import { StyleSheet, TouchableOpacity, StatusBar } from 'react-native';
 import { Avatar, Colors, Icon, Text, View } from 'react-native-ui-lib';
 import { observer } from 'mobx-react';
 import { NavioScreen } from 'rn-navio';
-import { navio } from '.';
-import { GroceryStoresList } from './components/grocery-stores-list';
-import { services } from '../services';
-import { getTheme } from '../utils/designSystem';
-import { styleSheet } from '../utils/stylesheet';
-import { UserContext } from '../contexts/UserContext';
+import { navio } from '..';
+import { GroceryStoresList } from '../components/grocery-stores-list';
+import { services } from '../../services';
+import { getTheme } from '../../utils/designSystem';
+import { styleSheet } from '../../utils/stylesheet';
+import { UserContext } from '../../contexts/UserContext';
+import { useGroceries } from '../hooks/useGroceries';
 
 export const Dashboard: NavioScreen = observer(() => {
+  const groceries = useGroceries();
   const username = useContext(UserContext)?.displayName;
-
+  
   // STYLES
   const styles = StyleSheet.create({
     header: {
@@ -87,53 +89,55 @@ export const Dashboard: NavioScreen = observer(() => {
       </View>
 
       <View style={styleSheet.roundedTopCornersContainer} bg-bgColor>
-        <View style={styles.menuContainer}>
-          <View style={{ flexDirection: 'row' }}>
-            <TouchableOpacity
-              style={styles.recepesCard}
-              onPress={() => {
-                navio.show('MyRecipes');
-              }}
-            >
-              <View style={{ flexDirection: 'row-reverse' }}>
-                <Icon size={20} assetName={'recipe'} />
-              </View>
-              <View style={styles.alignTextAtBottom}>
-                <Text style={styles.menuText}>{services.t.do('dashboard.myRecipes')}</Text>
-              </View>
-            </TouchableOpacity>
-
-            <View style={{ flexDirection: 'column', width: '50%' }}>
+        <View style={{ height: 1000 }}>
+          <View style={styles.menuContainer}>
+            <View style={{ flexDirection: 'row' }}>
               <TouchableOpacity
-                style={styles.groceryListCard}
+                style={styles.recepesCard}
                 onPress={() => {
-                  navio.show('GroceryList');
+                  navio.show('MyRecipes');
                 }}
               >
                 <View style={{ flexDirection: 'row-reverse' }}>
-                  <Icon size={20} tintColor={Colors.white} assetName={'list'} />
+                  <Icon size={20} assetName={'recipe'} />
                 </View>
-                <Text style={styles.menuText}>{services.t.do('dashboard.groceryList')}</Text>
+                <View style={styles.alignTextAtBottom}>
+                  <Text style={styles.menuText}>{services.t.do('dashboard.myRecipes')}</Text>
+                </View>
               </TouchableOpacity>
 
-              <TouchableOpacity
-                style={styles.mapCart}
-                onPress={() => {
-                  navio.show('GroceryMap');
-                }}
-              >
-                <View style={{ flexDirection: 'row-reverse' }}>
-                  <Icon size={20} tintColor={Colors.white} assetName={'map'} />
-                </View>
-                <Text style={styles.menuText}>{services.t.do('dashboard.map')}</Text>
-              </TouchableOpacity>
+              <View style={{ flexDirection: 'column', width: '50%' }}>
+                <TouchableOpacity
+                  style={styles.groceryListCard}
+                  onPress={() => {
+                    navio.show('GroceryList');
+                  }}
+                >
+                  <View style={{ flexDirection: 'row-reverse' }}>
+                    <Icon size={20} tintColor={Colors.white} assetName={'list'} />
+                  </View>
+                  <Text style={styles.menuText}>{services.t.do('dashboard.groceryList')}</Text>
+                </TouchableOpacity>
+
+                <TouchableOpacity
+                  style={styles.mapCart}
+                  onPress={() => {
+                    navio.show('GroceryMap');
+                  }}
+                >
+                  <View style={{ flexDirection: 'row-reverse' }}>
+                    <Icon size={20} tintColor={Colors.white} assetName={'map'} />
+                  </View>
+                  <Text style={styles.menuText}>{services.t.do('dashboard.map')}</Text>
+                </TouchableOpacity>
+              </View>
             </View>
           </View>
+
+          <Text style={styles.subtitle}>{services.t.do('dashboard.groceries')}</Text>
+
+          <GroceryStoresList groceriesName={groceries} />
         </View>
-
-        <Text style={styles.subtitle}>{services.t.do('dashboard.groceries')}</Text>
-
-        <GroceryStoresList />
       </View>
     </View>
   );

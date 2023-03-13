@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Switch } from 'react-native-ui-lib';
 import { getTheme } from '../../utils/designSystem';
 
-class SwitchScreen extends Component {
+class SwitchComponent extends Component {
   state = {
     value: true,
   };
@@ -19,4 +19,4 @@ class SwitchScreen extends Component {
   }
 }
 
-export default SwitchScreen;
+export default SwitchComponent;

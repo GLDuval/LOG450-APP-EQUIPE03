@@ -1,5 +1,6 @@
 import { initializeApp } from 'firebase/app';
 import { browserLocalPersistence, getAuth } from 'firebase/auth';
+import { getFirestore } from 'firebase/firestore';
 
 export const webClientID =
   '71180759232-nm43shla5uvme0e88re0h68l6lsvtvoq.apps.googleusercontent.com';
@@ -20,3 +21,4 @@ const app = initializeApp(firebaseConfig, {
   persistence: browserLocalPersistence,
 });
 export const auth = getAuth(app);
+export const db = getFirestore(app);
