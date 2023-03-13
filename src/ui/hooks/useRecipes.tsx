@@ -3,16 +3,22 @@ import { getAll } from '../../repository/recipeRepository';
 import { Recipe } from '../../models/Recipe';
 
 export function useRecipes() {
-    const [recipes, setRecipes] = useState<Recipe[]>([]);
+  const [recipes, setRecipes] = useState<Recipe[]>([]);
 
-    useEffect(() => {
-        async function fetchRecipes() {
-        const result = await getAll();
-        setRecipes(result);
-        }
+  useEffect(() => {
+    function fetchRecipes() {
+      getAll().then(
+        (result) => {
+          setRecipes(result);
+        },
+        (err) => {
+          console.log(err);
+        },
+      );
+    }
 
-        fetchRecipes();
-    }, []);
+    fetchRecipes();
+  }, []);
 
-    return recipes;
+  return recipes;
 }

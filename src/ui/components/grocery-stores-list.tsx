@@ -54,7 +54,7 @@ export const GroceryStoresList = (props: GroceryStoresListProps) => {
                   {item.name}
                 </Text>
                 <Text style={styles.infos}>
-                  {services.t.do('dashboard.until') + " "}
+                  {services.t.do('dashboard.until') + ' '}
                   {item.until}
                 </Text>
               </View>

@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import {
   Dimensions,
   StyleSheet,
@@ -18,7 +18,6 @@ import { getTheme } from '../../utils/designSystem';
 import { styleSheet } from '../../utils/stylesheet';
 import { SearchBar } from '../components/search-bar';
 import { Recipe } from '../../models/Recipe';
-import { Product } from '../../models/Product';
 import { useProductList } from '../hooks/useFlyer';
 import { useRecipes } from '../hooks/useRecipes';
 
@@ -154,11 +153,12 @@ export const GroceryInfos: NavioScreen = observer(() => {
               <View style={{ paddingTop: 20, paddingStart: 20, paddingEnd: 20 }}>
                 <SearchBar />
               </View>
-              <RecipesList 
-                recipes={recipes} 
+              <RecipesList
+                recipes={recipes}
+                // eslint-disable-next-line @typescript-eslint/no-unused-vars
                 removeRecipe={function (recipe: Recipe): Promise<void> {
                   throw new Error('Function not implemented.');
-                } }
+                }}
               />
             </TabController.TabPage>
           </View>

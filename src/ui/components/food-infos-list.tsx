@@ -6,7 +6,7 @@ import { Product } from '../../models/Product';
 
 type FoodInfosListProps = {
   products: Product[];
-  modifyProduct: (product: Product, quantity: number) => Promise<void>;
+  modifyProduct: (product: Product, quantity: number) => void;
 };
 
 export const FoodInfosList = (props: FoodInfosListProps) => {

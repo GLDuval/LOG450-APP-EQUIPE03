@@ -7,19 +7,29 @@ export function useProductList() {
   const [lastProduct, setLastProduct] = useState<Product>({} as Product);
 
   useEffect(() => {
-    async function fetchData() {
-      const result = await getAll();
-      setProductList(result);
-      setLastProduct(result[result.length - 1] || ({} as Product));
+    function fetchData() {
+      getAll().then(
+        (products) => {
+          setProductList(products);
+          setLastProduct(products[products.length - 1] || ({} as Product));
+        },
+        (err) => {
+          console.log(err);
+        },
+      );
     }
     fetchData();
   }, []);
 
-  const loadMore = async () => {
-    const result = await getAllNext(lastProduct);
-    setProductList([...productList, ...result]);
-    setLastProduct(result[result.length - 1] || ({} as Product));
+  const loadMore = () => {
+    getAllNext(lastProduct).then(
+      (nextBatch) => {
+        setProductList([...productList, ...nextBatch]);
+        setLastProduct(productList[productList.length - 1] || ({} as Product));
+      },
+      (err) => console.log(err),
+    );
   };
 
   return { productList, loadMore };
-};
+}

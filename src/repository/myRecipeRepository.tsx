@@ -1,17 +1,17 @@
-import { Recipe } from '../models/Recipe'
-import { getMyRecipes, addRecipe, removeRecipe} from '../services/firestoreService'
+import { Recipe } from '../models/Recipe';
+import { getMyRecipes, addRecipe, removeRecipe } from '../services/firestoreService';
 
-export async function getAll() {
-    const result = await getMyRecipes()
-    return result
+export function getAll() {
+  const result = getMyRecipes();
+  return result;
 }
 
-export async function add(recipe: Recipe) {
-    const result = await addRecipe(recipe)
-    return result
+export function add(recipe: Recipe) {
+  const result = addRecipe(recipe);
+  return result;
 }
 
-export async function remove(recipe: Recipe) {
-    const result = await removeRecipe(recipe)
-    return result
+export function remove(recipe: Recipe) {
+  const result = removeRecipe(recipe);
+  return result;
 }

@@ -11,11 +11,10 @@ import { getTheme } from '../../utils/designSystem';
 import { styleSheet } from '../../utils/stylesheet';
 import { useMyRecipes } from '../hooks/useMyRecipes';
 
-
 // TODO : Changer le RecipesList avec la vraie lister de favoris des recettes.
 
 export const MyRecipes: NavioScreen = observer(() => {
-  const { recipes, addRecipe, removeRecipe } = useMyRecipes();
+  const { recipes, removeRecipe } = useMyRecipes();
 
   return (
     <View flex style={{ backgroundColor: getTheme().blueberry }}>
@@ -40,8 +39,7 @@ export const MyRecipes: NavioScreen = observer(() => {
         <View style={{ paddingTop: 20, paddingStart: 20, paddingEnd: 20 }}>
           <SearchBar />
         </View>
-        <RecipesList recipes={recipes}
-          removeRecipe={removeRecipe}/>
+        <RecipesList recipes={recipes} removeRecipe={removeRecipe} />
       </View>
     </View>
   );

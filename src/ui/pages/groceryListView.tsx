@@ -8,12 +8,11 @@ import { services } from '../../services';
 import { getTheme } from '../../utils/designSystem';
 import { styleSheet } from '../../utils/stylesheet';
 import { SearchBar } from '../components/search-bar';
-import { Product } from '../../models/Product';
 import { FoodInfosList } from '../components/food-infos-list';
 import { useGroceryList } from '../hooks/useGroceryList';
 
 export const GroceryList: NavioScreen = observer(() => {
-  const { groceryList, addProduct, modifyProduct } = useGroceryList();
+  const { groceryList, modifyProduct } = useGroceryList();
 
   return (
     <View flex style={{ backgroundColor: getTheme().orange }}>
@@ -39,9 +38,7 @@ export const GroceryList: NavioScreen = observer(() => {
         </View>
 
         <View style={{ height: 1000 }}>
-          <FoodInfosList 
-            products={groceryList} 
-            modifyProduct={modifyProduct} />
+          <FoodInfosList products={groceryList} modifyProduct={modifyProduct} />
         </View>
       </View>
     </View>

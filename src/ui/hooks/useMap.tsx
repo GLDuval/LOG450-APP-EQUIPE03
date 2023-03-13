@@ -9,8 +9,8 @@ export function useMap() {
     fetchGroceryPositions();
   }, []);
 
-  async function fetchGroceryPositions() {
-    const result = await getAllPositions();
+  function fetchGroceryPositions() {
+    const result = getAllPositions();
     setPositions(result);
   }
 

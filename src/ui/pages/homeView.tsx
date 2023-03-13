@@ -14,7 +14,7 @@ import { useGroceries } from '../hooks/useGroceries';
 export const Dashboard: NavioScreen = observer(() => {
   const groceries = useGroceries();
   const username = useContext(UserContext)?.displayName;
-  
+
   // STYLES
   const styles = StyleSheet.create({
     header: {

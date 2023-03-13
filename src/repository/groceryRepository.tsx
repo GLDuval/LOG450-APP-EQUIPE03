@@ -1,11 +1,11 @@
-import { getGroceries, getGroceriesPositions} from '../services/firestoreService'
+import { getGroceries, getGroceriesPositions } from '../services/firestoreService';
 
-export async function getAll() {
-    const result = await getGroceries()
-    return result
+export function getAll() {
+  const result = getGroceries();
+  return result;
 }
 
-export async function getAllPositions() {
-   const result = getGroceriesPositions()
-   return result
+export function getAllPositions() {
+  const result = getGroceriesPositions();
+  return result;
 }

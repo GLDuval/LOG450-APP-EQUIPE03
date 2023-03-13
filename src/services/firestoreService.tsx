@@ -6,20 +6,16 @@ import { Grocery } from '../models/Grocery';
 import { GroceryPosition } from '../models/GroceryPosition';
 import { services } from '../services';
 
-
 export const getGroceries = async () => {
-  // TODO : Get the groceries name and get the expiration date of the flyer Ex : 'Super C' et 'mecredi' (lowercase le jour si possible)
   const groceries: Grocery[] = [];
-  const daysOfWeek = ["sunday", "monday", "tuesday", "wednesday", "thursday", "friday", "saturday"];
-  const firestoreQuery = query(
-    collection(db, 'groceries')
-  );
+  const daysOfWeek = ['sunday', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday'];
+  const firestoreQuery = query(collection(db, 'groceries'));
   const querySnapshot = await getDocs(firestoreQuery);
   querySnapshot.forEach((doc) => {
-    var grocery: Grocery =  {
-      id: doc.data().id,
-      until: services.t.do(daysOfWeek[doc.data().until]),
-      name: doc.data().name
+    const grocery: Grocery = {
+      id: doc.data().id as number,
+      until: services.t.do(daysOfWeek[doc.data().until as number]),
+      name: doc.data().name as string,
     };
     groceries.push(grocery);
   });
@@ -31,59 +27,59 @@ export const getGroceriesPositions = () => {
   const groceryPostions: GroceryPosition[] = [
     {
       id: 1,
-      name: "Super C - Atwater",
+      name: 'Super C - Atwater',
       latitude: 45.485738,
       longitude: -73.580292,
     },
     {
       id: 2,
-      name: "Super C - Lasalle",
+      name: 'Super C - Lasalle',
       latitude: 45.444698,
       longitude: -73.617049,
     },
     {
       id: 3,
-      name: "Super C - Marché St-Jacques",
+      name: 'Super C - Marché St-Jacques',
       latitude: 45.506105,
       longitude: -73.568644,
     },
     {
       id: 4,
-      name: "Super C - Pie IX, Jarry",
+      name: 'Super C - Pie IX, Jarry',
       latitude: 45.570088,
       longitude: -73.601704,
     },
     {
       id: 5,
-      name: "Super C - Pie IX, Ontario",
+      name: 'Super C - Pie IX, Ontario',
       latitude: 45.563647,
       longitude: -73.567224,
     },
     {
       id: 6,
-      name: "Super C - Pointe-aux-Trembles",
+      name: 'Super C - Pointe-aux-Trembles',
       latitude: 45.651317,
       longitude: -73.503613,
     },
     {
       id: 7,
-      name: "Super C - Rivière-des-Prairies",
+      name: 'Super C - Rivière-des-Prairies',
       latitude: 45.631228,
       longitude: -73.577579,
     },
     {
       id: 8,
-      name: "Super C - Saint-Léonard",
+      name: 'Super C - Saint-Léonard',
       latitude: 45.578809,
       longitude: -73.591102,
     },
     {
       id: 9,
-      name: "Super C - St-Jacques",
+      name: 'Super C - St-Jacques',
       latitude: 45.462977,
       longitude: -73.619152,
     },
-  ]
+  ];
 
   return groceryPostions;
 };
@@ -117,7 +113,7 @@ export const getProductsNextBatch = async (lastProduct: Product) => {
   querySnapshot.forEach((doc) => {
     products.push(doc.data() as Product);
   });
-  
+
   return products;
 };
 
@@ -133,27 +129,29 @@ export const getRecipes = async () => {
   return recipes;
 };
 
-export const getMyRecipes = async () => {
-  const recipes: Recipe[] = await [];
+export const getMyRecipes = () => {
+  const recipes: Recipe[] = [];
 
   // TODO : Fetch the user recipes
 
   return recipes;
 };
 
-export const addRecipe = async (recipe: Recipe) => {
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+export const addRecipe = (recipe: Recipe) => {
   // TODO : Add a recipe to the user connected
   return null;
 };
 
-export const removeRecipe = async (recipe: Recipe) => {
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+export const removeRecipe = (recipe: Recipe) => {
   // TODO : Remove a recipe to the user connected
   return null;
 };
 
-export const getGroceryList = async () => {
+export const getGroceryList = () => {
   // TODO : Use the user real grocery list
-  const products: Product[] = await [
+  const products: Product[] = [
     {
       id: '1',
       product_name: 'Product 1',
@@ -186,12 +184,14 @@ export const getGroceryList = async () => {
   return products;
 };
 
-export const addGroceryListItem = async (product: Product, quantity: number) => {
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+export const addGroceryListItem = (product: Product, quantity: number) => {
   // TODO : Save ingredient with the quantity
   return null;
 };
 
-export const modifyGroceryListItemQuantity = async (product: Product, quantity: number) => {
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+export const modifyGroceryListItemQuantity = (product: Product, quantity: number) => {
   // TODO : If quantity = 0, remove it from the list, if not, add the item
   return null;
 };

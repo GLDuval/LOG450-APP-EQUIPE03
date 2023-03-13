@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { getList, addItem, modifyQuantity} from '../../repository/groceryListRepository';
+import { getList, addItem, modifyQuantity } from '../../repository/groceryListRepository';
 import { Product } from '../../models/Product';
 
 export function useGroceryList() {
@@ -9,24 +9,23 @@ export function useGroceryList() {
     fetchGroceryList();
   }, []);
 
-  async function fetchGroceryList() {
-    const result = await getList();
-    setGroceryList(result);
+  function fetchGroceryList() {
+    setGroceryList(getList());
   }
 
-  async function addProduct(product: Product, quantity: number) {
-    const result = await addItem(product, quantity);
+  function addProduct(product: Product, quantity: number) {
+    const result = addItem(product, quantity);
 
     if (result) {
-        fetchGroceryList()
+      fetchGroceryList();
     }
   }
 
-  async function modifyProduct(product: Product, quantity: number) {
-    const result = await modifyQuantity(product, quantity);
+  function modifyProduct(product: Product, quantity: number) {
+    const result = modifyQuantity(product, quantity);
 
     if (result) {
-        fetchGroceryList()
+      fetchGroceryList();
     }
   }
 
