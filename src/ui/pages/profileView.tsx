@@ -4,7 +4,7 @@ import { Avatar, Button, Colors, Icon, LoaderScreen, Text, View } from 'react-na
 import { observer } from 'mobx-react';
 import { NavioScreen } from 'rn-navio';
 import { navio } from '..';
-import { getTheme } from '../../../src/utils/designSystem';
+import { getTheme } from '../../utils/designSystem';
 import { services } from '../../services';
 import { signOut } from 'firebase/auth';
 import { styleSheet } from '../../utils/stylesheet';

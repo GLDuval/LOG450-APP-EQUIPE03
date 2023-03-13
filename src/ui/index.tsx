@@ -1,13 +1,13 @@
 import { Navio } from 'rn-navio';
 
 import { Dashboard } from './pages/dashboard';
-import { Login } from './pages/login';
-import { Join } from './pages/join';
-import { Profile } from './pages/profile';
-import { GroceryInfos } from './pages/grocery-infos';
-import { GroceryMap } from './pages/grocery-map';
-import { GroceryList } from './pages/grocery-list';
-import { MyRecipes } from './pages/my-recipes';
+import { Login } from './pages/loginView';
+import { Join } from './pages/signUpView';
+import { Profile } from './pages/profileView';
+import { GroceryInfos } from './pages/groceryView';
+import { GroceryMap } from './pages/mapView';
+import { GroceryList } from './pages/groceryListView';
+import { MyRecipes } from './pages/myRecipesView';
 import { RecipeDetails } from './pages/recipe-details';
 
 import { OnboardingFirstPage } from './onboarding/firstPage';
