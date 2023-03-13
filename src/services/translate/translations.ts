@@ -73,7 +73,6 @@ export const en = {
     email: 'Email',
     paramaters: 'Paramaters',
     chooseLanguage: 'Language',
-    chooseTheme: 'Dark mode',
   },
   actions: {
     logout: 'Logout',
@@ -159,7 +158,6 @@ export const fr = {
     paramaters: 'Paramètres',
     email: 'Courriel',
     chooseLanguage: 'Langue',
-    chooseTheme: 'Mode sombre',
   },
   actions: {
     logout: 'Se déconnecter',

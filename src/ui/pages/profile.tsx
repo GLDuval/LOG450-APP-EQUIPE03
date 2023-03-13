@@ -148,22 +148,6 @@ export const Profile: NavioScreen = observer(() => {
               <Text style={(styleSheet.text, { color: getTheme().mainHeader })}>English</Text>
             </View>
           </View>
-
-          <View style={{ flexDirection: 'row' }}>
-            <View style={(styles.roundContainer, { flex: 1, marginLeft: 10 })}>
-              <TouchableHighlight style={styles.roundshape2}>
-                <Icon size={20} assetName={'moon'} tintColor={getTheme().purple} />
-              </TouchableHighlight>
-            </View>
-            <View style={{ flex: 2, marginTop: 8 }}>
-              <Text style={{ fontSize: 18, color: getTheme().mainHeader }}>
-                {services.t.do('profile.chooseTheme')}
-              </Text>
-            </View>
-            <View style={{ flex: 2, marginTop: 8 }}>
-              <Switch />
-            </View>
-          </View>
         </View>
         {loading && <LoaderScreen message={services.t.do('login.loading')} color={Colors.grey40} />}
       </ScrollView>
