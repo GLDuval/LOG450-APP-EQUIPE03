@@ -2,6 +2,7 @@ import React from 'react';
 import { FlatList, StyleSheet, TouchableHighlight } from 'react-native';
 import { Text, View } from 'react-native-ui-lib';
 import { navio } from '../';
+import { services } from '../../services';
 import { getTheme } from '../../utils/designSystem';
 import { Grocery } from '../../models/Grocery';
 
@@ -53,7 +54,7 @@ export const GroceryStoresList = (props: GroceryStoresListProps) => {
                   {item.name}
                 </Text>
                 <Text style={styles.infos}>
-                  {"Jusqu'à "}
+                  {services.t.do('dashboard.until') + " "}
                   {item.until}
                 </Text>
               </View>

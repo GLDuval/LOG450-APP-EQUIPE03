@@ -49,6 +49,7 @@ export const en = {
     groceryList: 'Grocery \nList',
     map: 'Map',
     groceries: 'Groceries',
+    until: "Until",
   },
   myRecipes: {
     title: 'My Recipes',
@@ -83,6 +84,13 @@ export const en = {
     close: 'Close',
     skip: 'Skip',
   },
+  sunday: "Sunday",
+  monday: "Monday",
+  tuesday: "Tuesday",
+  wednesday: "Wednesday",
+  thursday: "Thursday",
+  friday: "Friday",
+  saturday: "Saturday",
 };
 
 export const fr = {
@@ -135,6 +143,7 @@ export const fr = {
     groceryList: "Liste \nd'épiceries",
     map: 'Carte',
     groceries: 'Épiceries',
+    until: "Jusqu'à",
   },
   myRecipes: {
     title: 'Mes recettes',
@@ -169,4 +178,11 @@ export const fr = {
     close: 'Fermer',
     skip: 'Sauter',
   },
+  sunday: "Dimanche",
+  monday: "Lundi",
+  tuesday: "Mardi",
+  wednesday: "Mercredi",
+  thursday: "Jeudi",
+  friday: "Vendredi",
+  saturday: "Samedi",
 };

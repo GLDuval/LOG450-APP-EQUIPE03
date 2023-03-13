@@ -1,21 +1,29 @@
-import { useContext } from 'react';
 import { db } from '../../firebaseConfig';
 import { collection, getDocs, query, orderBy, limit, startAfter } from 'firebase/firestore';
 import { Product } from '../models/Product';
 import { Recipe } from '../models/Recipe';
 import { Grocery } from '../models/Grocery';
 import { GroceryPosition } from '../models/GroceryPosition';
-import { UserContext } from '../../src/contexts/UserContext';
+import { services } from '../services';
+
 
 export const getGroceries = async () => {
   // TODO : Get the groceries name and get the expiration date of the flyer Ex : 'Super C' et 'mecredi' (lowercase le jour si possible)
-  const groceries: Grocery[] = await [
-    {
-      id: 0,
-      name: 'Super C',
-      until: 'mecredi',
-    }
-  ];
+  const groceries: Grocery[] = [];
+  const daysOfWeek = ["sunday", "monday", "tuesday", "wednesday", "thursday", "friday", "saturday"];
+  const firestoreQuery = query(
+    collection(db, 'groceries')
+  );
+  const querySnapshot = await getDocs(firestoreQuery);
+  querySnapshot.forEach((doc) => {
+    var grocery: Grocery =  {
+      id: doc.data().id,
+      until: services.t.do(daysOfWeek[doc.data().until]),
+      name: doc.data().name
+    };
+    groceries.push(grocery);
+  });
+
   return groceries;
 };
 
