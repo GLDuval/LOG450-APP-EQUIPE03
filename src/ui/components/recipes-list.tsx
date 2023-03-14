@@ -27,12 +27,13 @@ export const RecipesList = (props: RecipesListProps) => {
     },
     cardContainer: {
       flex: 1,
+      marginTop: 10,
       marginHorizontal: 20,
     },
     card: {
       backgroundColor: getTheme().grey,
       padding: 15,
-      marginBottom: 20,
+      marginBottom: 10,
       borderRadius: 10,
     },
     searchInput: {
