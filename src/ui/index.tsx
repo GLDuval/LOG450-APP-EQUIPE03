@@ -17,7 +17,6 @@ import { OnboardingThirdPage } from './onboarding/thirdPage';
 import { useAppearance } from '../utils/hooks';
 import { screenDefaultOptions } from '../utils/designSystem';
 
-// NAVIO
 export const navio = Navio.build({
   screens: {
     Dashboard,
