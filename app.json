@@ -1,11 +1,12 @@
 {
   "expo": {
-    "name": "Coco Is Cool",
-    "slug": "coco-is-cool",
+    "name": "ramsai",
+    "slug": "ramsai",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "automatic",
+    "owner": "hugomigner",
     "splash": {
       "image": "./assets/splash.png",
       "resizeMode": "contain",
@@ -14,19 +15,17 @@
     "updates": {
       "fallbackToCacheTimeout": 0
     },
-    "assetBundlePatterns": [
-      "**/*"
-    ],
+    "assetBundlePatterns": ["**/*"],
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "coco.is.cool"
+      "bundleIdentifier": "ramsai"
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#FFFFFF"
       },
-      "package": "coco.is.cool"
+      "package": "ramsai"
     },
     "extra": {
       "eas": {

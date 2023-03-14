@@ -1,14 +1,14 @@
 import { Navio } from 'rn-navio';
 
-import { Dashboard } from './dashboard';
-import { Login } from './login';
-import { Join } from './join';
-import { Profile } from './pages/profile';
-import { GroceryInfos } from './pages/grocery-infos';
-import { GroceryMap } from './pages/grocery-map';
-import { GroceryList } from './pages/grocery-list';
-import { MyRecipes } from './pages/my-recipes';
-import { RecipeDetails } from './pages/recipe-details';
+import { Dashboard } from './pages/homeView';
+import { Login } from './pages/loginView';
+import { Join } from './pages/signUpView';
+import { Profile } from './pages/profileView';
+import { GroceryInfos } from './pages/groceryView';
+import { GroceryMap } from './pages/mapView';
+import { GroceryList } from './pages/groceryListView';
+import { MyRecipes } from './pages/myRecipesView';
+import { RecipeDetails } from './pages/recipeDetailView';
 
 import { OnboardingFirstPage } from './onboarding/firstPage';
 import { OnboardingSecondPage } from './onboarding/secondPage';
@@ -19,7 +19,6 @@ import { screenDefaultOptions } from '../utils/designSystem';
 import { stores } from '../stores';
 import React, { useEffect } from 'react';
 
-// NAVIO
 export const navio = Navio.build({
   screens: {
     Dashboard,

@@ -24,6 +24,7 @@ export class OnStartService {
       rightArrow: require('../../assets/icons/right-arrow.png') as Image,
       moon: require('../../assets/icons/moon.png') as Image,
       language: require('../../assets/icons/language.png') as Image,
+      google: require('../../assets/icons/google.png') as Image,
     });
 
     Assets.loadAssetsGroup('images', {

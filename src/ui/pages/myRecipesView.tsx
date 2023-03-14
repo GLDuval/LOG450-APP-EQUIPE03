@@ -1,19 +1,23 @@
 import React from 'react';
-import { TouchableHighlight, StatusBar } from 'react-native';
+import { StatusBar, TouchableHighlight } from 'react-native';
 import { Icon, Text, View } from 'react-native-ui-lib';
 import { observer } from 'mobx-react';
 import { NavioScreen } from 'rn-navio';
 import { navio } from '..';
+import { RecipesList } from '../components/recipes-list';
 import { services } from '../../services';
 import { getTheme } from '../../utils/designSystem';
 import { styleSheet } from '../../utils/stylesheet';
-import { FoodInfosList } from '../components/food-infos-list';
-import { SearchBar } from '../components/search-bar';
+import { useMyRecipes } from '../hooks/useMyRecipes';
 
-export const GroceryList: NavioScreen = observer(() => {
+// TODO : Changer le RecipesList avec la vraie liste de favoris des recettes.
+
+export const MyRecipes: NavioScreen = observer(() => {
+  const { recipes } = useMyRecipes();
+
   return (
-    <View flex style={{ backgroundColor: getTheme().orange }}>
-      <StatusBar backgroundColor={getTheme().orange} />
+    <View flex style={{ backgroundColor: getTheme().blueberry }}>
+      <StatusBar backgroundColor={getTheme().blueberry} />
       <View style={styleSheet.topContainer}>
         <View style={{ flexDirection: 'row' }}>
           <TouchableHighlight
@@ -24,16 +28,14 @@ export const GroceryList: NavioScreen = observer(() => {
           >
             <Icon size={18} assetName={'close'} style={styleSheet.closeIcon} />
           </TouchableHighlight>
-          <Text center style={styleSheet.header}>
-            {services.t.do('groceryList.title')}
+          <Text style={styleSheet.header} center>
+            {services.t.do('myRecipes.title')}
           </Text>
         </View>
       </View>
+
       <View style={styleSheet.roundedTopCornersContainer} bg-bgColor>
-        <View style={{ paddingTop: 20, paddingStart: 20, paddingEnd: 20 }}>
-          <SearchBar />
-        </View>
-        <FoodInfosList />
+        <RecipesList recipes={recipes} />
       </View>
     </View>
   );

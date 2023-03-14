@@ -1,18 +1,23 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import { ScrollView, StatusBar, StyleSheet } from 'react-native';
-import { Text, View, Button, LoaderScreen, Colors } from 'react-native-ui-lib';
+import { Text, View, Button, LoaderScreen, Colors, Icon } from 'react-native-ui-lib';
 import { observer } from 'mobx-react';
 import { NavioScreen } from 'rn-navio';
 
-import { services, useServices } from '../services';
-import { useAppearance } from '../utils/hooks';
+import { services, useServices } from '../../services';
+import { useAppearance } from '../../utils/hooks';
 import { TextInput } from 'react-native-gesture-handler';
-import { auth } from '../../firebaseConfig';
-import { signInWithEmailAndPassword } from 'firebase/auth';
+import {
+  GoogleAuthProvider,
+  signInWithCredential,
+  signInWithEmailAndPassword,
+} from 'firebase/auth';
+import * as Google from 'expo-auth-session/providers/google';
+import { auth, webClientID } from '../../../firebaseConfig';
 import { FirebaseError } from 'firebase/app';
-import { getTheme } from '../utils/designSystem';
+import { getTheme } from '../../utils/designSystem';
 import { useAuthState } from 'react-firebase-hooks/auth';
-import { styleSheet } from '../utils/stylesheet';
+import { styleSheet } from '../../utils/stylesheet';
 
 export const Login: NavioScreen = observer(() => {
   useAppearance();
@@ -23,6 +28,28 @@ export const Login: NavioScreen = observer(() => {
   const [emailInput, setEmail] = useState('');
   const [passwordInput, setPassword] = useState('');
   const [user, loading] = useAuthState(auth);
+
+  // Google login
+  const [request, googleResponse, promptAsync] = Google.useIdTokenAuthRequest({
+    clientId: webClientID,
+  });
+
+  useEffect(() => {
+    if (googleResponse?.type === 'success') {
+      const { id_token } = googleResponse.params;
+      const credential = GoogleAuthProvider.credential(id_token);
+      signInWithCredential(auth, credential)
+        .then((userCredential) => {
+          console.log(userCredential);
+          navio.setRoot('MainStack');
+        })
+        .catch((error: FirebaseError) => {
+          const errorCode = error.code;
+          const errorMessage = error.message;
+          console.log(errorCode, errorMessage);
+        });
+    }
+  }, [googleResponse, navio]);
 
   useEffect(() => {
     if (user) {
@@ -136,6 +163,16 @@ export const Login: NavioScreen = observer(() => {
             backgroundColor="#264653"
             style={{ marginBottom: 10 }}
             onPress={() => login(emailInput, passwordInput)}
+          />
+        </View>
+        <View style={styleSheet.loginInput}>
+          <Button
+            label={services.t.do('login.loginWithGoogle')}
+            labelStyle={styleSheet.googleButtonLabel}
+            style={styleSheet.googleButton}
+            onPress={() => promptAsync()}
+            disabled={!request}
+            iconSource={() => <Icon size={30} assetName={'google'} style={{ paddingLeft: 0 }} />}
           />
         </View>
         {/* }
