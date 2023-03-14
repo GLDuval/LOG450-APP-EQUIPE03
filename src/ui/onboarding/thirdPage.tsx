@@ -87,7 +87,7 @@ export const OnboardingThirdPage: NavioScreen = observer(() => {
               onPress={() => {
                 // Onboarding is done, set isFirstLaunch to false
                 stores.ui.set('isFirstLaunch', false);
-                navio.pushStack('LoginStack');
+                navio.setRoot('LoginStack');
               }}
             >
               <Icon
