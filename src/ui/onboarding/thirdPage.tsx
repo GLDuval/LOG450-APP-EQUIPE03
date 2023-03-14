@@ -7,6 +7,7 @@ import { getTheme } from '../../utils/designSystem';
 import { services } from '../../services';
 import { navio } from '..';
 import { styleSheet } from '../../utils/stylesheet';
+import { stores } from '../../stores';
 
 export const OnboardingThirdPage: NavioScreen = observer(() => {
   return (
@@ -84,7 +85,9 @@ export const OnboardingThirdPage: NavioScreen = observer(() => {
             <TouchableHighlight
               underlayColor={'transparent'}
               onPress={() => {
-                navio.show('Login');
+                // Onboarding is done, set isFirstLaunch to false
+                stores.ui.set('isFirstLaunch', false);
+                navio.setRoot('LoginStack');
               }}
             >
               <Icon

@@ -3,7 +3,7 @@ import { hydrateStore, makePersistable } from 'mobx-persist-store';
 import { Appearance, appearanceToUI, Language, languageToUI } from '../utils/types/enums';
 
 export class UIStore implements IStore {
-  appLaunches = 0;
+  isFirstLaunch = true;
 
   // Appearance
   appearance: Appearance = 'system';
@@ -28,7 +28,7 @@ export class UIStore implements IStore {
 
     makePersistable(this, {
       name: UIStore.name,
-      properties: ['appLaunches', 'appearance', 'language'],
+      properties: ['isFirstLaunch', 'appearance', 'language'],
     }).catch(console.error);
   }
 

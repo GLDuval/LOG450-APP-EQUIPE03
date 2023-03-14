@@ -1,14 +1,11 @@
 import { Assets } from 'react-native-ui-lib';
 import { Image } from 'react-native-ui-lib/src/components/image';
-import { stores } from '../stores';
 
 export class OnStartService {
   private inited = false;
 
   init(): void {
     if (!this.inited) {
-      this.incAppLaunches();
-
       this.loadAssets();
 
       this.inited = true;
@@ -36,11 +33,5 @@ export class OnStartService {
       onboarding2: require('../../assets/onboarding2.jpg') as Image,
       onboarding3: require('../../assets/onboarding3.jpg') as Image,
     });
-  }
-
-  private incAppLaunches() {
-    const { ui } = stores;
-
-    ui.set('appLaunches', ui.appLaunches + 1);
   }
 }

@@ -16,6 +16,8 @@ import { OnboardingThirdPage } from './onboarding/thirdPage';
 
 import { useAppearance } from '../utils/hooks';
 import { screenDefaultOptions } from '../utils/designSystem';
+import { stores } from '../stores';
+import React, { useEffect } from 'react';
 
 export const navio = Navio.build({
   screens: {
@@ -28,19 +30,13 @@ export const navio = Navio.build({
     GroceryList,
     MyRecipes,
     RecipeDetails,
-
     OnboardingFirstPage,
     OnboardingSecondPage,
     OnboardingThirdPage,
   },
   stacks: {
-    LoginStack: [
-      'OnboardingFirstPage',
-      'OnboardingSecondPage',
-      'OnboardingThirdPage',
-      'Login',
-      'Join',
-    ],
+    OnboardingStack: ['OnboardingFirstPage', 'OnboardingSecondPage', 'OnboardingThirdPage'],
+    LoginStack: ['Login', 'Join'],
     MainStack: [
       'Dashboard',
       'Login',
@@ -60,4 +56,10 @@ export const navio = Navio.build({
 });
 
 export const getNavio = () => navio;
-export const AppRoot = navio.Root;
+export const AppRoot = () => {
+  useEffect(() => {
+    stores.ui.isFirstLaunch ? navio.setRoot('OnboardingStack') : navio.setRoot('LoginStack');
+  }, []);
+
+  return <navio.Root />;
+};
