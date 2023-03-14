@@ -16,12 +16,11 @@ import { RecipesList } from '../components/recipes-list';
 import { services } from '../../services';
 import { getTheme } from '../../utils/designSystem';
 import { styleSheet } from '../../utils/stylesheet';
-import { SearchBar } from '../components/search-bar';
-import { Recipe } from '../../models/Recipe';
 import { useProductList } from '../hooks/useFlyer';
 import { useRecipes } from '../hooks/useRecipes';
 
 export const GroceryInfos: NavioScreen = observer(() => {
+  const [searchQuery, setSearchQuery] = React.useState('');
   const { productList, loadMore } = useProductList();
   const recipes = useRecipes();
 
@@ -74,6 +73,13 @@ export const GroceryInfos: NavioScreen = observer(() => {
       height: 40,
       textAlign: 'center',
     },
+    searchInput: {
+      fontSize: 16,
+      padding: 10,
+      borderRadius: 10,
+      backgroundColor: getTheme().grey,
+      color: getTheme().details,
+    },
   });
 
   return (
@@ -113,13 +119,20 @@ export const GroceryInfos: NavioScreen = observer(() => {
           />
           <View flex>
             <TabController.TabPage index={0}>
-              <View style={{ paddingTop: 20, paddingStart: 20, paddingEnd: 20 }}>
-                <SearchBar />
+              <View style={{ padding: 20 }}>
+                <TextInput
+                  style={styles.searchInput}
+                  placeholder={services.t.do('actions.search')}
+                  onChangeText={setSearchQuery}
+                  value={searchQuery}
+                />
               </View>
               <FlatList
                 onEndReached={loadMore}
                 onEndReachedThreshold={0.5}
-                data={productList}
+                data={productList.filter((product) =>
+                  product.product_name.toLowerCase().includes(searchQuery.toLowerCase()),
+                )}
                 renderItem={({ item }) => (
                   <View style={styles.cardContainer}>
                     <View style={styles.card}>
@@ -150,16 +163,7 @@ export const GroceryInfos: NavioScreen = observer(() => {
               />
             </TabController.TabPage>
             <TabController.TabPage index={1} lazy>
-              <View style={{ paddingTop: 20, paddingStart: 20, paddingEnd: 20 }}>
-                <SearchBar />
-              </View>
-              <RecipesList
-                recipes={recipes}
-                // eslint-disable-next-line @typescript-eslint/no-unused-vars
-                removeRecipe={function (recipe: Recipe): Promise<void> {
-                  throw new Error('Function not implemented.');
-                }}
-              />
+              <RecipesList recipes={recipes} />
             </TabController.TabPage>
           </View>
         </TabController>

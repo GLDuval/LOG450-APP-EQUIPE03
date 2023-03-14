@@ -7,7 +7,6 @@ import { navio } from '..';
 import { services } from '../../services';
 import { getTheme } from '../../utils/designSystem';
 import { styleSheet } from '../../utils/stylesheet';
-import { SearchBar } from '../components/search-bar';
 import { FoodInfosList } from '../components/food-infos-list';
 import { useGroceryList } from '../hooks/useGroceryList';
 
@@ -33,10 +32,6 @@ export const GroceryList: NavioScreen = observer(() => {
         </View>
       </View>
       <View style={styleSheet.roundedTopCornersContainer} bg-bgColor>
-        <View style={{ paddingTop: 20, paddingStart: 20, paddingEnd: 20 }}>
-          <SearchBar />
-        </View>
-
         <View style={{ height: 1000 }}>
           <FoodInfosList products={groceryList} modifyProduct={modifyProduct} />
         </View>

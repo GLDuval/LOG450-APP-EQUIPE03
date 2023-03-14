@@ -3,6 +3,7 @@ import { StyleSheet, Image, TextInput, FlatList } from 'react-native';
 import { Text, View } from 'react-native-ui-lib';
 import { getTheme } from '../../utils/designSystem';
 import { Product } from '../../models/Product';
+import { services } from '../../services';
 
 type FoodInfosListProps = {
   products: Product[];
@@ -10,6 +11,8 @@ type FoodInfosListProps = {
 };
 
 export const FoodInfosList = (props: FoodInfosListProps) => {
+  const [searchQuery, setSearchQuery] = React.useState('');
+
   // STYLES
   const styles = StyleSheet.create({
     infos: {
@@ -50,6 +53,13 @@ export const FoodInfosList = (props: FoodInfosListProps) => {
       height: 40,
       textAlign: 'center',
     },
+    searchInput: {
+      fontSize: 16,
+      padding: 10,
+      borderRadius: 10,
+      backgroundColor: getTheme().grey,
+      color: getTheme().details,
+    },
   });
 
   const handleQuantityChange = (product: Product, value: string) => {
@@ -59,37 +69,49 @@ export const FoodInfosList = (props: FoodInfosListProps) => {
   };
 
   return (
-    <FlatList
-      onEndReachedThreshold={0.5}
-      data={props.products}
-      renderItem={({ item }) => (
-        <View style={styles.cardContainer}>
-          <View style={styles.card}>
-            <View style={{ flexDirection: 'column', justifyContent: 'center' }}>
-              <Image
-                source={{ uri: item.image_url }}
-                style={{ width: 85, height: 85, borderRadius: 10 }}
-              />
-            </View>
-
-            <View style={{ flexDirection: 'column', paddingLeft: 20, width: '75%' }}>
-              <View style={{ flexDirection: 'row' }}>
-                <Text style={styles.cardHeader}>{item.product_name}</Text>
-                <TextInput
-                  placeholder="0"
-                  style={styles.textInput}
-                  maxLength={3}
-                  keyboardType="numeric"
-                  onChangeText={(value) => handleQuantityChange(item, value)}
+    <View>
+      <View style={{ padding: 20 }}>
+        <TextInput
+          style={styles.searchInput}
+          placeholder={services.t.do('actions.search')}
+          onChangeText={setSearchQuery}
+          value={searchQuery}
+        />
+      </View>
+      <FlatList
+        onEndReachedThreshold={0.5}
+        data={props.products.filter((recipe) =>
+          recipe.product_name.toLowerCase().includes(searchQuery.toLowerCase()),
+        )}
+        renderItem={({ item }) => (
+          <View style={styles.cardContainer}>
+            <View style={styles.card}>
+              <View style={{ flexDirection: 'column', justifyContent: 'center' }}>
+                <Image
+                  source={{ uri: item.image_url }}
+                  style={{ width: 85, height: 85, borderRadius: 10 }}
                 />
               </View>
 
-              <Text style={styles.infos}>{item.regular_price}</Text>
-              <Text style={styles.oldPrice}>{item.sale_price}</Text>
+              <View style={{ flexDirection: 'column', paddingLeft: 20, width: '75%' }}>
+                <View style={{ flexDirection: 'row' }}>
+                  <Text style={styles.cardHeader}>{item.product_name}</Text>
+                  <TextInput
+                    placeholder="0"
+                    style={styles.textInput}
+                    maxLength={3}
+                    keyboardType="numeric"
+                    onChangeText={(value) => handleQuantityChange(item, value)}
+                  />
+                </View>
+
+                <Text style={styles.infos}>{item.regular_price}</Text>
+                <Text style={styles.oldPrice}>{item.sale_price}</Text>
+              </View>
             </View>
           </View>
-        </View>
-      )}
-    />
+        )}
+      />
+    </View>
   );
 };

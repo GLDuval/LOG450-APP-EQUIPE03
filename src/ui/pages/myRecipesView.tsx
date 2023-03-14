@@ -5,16 +5,15 @@ import { observer } from 'mobx-react';
 import { NavioScreen } from 'rn-navio';
 import { navio } from '..';
 import { RecipesList } from '../components/recipes-list';
-import { SearchBar } from '../components/search-bar';
 import { services } from '../../services';
 import { getTheme } from '../../utils/designSystem';
 import { styleSheet } from '../../utils/stylesheet';
 import { useMyRecipes } from '../hooks/useMyRecipes';
 
-// TODO : Changer le RecipesList avec la vraie lister de favoris des recettes.
+// TODO : Changer le RecipesList avec la vraie liste de favoris des recettes.
 
 export const MyRecipes: NavioScreen = observer(() => {
-  const { recipes, removeRecipe } = useMyRecipes();
+  const { recipes } = useMyRecipes();
 
   return (
     <View flex style={{ backgroundColor: getTheme().blueberry }}>
@@ -36,10 +35,7 @@ export const MyRecipes: NavioScreen = observer(() => {
       </View>
 
       <View style={styleSheet.roundedTopCornersContainer} bg-bgColor>
-        <View style={{ paddingTop: 20, paddingStart: 20, paddingEnd: 20 }}>
-          <SearchBar />
-        </View>
-        <RecipesList recipes={recipes} removeRecipe={removeRecipe} />
+        <RecipesList recipes={recipes} />
       </View>
     </View>
   );

@@ -1,17 +1,20 @@
 import React from 'react';
-import { FlatList, StyleSheet, TouchableHighlight } from 'react-native';
+import { FlatList, StyleSheet, TextInput, TouchableHighlight } from 'react-native';
 import { Text, View } from 'react-native-ui-lib';
 import { getTheme } from '../../utils/designSystem';
 import { navio } from '..';
 import FavoriteComponent from './favorite';
 import { Recipe } from '../../models/Recipe';
+import { services } from '../../services';
 
 type RecipesListProps = {
   recipes: Recipe[];
-  removeRecipe: (recipe: Recipe) => Promise<void>; // TODO remove recipe
+  /* removeRecipe: (recipe: Recipe) => void; // TODO remove recipe */
 };
 
 export const RecipesList = (props: RecipesListProps) => {
+  const [searchQuery, setSearchQuery] = React.useState('');
+
   // STYLES
   const styles = StyleSheet.create({
     infos: {
@@ -35,12 +38,29 @@ export const RecipesList = (props: RecipesListProps) => {
       marginBottom: 20,
       borderRadius: 10,
     },
+    searchInput: {
+      fontSize: 16,
+      padding: 10,
+      borderRadius: 10,
+      backgroundColor: getTheme().grey,
+      color: getTheme().details,
+    },
   });
 
   return (
-    <>
+    <View>
+      <View style={{ padding: 20 }}>
+        <TextInput
+          style={styles.searchInput}
+          placeholder={services.t.do('actions.search')}
+          onChangeText={setSearchQuery}
+          value={searchQuery}
+        />
+      </View>
       <FlatList
-        data={props.recipes}
+        data={props.recipes.filter((recipe) =>
+          recipe.name.toLowerCase().includes(searchQuery.toLowerCase()),
+        )}
         renderItem={({ item }) => (
           <TouchableHighlight
             underlayColor={'transparent'}
@@ -64,6 +84,6 @@ export const RecipesList = (props: RecipesListProps) => {
           </TouchableHighlight>
         )}
       />
-    </>
+    </View>
   );
 };
