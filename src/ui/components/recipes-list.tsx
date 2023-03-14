@@ -57,33 +57,39 @@ export const RecipesList = (props: RecipesListProps) => {
           value={searchQuery}
         />
       </View>
-      <FlatList
-        data={props.recipes.filter((recipe) =>
-          recipe.name.toLowerCase().includes(searchQuery.toLowerCase()),
-        )}
-        renderItem={({ item }) => (
-          <TouchableHighlight
-            underlayColor={'transparent'}
-            onPress={() => {
-              navio.N.navigate('RecipeDetails', { recipe: item });
-            }}
-          >
-            <View style={styles.cardContainer}>
-              <View style={styles.card}>
-                <View style={{ flexDirection: 'row', marginBottom: 5 }}>
-                  <View style={{ flexDirection: 'column', width: '75%' }}>
-                    <Text style={styles.cardHeader}>{item.name}</Text>
-                    <Text style={styles.infos}>Ingrédients ({item.ingredients.length})</Text>
-                  </View>
-                  <View style={{ flexDirection: 'column', width: '25%' }}>
-                    <FavoriteComponent />
+      {props.recipes.filter((recipe) =>
+        recipe.name.toLowerCase().includes(searchQuery.toLowerCase()),
+      ).length === 0 ? (
+        <View style={{ height: 1000 }} />
+      ) : (
+        <FlatList
+          data={props.recipes.filter((recipe) =>
+            recipe.name.toLowerCase().includes(searchQuery.toLowerCase()),
+          )}
+          renderItem={({ item }) => (
+            <TouchableHighlight
+              underlayColor={'transparent'}
+              onPress={() => {
+                navio.N.navigate('RecipeDetails', { recipe: item });
+              }}
+            >
+              <View style={styles.cardContainer}>
+                <View style={styles.card}>
+                  <View style={{ flexDirection: 'row', marginBottom: 5 }}>
+                    <View style={{ flexDirection: 'column', width: '75%' }}>
+                      <Text style={styles.cardHeader}>{item.name}</Text>
+                      <Text style={styles.infos}>Ingrédients ({item.ingredients.length})</Text>
+                    </View>
+                    <View style={{ flexDirection: 'column', width: '25%' }}>
+                      <FavoriteComponent />
+                    </View>
                   </View>
                 </View>
               </View>
-            </View>
-          </TouchableHighlight>
-        )}
-      />
+            </TouchableHighlight>
+          )}
+        />
+      )}
     </View>
   );
 };
