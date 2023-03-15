@@ -109,13 +109,7 @@ export const Profile: NavioScreen = observer(() => {
         </Text>
 
         <View center>
-          <Avatar
-            source={{ uri: 'https://randomuser.me/api/portraits/men/1.jpg' }}
-            size={90}
-            onPress={() => {
-              console.log('Change photo');
-            }}
-          />
+          <Avatar source={{ uri: 'https://randomuser.me/api/portraits/men/1.jpg' }} size={90} />
         </View>
 
         <Text style={styles.name} center>

@@ -40,7 +40,6 @@ export const Join: NavioScreen = observer(() => {
           setCredentialsError(false);
           setLoading(false);
           navio.push('Login');
-          console.log(user);
         })
         .catch((error: FirebaseError) => {
           const errorCode = error.code;

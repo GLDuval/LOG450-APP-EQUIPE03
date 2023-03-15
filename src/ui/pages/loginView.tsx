@@ -1,3 +1,8 @@
+/* eslint-disable @typescript-eslint/no-unsafe-return */
+/* eslint-disable @typescript-eslint/no-unsafe-call */
+/* eslint-disable @typescript-eslint/no-unsafe-argument */
+/* eslint-disable @typescript-eslint/no-unsafe-member-access */
+/* eslint-disable @typescript-eslint/no-unsafe-assignment */
 import React, { useCallback, useEffect, useState } from 'react';
 import { ScrollView, StatusBar, StyleSheet } from 'react-native';
 import { Text, View, Button, LoaderScreen, Colors, Icon } from 'react-native-ui-lib';
@@ -39,8 +44,7 @@ export const Login: NavioScreen = observer(() => {
       const { id_token } = googleResponse.params;
       const credential = GoogleAuthProvider.credential(id_token);
       signInWithCredential(auth, credential)
-        .then((userCredential) => {
-          console.log(userCredential);
+        .then(() => {
           navio.setRoot('MainStack');
         })
         .catch((error: FirebaseError) => {
@@ -175,26 +179,9 @@ export const Login: NavioScreen = observer(() => {
             iconSource={() => <Icon size={30} assetName={'google'} style={{ paddingLeft: 0 }} />}
           />
         </View>
-        {/* }
-        <View style={styleSheet.loginInput}>
-          <Button
-            label={services.t.do('login.loginWithGoogle')}
-            labelStyle={styles.loginGoogleButtonLabel}
-            borderRadius={15}
-            backgroundColor="#FFFFFF"
-            style={{borderColor: "#D6D6D6"}}
-            iconSource={Assets.images.google}
-          />
-        </View>
-        {*/}
         <View style={styleSheet.loginInput}>
           <Text onPress={() => navio.show('Join')} style={styles.joinText}>
             {services.t.do('login.signup')}
-          </Text>
-        </View>
-        <View style={styleSheet.loginInput}>
-          <Text onPress={() => console.log('TODO')} style={styles.continueAsGuest}>
-            {services.t.do('login.continueAsGuest')}
           </Text>
         </View>
         {loading && <LoaderScreen message={services.t.do('login.loading')} color={Colors.grey40} />}

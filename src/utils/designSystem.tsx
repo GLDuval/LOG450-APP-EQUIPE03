@@ -122,7 +122,6 @@ export const getStatusBarBGColor = (): string => {
   return themes[appearance ?? 'light'].bg2Color;
 };
 
-// TODO See if we really need this
 export const getNavigationTheme = (): Theme => {
   const { ui } = stores;
 
