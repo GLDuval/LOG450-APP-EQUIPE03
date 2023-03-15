@@ -21,8 +21,13 @@ import { useRecipes } from '../hooks/useRecipes';
 
 export const GroceryInfos: NavioScreen = observer(() => {
   const [searchQuery, setSearchQuery] = React.useState('');
-  const { productList, loadMore } = useProductList();
+  const { productList, loadMore, searchedProducts, searchByName } = useProductList();
   const recipes = useRecipes();
+
+  const search = (text: string) => {
+    setSearchQuery(text);
+    searchByName(text);
+  };
 
   // STYLES
   const styles = StyleSheet.create({
@@ -123,16 +128,14 @@ export const GroceryInfos: NavioScreen = observer(() => {
                 <TextInput
                   style={styles.searchInput}
                   placeholder={services.t.do('actions.search')}
-                  onChangeText={setSearchQuery}
+                  onChangeText={search}
                   value={searchQuery}
                 />
               </View>
               <FlatList
                 onEndReached={loadMore}
                 onEndReachedThreshold={0.5}
-                data={productList.filter((product) =>
-                  product.product_name.toLowerCase().includes(searchQuery.toLowerCase()),
-                )}
+                data={searchQuery.length > 0 ? searchedProducts : productList}
                 renderItem={({ item }) => (
                   <View style={styles.cardContainer}>
                     <View style={styles.card}>

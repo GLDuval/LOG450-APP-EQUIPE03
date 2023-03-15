@@ -1,5 +1,5 @@
 import { db } from '../../firebaseConfig';
-import { collection, getDocs, query, orderBy, limit, startAfter } from 'firebase/firestore';
+import { collection, getDocs, query, orderBy, limit, startAfter, where } from 'firebase/firestore';
 import { Product } from '../models/Product';
 import { Recipe } from '../models/Recipe';
 import { Grocery } from '../models/Grocery';
@@ -114,6 +114,23 @@ export const getProductsNextBatch = async (lastProduct: Product) => {
     products.push(doc.data() as Product);
   });
 
+  return products;
+};
+
+export const getProductsByName = async (queryString: string) => {
+  const products: Product[] = [];
+
+  const firestoreQuery = query(
+    collection(db, 'products'),
+    where('product_name_lower', '>=', queryString.toLowerCase()),
+    where('product_name_lower', '<=', queryString.toLowerCase() + '\uf8ff'),
+  );
+  const querySnapshot = await getDocs(firestoreQuery);
+  querySnapshot.forEach((doc) => {
+    products.push(doc.data() as Product);
+  });
+
+  console.log(products);
   return products;
 };
 
