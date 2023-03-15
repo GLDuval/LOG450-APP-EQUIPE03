@@ -68,6 +68,7 @@ export const en = {
   },
   map: {
     title: 'Map',
+    myLocation: 'My location',
   },
   profile: {
     title: 'Profile',
@@ -81,7 +82,6 @@ export const en = {
     search: 'Rechercher',
     show: 'Show',
     close: 'Close',
-    skip: 'Skip',
   },
   sunday: 'Sunday',
   monday: 'Monday',
@@ -157,6 +157,7 @@ export const fr = {
   },
   map: {
     title: 'Carte',
+    myLocation: 'Ma position',
   },
   groceryInfos: {
     flyer: 'Circulaire',
@@ -174,7 +175,6 @@ export const fr = {
     search: 'Rechercher',
     show: 'Afficher',
     close: 'Fermer',
-    skip: 'Sauter',
   },
   sunday: 'Dimanche',
   monday: 'Lundi',

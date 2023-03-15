@@ -79,6 +79,12 @@ export const getGroceriesPositions = () => {
       latitude: 45.462977,
       longitude: -73.619152,
     },
+    {
+      id: 9,
+      name: 'Super C - Ataken',
+      latitude: 45.520679,
+      longitude: -73.563309,
+    },
   ];
 
   return groceryPostions;
