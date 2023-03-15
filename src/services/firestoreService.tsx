@@ -130,7 +130,6 @@ export const getProductsByName = async (queryString: string) => {
     products.push(doc.data() as Product);
   });
 
-  console.log(products);
   return products;
 };
 
