@@ -1,6 +1,6 @@
 import React from 'react';
 import { TouchableHighlight } from 'react-native';
-import { Button, Colors, Icon, Image, Text, View } from 'react-native-ui-lib';
+import { Icon, Image, Text, View } from 'react-native-ui-lib';
 import { observer } from 'mobx-react';
 import { NavioScreen } from 'rn-navio';
 import { getTheme } from '../../utils/designSystem';
@@ -18,17 +18,7 @@ export const OnboardingThirdPage: NavioScreen = observer(() => {
         backgroundColor: getTheme().bg2Color,
       }}
     >
-      <View style={{ flex: 1 }}>
-        <Button
-          label={services.t.do('actions.skip')}
-          color={getTheme().blueberry}
-          backgroundColor={Colors.transparent}
-          style={{ justifyContent: 'flex-end', paddingTop: 50, paddingRight: 40 }}
-          onPress={() => {
-            navio.show('Login');
-          }}
-        />
-      </View>
+      <View style={{ flex: 1 }} />
       <View style={{ flex: 2 }} center>
         <Image
           assetGroup={'images'}
