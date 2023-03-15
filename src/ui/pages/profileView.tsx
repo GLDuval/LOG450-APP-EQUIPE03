@@ -11,13 +11,9 @@ import { styleSheet } from '../../utils/stylesheet';
 import { auth } from '../../../firebaseConfig';
 import { FirebaseError } from 'firebase/app';
 import { UserContext } from '../../contexts/UserContext';
+import LanguagePicker from '../components/languagePicker';
 
 export const Profile: NavioScreen = observer(() => {
-  /* const options = [
-    {label: 'Français', value: 'fr'},
-    {label: 'English', value: 'en'},
-  ];*/
-
   const username = useContext(UserContext)?.displayName;
 
   const [loading, setLoading] = useState(false);
@@ -137,8 +133,8 @@ export const Profile: NavioScreen = observer(() => {
                 {services.t.do('profile.chooseLanguage')}
               </Text>
             </View>
-            <View style={{ flex: 2, marginTop: 8 }}>
-              <Text style={(styleSheet.text, { color: getTheme().mainHeader })}>English</Text>
+            <View style={{ flex: 2 }}>
+              <LanguagePicker />
             </View>
           </View>
         </View>
