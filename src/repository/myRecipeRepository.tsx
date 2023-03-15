@@ -1,17 +1,27 @@
 import { Recipe } from '../models/Recipe';
-import { getMyRecipes, addRecipe, removeRecipe } from '../services/firestoreService';
+import {
+  getMyRecipes,
+  addRecipe as addRecipeFirestore,
+  removeRecipe as removeRecipeFirestore,
+} from '../services/firestoreService';
 
-export function getAll() {
-  const result = getMyRecipes();
+export function getAllRecipes(userId: string) {
+  const result = getMyRecipes(userId);
   return result;
 }
 
-export function add(recipe: Recipe) {
-  const result = addRecipe(recipe);
+export async function getRecipe(id: string, userId: string) {
+  const recipes = await getMyRecipes(userId);
+  const result = recipes.find((recipe) => recipe.id === id);
   return result;
 }
 
-export function remove(recipe: Recipe) {
-  const result = removeRecipe(recipe);
+export function addRecipe(recipe: Recipe, userId: string) {
+  const result = addRecipeFirestore(recipe, userId);
+  return result;
+}
+
+export function removeRecipe(recipe: Recipe, userId: string) {
+  const result = removeRecipeFirestore(recipe, userId);
   return result;
 }

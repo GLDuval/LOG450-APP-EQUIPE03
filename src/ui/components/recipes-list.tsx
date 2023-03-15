@@ -8,7 +8,6 @@ import { Recipe } from '../../models/Recipe';
 
 type RecipesListProps = {
   recipes: Recipe[];
-  /* removeRecipe: (recipe: Recipe) => void; // TODO remove recipe */
 };
 
 export const RecipesList = (props: RecipesListProps) => {
@@ -63,7 +62,7 @@ export const RecipesList = (props: RecipesListProps) => {
                   <Text style={styles.infos}>Ingrédients ({item.ingredients.length})</Text>
                 </View>
                 <View style={{ flexDirection: 'column', width: '25%' }}>
-                  <FavoriteComponent />
+                  <FavoriteComponent recipe={item} />
                 </View>
               </View>
             </View>

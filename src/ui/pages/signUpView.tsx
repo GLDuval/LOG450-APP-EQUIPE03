@@ -13,6 +13,7 @@ import { TextInput } from 'react-native-gesture-handler';
 import { FirebaseError } from 'firebase/app';
 import { getTheme } from '../../utils/designSystem';
 import { styleSheet } from '../../utils/stylesheet';
+import { addEmptyUserDocument } from '../../services/firestoreService';
 
 export const Join: NavioScreen = observer(() => {
   useAppearance();
@@ -37,6 +38,7 @@ export const Join: NavioScreen = observer(() => {
           await updateProfile(user, {
             displayName: name,
           });
+          await addEmptyUserDocument(user.uid);
           setCredentialsError(false);
           setLoading(false);
           navio.push('Login');
