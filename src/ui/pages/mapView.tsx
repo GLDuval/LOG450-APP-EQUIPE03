@@ -63,7 +63,9 @@ export const GroceryMap: NavioScreen = observer(() => {
         <View style={{ paddingTop: 20, paddingStart: 20, paddingEnd: 20, height: 1000 }}>
           <View style={{ flex: 1 }}>
             {errorMsg ? (
-              <Text>{errorMsg}</Text>
+              <Text style={{ textAlign: 'center', marginTop: 15 }}>
+                {services.t.do('map.permissionDenied')}
+              </Text>
             ) : location ? (
               <MapView style={{ flex: 1 }} initialRegion={region}>
                 <Marker

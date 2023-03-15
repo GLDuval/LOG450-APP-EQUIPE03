@@ -69,6 +69,7 @@ export const en = {
   map: {
     title: 'Map',
     myLocation: 'My location',
+    permissionDenied: 'Permission to access location was denied',
   },
   profile: {
     title: 'Profile',
@@ -158,6 +159,7 @@ export const fr = {
   map: {
     title: 'Carte',
     myLocation: 'Ma position',
+    permissionDenied: 'Permission pour accéder à la localisation a été refusé',
   },
   groceryInfos: {
     flyer: 'Circulaire',
