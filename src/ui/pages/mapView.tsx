@@ -22,21 +22,32 @@ export const GroceryMap: NavioScreen = observer(() => {
   const positions = useMap();
 
   useEffect(() => {
-    (async () => {
-      const { status } = await Location.requestForegroundPermissionsAsync();
-      if (status !== 'granted') {
-        setErrorMsg('Permission to access location was denied');
-        return;
-      }
+    (() => {
+      Location.requestForegroundPermissionsAsync().then(
+        (response) => {
+          if (response.status !== 'granted') {
+            setErrorMsg('Permission to access location was denied');
+          }
+        },
+        (err) => {
+          console.log(err);
+        },
+      );
 
-      const currLocation = await Location.getCurrentPositionAsync({});
-      setLocation(currLocation);
-      setRegion({
-        latitude: currLocation.coords.latitude,
-        longitude: currLocation.coords.longitude,
-        latitudeDelta: 0.0922,
-        longitudeDelta: 0.0421,
-      });
+      Location.getCurrentPositionAsync({}).then(
+        (currLocation) => {
+          setLocation(currLocation);
+          setRegion({
+            latitude: currLocation.coords.latitude,
+            longitude: currLocation.coords.longitude,
+            latitudeDelta: 0.0922,
+            longitudeDelta: 0.0421,
+          });
+        },
+        (err) => {
+          console.log(err);
+        },
+      );
     })();
   }, []);
 
@@ -66,7 +77,7 @@ export const GroceryMap: NavioScreen = observer(() => {
               <Text style={{ textAlign: 'center', marginTop: 15 }}>
                 {services.t.do('map.permissionDenied')}
               </Text>
-            ) : location ? (
+            ) : location && region ? (
               <MapView style={{ flex: 1 }} initialRegion={region}>
                 <Marker
                   coordinate={region}
