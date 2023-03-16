@@ -10,10 +10,12 @@ import { getTheme } from '../../utils/designSystem';
 import { styleSheet } from '../../utils/stylesheet';
 import { UserContext } from '../../contexts/UserContext';
 import { useGroceries } from '../hooks/useGroceries';
+import { LanguageContext } from '../../contexts/LanguageContext';
 
 export const Dashboard: NavioScreen = observer(() => {
   const groceries = useGroceries();
   const username = useContext(UserContext)?.displayName;
+  useContext(LanguageContext);
 
   // STYLES
   const styles = StyleSheet.create({
