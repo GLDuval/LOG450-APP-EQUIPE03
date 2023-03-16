@@ -19,3 +19,7 @@ export function setLanguage(newLanguage: Language) {
   language = newLanguage;
   services.t.setLanguage(language.value);
 }
+
+export function setupLanguage(newLanguage: string) {
+  language = languages.find((lang) => lang.value === newLanguage) || defaultLanguage;
+}

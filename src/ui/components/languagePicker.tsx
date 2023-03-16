@@ -12,6 +12,7 @@ type LanguagePickerProps = {
 
 export const LanguagePicker = (props: LanguagePickerProps) => {
   const { language, setLang } = useLanguage();
+  console.log(language);
 
   const handleLangChange = (newLang: Language) => {
     setLang(newLang);
