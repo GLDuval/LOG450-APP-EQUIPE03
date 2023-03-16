@@ -68,6 +68,8 @@ export const en = {
   },
   map: {
     title: 'Map',
+    myLocation: 'My location',
+    permissionDenied: 'Permission to access location was denied',
   },
   profile: {
     title: 'Profile',
@@ -81,7 +83,6 @@ export const en = {
     search: 'Rechercher',
     show: 'Show',
     close: 'Close',
-    skip: 'Skip',
   },
   sunday: 'Sunday',
   monday: 'Monday',
@@ -157,6 +158,8 @@ export const fr = {
   },
   map: {
     title: 'Carte',
+    myLocation: 'Ma position',
+    permissionDenied: 'Permission pour accéder à la localisation a été refusé',
   },
   groceryInfos: {
     flyer: 'Circulaire',
@@ -174,7 +177,6 @@ export const fr = {
     search: 'Rechercher',
     show: 'Afficher',
     close: 'Fermer',
-    skip: 'Sauter',
   },
   sunday: 'Dimanche',
   monday: 'Lundi',

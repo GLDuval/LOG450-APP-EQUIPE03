@@ -25,4 +25,12 @@ export class TranslateService {
     this.i18n.enableFallback = true;
     this.i18n.locale = ui.isLanguageSystem ? lng : ui.language;
   };
+
+  getLanguage = (): string => {
+    return this.i18n.locale.substring(0, 2);
+  };
+
+  setLanguage = (lang: string) => {
+    this.i18n.locale = lang;
+  };
 }

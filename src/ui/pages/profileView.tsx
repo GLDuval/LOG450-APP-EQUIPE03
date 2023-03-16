@@ -11,16 +11,14 @@ import { styleSheet } from '../../utils/stylesheet';
 import { auth } from '../../../firebaseConfig';
 import { FirebaseError } from 'firebase/app';
 import { UserContext } from '../../contexts/UserContext';
+import { LanguagePicker } from '../components/languagePicker';
+import { LanguageContext } from '../../contexts/LanguageContext';
 
 export const Profile: NavioScreen = observer(() => {
-  /* const options = [
-    {label: 'Français', value: 'fr'},
-    {label: 'English', value: 'en'},
-  ];*/
-
   const username = useContext(UserContext)?.displayName;
 
   const [loading, setLoading] = useState(false);
+  const { setLang } = useContext(LanguageContext);
 
   const buttonSignOut = useCallback(async () => {
     setLoading(true);
@@ -109,13 +107,7 @@ export const Profile: NavioScreen = observer(() => {
         </Text>
 
         <View center>
-          <Avatar
-            source={{ uri: 'https://randomuser.me/api/portraits/men/1.jpg' }}
-            size={90}
-            onPress={() => {
-              console.log('Change photo');
-            }}
-          />
+          <Avatar source={{ uri: 'https://randomuser.me/api/portraits/men/1.jpg' }} size={90} />
         </View>
 
         <Text style={styles.name} center>
@@ -143,8 +135,8 @@ export const Profile: NavioScreen = observer(() => {
                 {services.t.do('profile.chooseLanguage')}
               </Text>
             </View>
-            <View style={{ flex: 2, marginTop: 8 }}>
-              <Text style={(styleSheet.text, { color: getTheme().mainHeader })}>English</Text>
+            <View style={{ flex: 2 }}>
+              <LanguagePicker changeLang={setLang} />
             </View>
           </View>
         </View>

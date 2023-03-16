@@ -6,6 +6,7 @@ import {
   orderBy,
   limit,
   startAfter,
+  where,
   doc,
   getDoc,
   updateDoc,
@@ -90,6 +91,12 @@ export const getGroceriesPositions = () => {
       latitude: 45.462977,
       longitude: -73.619152,
     },
+    {
+      id: 9,
+      name: 'Super C - Ataken',
+      latitude: 45.520679,
+      longitude: -73.563309,
+    },
   ];
 
   return groceryPostions;
@@ -123,6 +130,22 @@ export const getProductsNextBatch = async (lastProduct: Product) => {
   const querySnapshot = await getDocs(firestoreQuery);
   querySnapshot.forEach((document) => {
     products.push(document.data() as Product);
+  });
+
+  return products;
+};
+
+export const getProductsByName = async (queryString: string) => {
+  const products: Product[] = [];
+
+  const firestoreQuery = query(
+    collection(db, 'products'),
+    where('product_name_lower', '>=', queryString.toLowerCase()),
+    where('product_name_lower', '<=', queryString.toLowerCase() + '\uf8ff'),
+  );
+  const querySnapshot = await getDocs(firestoreQuery);
+  querySnapshot.forEach((doc) => {
+    products.push(doc.data() as Product);
   });
 
   return products;

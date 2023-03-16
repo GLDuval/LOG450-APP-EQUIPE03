@@ -11,18 +11,21 @@ import {
   getStatusBarStyle,
 } from './src/utils/designSystem';
 import { hydrateStores } from './src/stores';
-import { initServices } from './src/services';
+import { initServices, services } from './src/services';
 import { SSProvider } from './src/utils/providers';
 import { StatusBar } from 'expo-status-bar';
-import { useAppearance } from './src/utils/hooks';
 import { UserContext } from './src/contexts/UserContext';
+import { LanguageContext } from './src/contexts/LanguageContext';
 import { auth } from './firebaseConfig';
 import { useAuthState } from 'react-firebase-hooks/auth';
+import { useLanguage } from './src/ui/hooks/useLanguage';
+import { setupLanguage } from './src/repository/userRepository';
 
 LogBox.ignoreLogs(['Require']);
 
 export default (): JSX.Element => {
-  useAppearance();
+  setupLanguage(services.t.getLanguage().substring(0, 2));
+  const language = useLanguage();
   const [ready, setReady] = useState(false);
   const [user] = useAuthState(auth);
 
@@ -47,10 +50,12 @@ export default (): JSX.Element => {
   return (
     <GestureHandlerRootView style={{ flex: 1 }}>
       <SSProvider>
-        <UserContext.Provider value={user}>
-          <StatusBar style={getStatusBarStyle()} backgroundColor={getStatusBarBGColor()} />
-          <AppRoot />
-        </UserContext.Provider>
+        <LanguageContext.Provider value={language}>
+          <UserContext.Provider value={user}>
+            <StatusBar style={getStatusBarStyle()} backgroundColor={getStatusBarBGColor()} />
+            <AppRoot />
+          </UserContext.Provider>
+        </LanguageContext.Provider>
       </SSProvider>
     </GestureHandlerRootView>
   );

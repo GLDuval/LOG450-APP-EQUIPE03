@@ -1,10 +1,11 @@
 import { useState, useEffect } from 'react';
-import { getAll, getAllNext } from '../../repository/flyerRepository';
+import { getAll, getAllNext, getByName } from '../../repository/flyerRepository';
 import { Product } from '../../models/Product';
 
 export function useProductList() {
   const [productList, setProductList] = useState<Product[]>([]);
   const [lastProduct, setLastProduct] = useState<Product>({} as Product);
+  const [searchedProducts, setSearchedProducts] = useState<Product[]>([]);
 
   useEffect(() => {
     function fetchData() {
@@ -31,5 +32,14 @@ export function useProductList() {
     );
   };
 
-  return { productList, loadMore };
+  const searchByName = (query: string) => {
+    getByName(query).then(
+      (products) => {
+        setSearchedProducts(products);
+      },
+      (err) => console.log(err),
+    );
+  };
+
+  return { productList, loadMore, searchedProducts, searchByName };
 }
