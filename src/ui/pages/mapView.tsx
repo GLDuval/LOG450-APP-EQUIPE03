@@ -27,22 +27,23 @@ export const GroceryMap: NavioScreen = observer(() => {
         (response) => {
           if (response.status !== 'granted') {
             setErrorMsg('Permission to access location was denied');
+          } else {
+            Location.getCurrentPositionAsync({}).then(
+              (currLocation) => {
+                console.log('worked');
+                setLocation(currLocation);
+                setRegion({
+                  latitude: currLocation.coords.latitude,
+                  longitude: currLocation.coords.longitude,
+                  latitudeDelta: 0.0922,
+                  longitudeDelta: 0.0421,
+                });
+              },
+              (err) => {
+                console.log(err);
+              },
+            );
           }
-        },
-        (err) => {
-          console.log(err);
-        },
-      );
-
-      Location.getCurrentPositionAsync({}).then(
-        (currLocation) => {
-          setLocation(currLocation);
-          setRegion({
-            latitude: currLocation.coords.latitude,
-            longitude: currLocation.coords.longitude,
-            latitudeDelta: 0.0922,
-            longitudeDelta: 0.0421,
-          });
         },
         (err) => {
           console.log(err);
