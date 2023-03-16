@@ -30,7 +30,6 @@ export const GroceryMap: NavioScreen = observer(() => {
           } else {
             Location.getCurrentPositionAsync({}).then(
               (currLocation) => {
-                console.log('worked');
                 setLocation(currLocation);
                 setRegion({
                   latitude: currLocation.coords.latitude,
