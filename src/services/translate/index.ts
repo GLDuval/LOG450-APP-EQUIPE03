@@ -27,7 +27,7 @@ export class TranslateService {
   };
 
   getLanguage = (): string => {
-    return this.i18n.locale;
+    return this.i18n.locale.substring(0, 2);
   };
 
   setLanguage = (lang: string) => {

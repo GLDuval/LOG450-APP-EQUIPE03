@@ -14,7 +14,6 @@ import { hydrateStores } from './src/stores';
 import { initServices } from './src/services';
 import { SSProvider } from './src/utils/providers';
 import { StatusBar } from 'expo-status-bar';
-import { useAppearance } from './src/utils/hooks';
 import { UserContext } from './src/contexts/UserContext';
 import { LanguageContext } from './src/contexts/LanguageContext';
 import { auth } from './firebaseConfig';
@@ -24,10 +23,9 @@ import { useLanguage } from './src/ui/hooks/useLanguage';
 LogBox.ignoreLogs(['Require']);
 
 export default (): JSX.Element => {
-  useAppearance();
+  const language = useLanguage();
   const [ready, setReady] = useState(false);
   const [user] = useAuthState(auth);
-  const { language } = useLanguage();
 
   const start = useCallback(async () => {
     await SplashScreen.preventAutoHideAsync();

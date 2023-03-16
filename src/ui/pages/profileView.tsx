@@ -12,11 +12,13 @@ import { auth } from '../../../firebaseConfig';
 import { FirebaseError } from 'firebase/app';
 import { UserContext } from '../../contexts/UserContext';
 import { LanguagePicker } from '../components/languagePicker';
+import { LanguageContext } from '../../contexts/LanguageContext';
 
 export const Profile: NavioScreen = observer(() => {
   const username = useContext(UserContext)?.displayName;
 
   const [loading, setLoading] = useState(false);
+  const { setLang } = useContext(LanguageContext);
 
   const buttonSignOut = useCallback(async () => {
     setLoading(true);
@@ -134,7 +136,7 @@ export const Profile: NavioScreen = observer(() => {
               </Text>
             </View>
             <View style={{ flex: 2 }}>
-              <LanguagePicker />
+              <LanguagePicker changeLang={setLang} />
             </View>
           </View>
         </View>
