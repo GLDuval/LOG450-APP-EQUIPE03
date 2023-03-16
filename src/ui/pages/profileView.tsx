@@ -11,7 +11,7 @@ import { styleSheet } from '../../utils/stylesheet';
 import { auth } from '../../../firebaseConfig';
 import { FirebaseError } from 'firebase/app';
 import { UserContext } from '../../contexts/UserContext';
-import LanguagePicker from '../components/languagePicker';
+import { LanguagePicker } from '../components/languagePicker';
 
 export const Profile: NavioScreen = observer(() => {
   const username = useContext(UserContext)?.displayName;

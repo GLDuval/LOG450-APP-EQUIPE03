@@ -1,38 +1,23 @@
 import _ from 'lodash';
-import React, { Component } from 'react';
+import React from 'react';
 import { Picker } from 'react-native-ui-lib';
 import { Language } from '../../models/Language';
 import { services } from '../../services';
+import { useLanguage } from '../hooks/useLanguage';
+import { languages } from '../../repository/userRepository';
 
-const LANGUAGES: Language[] = [
-  { label: 'English', value: 'en' },
-  { label: 'Français', value: 'fr' },
-];
+export const LanguagePicker = () => {
+  const { language, setLang } = useLanguage();
 
-export default class LanguagePicker extends Component {
-  selectedLanguageCode = LANGUAGES.find(
-    (lang) => lang.value === services.t.getLanguage().substring(0, 2),
+  return (
+    <Picker
+      placeholder={services.t.do('profile.chooseLanguage')}
+      value={language}
+      onChange={(item: object) => setLang(item as Language)}
+    >
+      {_.map(languages, (option) => (
+        <Picker.Item key={option.value} value={option.value} label={option.label} />
+      ))}
+    </Picker>
   );
-  state = {
-    language: this.selectedLanguageCode,
-  };
-
-  handleLangChange = (lang: object) => {
-    services.t.setLanguage((lang as Language).value);
-    this.setState({ language: lang });
-  };
-
-  render() {
-    return (
-      <Picker
-        placeholder={services.t.do('profile.chooseLanguage')}
-        value={this.state.language}
-        onChange={(item: object) => this.handleLangChange(item)}
-      >
-        {_.map(LANGUAGES, (option) => (
-          <Picker.Item key={option.value} value={option.value} label={option.label} />
-        ))}
-      </Picker>
-    );
-  }
-}
+};
