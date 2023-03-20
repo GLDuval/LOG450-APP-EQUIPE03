@@ -23,6 +23,7 @@ import { FirebaseError } from 'firebase/app';
 import { getTheme } from '../../utils/designSystem';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { styleSheet } from '../../utils/stylesheet';
+import { addEmptyUserDocument } from '../../services/firestoreService';
 
 export const Login: NavioScreen = observer(() => {
   useAppearance();
@@ -44,7 +45,9 @@ export const Login: NavioScreen = observer(() => {
       const { id_token } = googleResponse.params;
       const credential = GoogleAuthProvider.credential(id_token);
       signInWithCredential(auth, credential)
-        .then(() => {
+        .then(async (userCredential) => {
+          const googleUser = userCredential.user;
+          await addEmptyUserDocument(googleUser.uid);
           navio.setRoot('MainStack');
         })
         .catch((error: FirebaseError) => {

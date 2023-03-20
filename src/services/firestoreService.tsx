@@ -1,5 +1,17 @@
 import { db } from '../../firebaseConfig';
-import { collection, getDocs, query, orderBy, limit, startAfter, where } from 'firebase/firestore';
+import {
+  collection,
+  getDocs,
+  query,
+  orderBy,
+  limit,
+  startAfter,
+  where,
+  doc,
+  getDoc,
+  updateDoc,
+  setDoc,
+} from 'firebase/firestore';
 import { Product } from '../models/Product';
 import { Recipe } from '../models/Recipe';
 import { Grocery } from '../models/Grocery';
@@ -11,11 +23,11 @@ export const getGroceries = async () => {
   const daysOfWeek = ['sunday', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday'];
   const firestoreQuery = query(collection(db, 'groceries'));
   const querySnapshot = await getDocs(firestoreQuery);
-  querySnapshot.forEach((doc) => {
+  querySnapshot.forEach((document) => {
     const grocery: Grocery = {
-      id: doc.data().id as number,
-      until: services.t.do(daysOfWeek[doc.data().until as number]),
-      name: doc.data().name as string,
+      id: document.data().id as number,
+      until: services.t.do(daysOfWeek[document.data().until as number]),
+      name: document.data().name as string,
     };
     groceries.push(grocery);
   });
@@ -99,8 +111,8 @@ export const getProducts = async () => {
     limit(10),
   );
   const querySnapshot = await getDocs(firestoreQuery);
-  querySnapshot.forEach((doc) => {
-    products.push(doc.data() as Product);
+  querySnapshot.forEach((document) => {
+    products.push(document.data() as Product);
   });
 
   return products;
@@ -116,8 +128,8 @@ export const getProductsNextBatch = async (lastProduct: Product) => {
     limit(10),
   );
   const querySnapshot = await getDocs(firestoreQuery);
-  querySnapshot.forEach((doc) => {
-    products.push(doc.data() as Product);
+  querySnapshot.forEach((document) => {
+    products.push(document.data() as Product);
   });
 
   return products;
@@ -144,31 +156,60 @@ export const getRecipes = async () => {
 
   const firestoreQuery = query(collection(db, 'recipes'));
   const querySnapshot = await getDocs(firestoreQuery);
-  querySnapshot.forEach((doc) => {
-    recipes.push(doc.data() as Recipe);
+  querySnapshot.forEach((document) => {
+    recipes.push({ id: document.id, ...document.data() } as Recipe);
   });
 
   return recipes;
 };
 
-export const getMyRecipes = () => {
-  const recipes: Recipe[] = [];
-
-  // TODO : Fetch the user recipes
+export const getMyRecipes = async (userId: string) => {
+  let recipes: Recipe[] = [];
+  const userRef = doc(db, 'users', userId);
+  const userSnap = await getDoc(userRef);
+  if (userSnap.exists()) {
+    const user = userSnap.data();
+    recipes = user.recipes as Recipe[];
+  } else {
+    console.log('No such document!');
+  }
 
   return recipes;
 };
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-export const addRecipe = (recipe: Recipe) => {
-  // TODO : Add a recipe to the user connected
-  return null;
+export const addRecipe = async (recipe: Recipe, userId: string) => {
+  const userRef = doc(db, 'users', userId);
+  const userSnap = await getDoc(userRef);
+
+  if (userSnap.exists()) {
+    const user = userSnap.data();
+    const recipes = user.recipes as Recipe[];
+    recipes.push(recipe);
+    await updateDoc(userRef, { recipes: recipes });
+  } else {
+    console.log('No such document!');
+  }
 };
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-export const removeRecipe = (recipe: Recipe) => {
-  // TODO : Remove a recipe to the user connected
-  return null;
+export const removeRecipe = async (recipe: Recipe, userId: string) => {
+  const userRef = doc(db, 'users', userId);
+  const userSnap = await getDoc(userRef);
+  if (userSnap.exists()) {
+    const user = userSnap.data();
+    const recipes = user.recipes as Recipe[];
+    const newRecipes = recipes.filter((r) => r.id !== recipe.id);
+    await updateDoc(userRef, { recipes: newRecipes });
+  } else {
+    console.log('No such document!');
+  }
+};
+
+export const addEmptyUserDocument = async (userId: string) => {
+  const userRef = doc(db, 'users', userId);
+  const userSnap = await getDoc(userRef);
+  if (!userSnap.exists()) {
+    await setDoc(userRef, { recipes: [] });
+  }
 };
 
 export const getGroceryList = () => {

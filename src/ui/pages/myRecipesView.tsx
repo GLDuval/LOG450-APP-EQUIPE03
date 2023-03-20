@@ -10,8 +10,6 @@ import { getTheme } from '../../utils/designSystem';
 import { styleSheet } from '../../utils/stylesheet';
 import { useMyRecipes } from '../hooks/useMyRecipes';
 
-// TODO : Changer le RecipesList avec la vraie liste de favoris des recettes.
-
 export const MyRecipes: NavioScreen = observer(() => {
   const { recipes } = useMyRecipes();
 
@@ -34,7 +32,7 @@ export const MyRecipes: NavioScreen = observer(() => {
         </View>
       </View>
 
-      <View style={styleSheet.roundedTopCornersContainer} bg-bgColor>
+      <View style={styleSheet.roundedTopCornersContainer} bg-bgColor height={'100%'}>
         <RecipesList recipes={recipes} />
       </View>
     </View>

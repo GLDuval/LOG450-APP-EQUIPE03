@@ -1,34 +1,21 @@
-import { useEffect, useState } from 'react';
-import { getAll, add, remove } from '../../repository/myRecipeRepository';
+import { useContext, useEffect, useState } from 'react';
+import { getAllRecipes } from '../../repository/myRecipeRepository';
 import { Recipe } from '../../models/Recipe';
+import { UserContext } from '../../contexts/UserContext';
 
 export function useMyRecipes() {
   const [recipes, setRecipes] = useState<Recipe[]>([]);
+  const user = useContext(UserContext);
 
   useEffect(() => {
-    fetchRecipes();
-  }, []);
+    const fetchRecipes = async () => {
+      if (user) {
+        const result = await getAllRecipes(user.uid);
+        setRecipes(result);
+      }
+    };
+    fetchRecipes().catch(() => console.error('Cannot fetch recipes'));
+  }, [user]);
 
-  function fetchRecipes() {
-    const result = getAll();
-    setRecipes(result);
-  }
-
-  function addRecipe(recipe: Recipe) {
-    const result = add(recipe);
-
-    if (result) {
-      fetchRecipes();
-    }
-  }
-
-  function removeRecipe(recipe: Recipe) {
-    const result = remove(recipe);
-
-    if (result) {
-      fetchRecipes();
-    }
-  }
-
-  return { recipes, addRecipe, removeRecipe };
+  return { recipes };
 }
