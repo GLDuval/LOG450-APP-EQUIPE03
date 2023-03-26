@@ -1,33 +1,25 @@
-import { useEffect, useState } from 'react';
-import { getList, addItem, modifyQuantity } from '../../repository/groceryListRepository';
+import { useContext, useEffect, useState } from 'react';
+import { getList, modifyQuantity } from '../../repository/groceryListRepository';
 import { Product } from '../../models/Product';
+import { UserContext } from '../../contexts/UserContext';
 
 export function useGroceryList() {
   const [groceryList, setGroceryList] = useState<Product[]>([]);
+  const user = useContext(UserContext);
 
   useEffect(() => {
-    fetchGroceryList();
-  }, []);
+    const fetchGroceryList = async () => {
+      if (user) {
+        const result = await getList(user.uid);
+        setGroceryList(result);
+      }
+    };
+    fetchGroceryList().catch(() => console.error('Cannot fetch grocery list'));
+  }, [user]);
 
-  function fetchGroceryList() {
-    setGroceryList(getList());
+  function modifyProduct(userId: string, product: Product, quantity: number) {
+    void modifyQuantity(userId, product, quantity);
   }
 
-  function addProduct(product: Product, quantity: number) {
-    const result = addItem(product, quantity);
-
-    if (result) {
-      fetchGroceryList();
-    }
-  }
-
-  function modifyProduct(product: Product, quantity: number) {
-    const result = modifyQuantity(product, quantity);
-
-    if (result) {
-      fetchGroceryList();
-    }
-  }
-
-  return { groceryList, addProduct, modifyProduct };
+  return { groceryList, modifyProduct };
 }

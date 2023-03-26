@@ -1,31 +1,82 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import { getAll, getAllNext, getByName } from '../../repository/flyerRepository';
 import { Product } from '../../models/Product';
+import { UserContext } from '../../contexts/UserContext';
+import { getList } from '../../repository/groceryListRepository';
 
 export function useProductList() {
   const [productList, setProductList] = useState<Product[]>([]);
   const [lastProduct, setLastProduct] = useState<Product>({} as Product);
   const [searchedProducts, setSearchedProducts] = useState<Product[]>([]);
+  const [groceries, setGroceries] = useState<Product[]>([]);
+
+  const user = useContext(UserContext);
 
   useEffect(() => {
     function fetchData() {
-      getAll().then(
-        (products) => {
-          setProductList(products);
-          setLastProduct(products[products.length - 1] || ({} as Product));
-        },
-        (err) => {
-          console.log(err);
-        },
-      );
+      try {
+        getAll().then((products) => {
+          getList(user?.uid ?? '').then((groceryList) => {
+            setGroceries(groceryList);
+            if (groceryList.length > 0) {
+              const updatedProducts = products.map((product) => {
+                const groceryListProduct = groceryList.find(
+                  (r) =>
+                    r.product_name === product.product_name && r.sale_price === product.sale_price,
+                );
+
+                if (groceryListProduct) {
+                  groceryList.splice(groceryList.indexOf(groceryListProduct), 1);
+                  return {
+                    ...product,
+                    quantity: groceryListProduct.quantity,
+                  };
+                }
+
+                setGroceries(groceryList);
+                return product;
+              });
+
+              setProductList(updatedProducts);
+            } else {
+              setProductList(products);
+            }
+
+            setLastProduct(products[products.length - 1] || ({} as Product));
+          }, console.error);
+        }, console.error);
+      } catch (error) {
+        console.log(error);
+      }
     }
+
     fetchData();
-  }, []);
+  }, [user]);
 
   const loadMore = () => {
     getAllNext(lastProduct).then(
       (nextBatch) => {
-        setProductList([...productList, ...nextBatch]);
+        if (groceries.length > 0) {
+          const updatedProducts = nextBatch.map((product) => {
+            const groceryListProduct = groceries.find(
+              (r) => r.product_name === product.product_name && r.sale_price === product.sale_price,
+            );
+
+            if (groceryListProduct) {
+              groceries.splice(groceries.indexOf(groceryListProduct), 1);
+              return {
+                ...product,
+                quantity: groceryListProduct.quantity,
+              };
+            }
+
+            setGroceries(groceries);
+            return product;
+          });
+          setProductList([...productList, ...updatedProducts]);
+        } else {
+          setProductList([...productList, ...nextBatch]);
+        }
         setLastProduct(productList[productList.length - 1] || ({} as Product));
       },
       (err) => console.log(err),

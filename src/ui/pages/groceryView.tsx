@@ -18,6 +18,7 @@ import { getTheme } from '../../utils/designSystem';
 import { styleSheet } from '../../utils/stylesheet';
 import { useProductList } from '../hooks/useFlyer';
 import { useRecipes } from '../hooks/useRecipes';
+import IngredientNumberComponent from '../components/ingredient-number';
 
 export const GroceryInfos: NavioScreen = observer(() => {
   const [searchQuery, setSearchQuery] = React.useState('');
@@ -149,12 +150,7 @@ export const GroceryInfos: NavioScreen = observer(() => {
                       <View style={{ flexDirection: 'column', paddingLeft: 20, width: '75%' }}>
                         <View style={{ flexDirection: 'row' }}>
                           <Text style={styles.cardHeader}>{item.product_name}</Text>
-                          <TextInput
-                            placeholder="0"
-                            style={styles.textInput}
-                            maxLength={3}
-                            keyboardType="numeric"
-                          />
+                          <IngredientNumberComponent item={item} />
                         </View>
 
                         <Text style={styles.infos}>{item.regular_price}</Text>

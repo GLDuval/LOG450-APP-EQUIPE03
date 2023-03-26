@@ -4,10 +4,10 @@ import { Text, View } from 'react-native-ui-lib';
 import { getTheme } from '../../utils/designSystem';
 import { Product } from '../../models/Product';
 import { services } from '../../services';
+import IngredientNumberComponent from './ingredient-number';
 
 type FoodInfosListProps = {
   products: Product[];
-  modifyProduct: (product: Product, quantity: number) => void;
 };
 
 export const FoodInfosList = (props: FoodInfosListProps) => {
@@ -34,7 +34,6 @@ export const FoodInfosList = (props: FoodInfosListProps) => {
       fontWeight: 'bold',
     },
     cardContainer: {
-      flex: 1,
       marginHorizontal: 20,
     },
     card: {
@@ -62,14 +61,8 @@ export const FoodInfosList = (props: FoodInfosListProps) => {
     },
   });
 
-  const handleQuantityChange = (product: Product, value: string) => {
-    // TODO : Validate it works ? lol
-    const quantity = Number(value);
-    props.modifyProduct(product, quantity);
-  };
-
   return (
-    <View>
+    <View style={{ flex: 1 }}>
       <View style={{ padding: 20 }}>
         <TextInput
           style={styles.searchInput}
@@ -79,7 +72,7 @@ export const FoodInfosList = (props: FoodInfosListProps) => {
         />
       </View>
       <FlatList
-        onEndReachedThreshold={0.5}
+        contentContainerStyle={{ paddingBottom: 240 }}
         data={props.products.filter((recipe) =>
           recipe.product_name.toLowerCase().includes(searchQuery.toLowerCase()),
         )}
@@ -96,13 +89,7 @@ export const FoodInfosList = (props: FoodInfosListProps) => {
               <View style={{ flexDirection: 'column', paddingLeft: 20, width: '75%' }}>
                 <View style={{ flexDirection: 'row' }}>
                   <Text style={styles.cardHeader}>{item.product_name}</Text>
-                  <TextInput
-                    placeholder="0"
-                    style={styles.textInput}
-                    maxLength={3}
-                    keyboardType="numeric"
-                    onChangeText={(value) => handleQuantityChange(item, value)}
-                  />
+                  <IngredientNumberComponent item={item} />
                 </View>
 
                 <Text style={styles.infos}>{item.regular_price}</Text>

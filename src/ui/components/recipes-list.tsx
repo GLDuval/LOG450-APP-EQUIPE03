@@ -46,6 +46,7 @@ export const RecipesList = (props: RecipesListProps) => {
 
   return (
     <FlatList
+      contentContainerStyle={{ paddingBottom: 240 }}
       data={props.recipes}
       renderItem={({ item }) => (
         <TouchableHighlight

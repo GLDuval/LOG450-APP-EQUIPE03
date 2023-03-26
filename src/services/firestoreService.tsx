@@ -208,53 +208,60 @@ export const addEmptyUserDocument = async (userId: string) => {
   const userRef = doc(db, 'users', userId);
   const userSnap = await getDoc(userRef);
   if (!userSnap.exists()) {
-    await setDoc(userRef, { recipes: [] });
+    await setDoc(userRef, { recipes: [], products: [] });
   }
 };
 
-export const getGroceryList = () => {
-  // TODO : Use the user real grocery list
-  const products: Product[] = [
-    {
-      id: '1',
-      product_name: 'Product 1',
-      image_url: 'https://example.com/product1.jpg',
-      regular_price: '$10.99',
-      sale_price: '$9.99',
-      quantity: 10,
-      created_at: new Date('2022-01-01'),
-    },
-    {
-      id: '2',
-      product_name: 'Product 2',
-      image_url: 'https://example.com/product2.jpg',
-      regular_price: '$5.99',
-      sale_price: '$4.99',
-      quantity: 20,
-      created_at: new Date('2022-01-02'),
-    },
-    {
-      id: '3',
-      product_name: 'Product 3',
-      image_url: 'https://example.com/product3.jpg',
-      regular_price: '$15.99',
-      sale_price: '$12.99',
-      quantity: 5,
-      created_at: new Date('2022-01-03'),
-    },
-  ];
+export const getGroceryList = async (userId: string) => {
+  let products: Product[] = [];
+  const userRef = doc(db, 'users', userId);
+  const userSnap = await getDoc(userRef);
+  if (userSnap.exists()) {
+    const user = userSnap.data();
+    products = user.products as Product[];
+  } else {
+    console.log('No such document!');
+  }
 
   return products;
 };
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-export const addGroceryListItem = (product: Product, quantity: number) => {
-  // TODO : Save ingredient with the quantity
-  return null;
-};
+export const modifyGroceryListItemQuantity = async (
+  userId: string,
+  product: Product,
+  quantity: number,
+) => {
+  const userRef = doc(db, 'users', userId);
+  const userSnap = await getDoc(userRef);
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-export const modifyGroceryListItemQuantity = (product: Product, quantity: number) => {
-  // TODO : If quantity = 0, remove it from the list, if not, add the item
-  return null;
+  if (userSnap.exists()) {
+    const user = userSnap.data();
+    const products = user.products as Product[];
+    let newProducts = products;
+    if (quantity === 0) {
+      newProducts = products.filter(
+        (r) => r.product_name !== product.product_name && r.sale_price !== product.sale_price,
+      );
+    } else {
+      let found = false;
+
+      newProducts = products.map((r) => {
+        if (r.product_name === product.product_name && r.sale_price === product.sale_price) {
+          r.quantity = quantity;
+          found = true;
+        }
+        return r;
+      });
+
+      if (!found) {
+        product.quantity = quantity;
+        newProducts.push(product);
+      }
+    }
+
+    await updateDoc(userRef, { products: newProducts });
+  } else {
+    console.log('No such document!');
+  }
 };
