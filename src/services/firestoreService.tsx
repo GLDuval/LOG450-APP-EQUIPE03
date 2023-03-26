@@ -240,12 +240,14 @@ export const modifyGroceryListItemQuantity = async (
     const products = user.products as Product[];
     let newProducts = products;
     if (quantity === 0) {
-      newProducts = products.filter((r) => r.product_name !== product.product_name);
+      newProducts = products.filter(
+        (r) => r.product_name !== product.product_name && r.sale_price !== product.sale_price,
+      );
     } else {
       let found = false;
 
       newProducts = products.map((r) => {
-        if (r.product_name === product.product_name) {
+        if (r.product_name === product.product_name && r.sale_price === product.sale_price) {
           r.quantity = quantity;
           found = true;
         }
