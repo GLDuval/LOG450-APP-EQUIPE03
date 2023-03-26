@@ -11,7 +11,7 @@ import { FoodInfosList } from '../components/food-infos-list';
 import { useGroceryList } from '../hooks/useGroceryList';
 
 export const GroceryList: NavioScreen = observer(() => {
-  const { groceryList, modifyProduct } = useGroceryList();
+  const { groceryList } = useGroceryList();
 
   return (
     <View flex style={{ backgroundColor: getTheme().orange }}>
@@ -33,7 +33,7 @@ export const GroceryList: NavioScreen = observer(() => {
       </View>
       <View style={styleSheet.roundedTopCornersContainer} bg-bgColor>
         <View style={{ height: 1000 }}>
-          <FoodInfosList products={groceryList} modifyProduct={modifyProduct} />
+          <FoodInfosList products={groceryList} />
         </View>
       </View>
     </View>

@@ -1,21 +1,13 @@
-import {
-  getGroceryList,
-  addGroceryListItem,
-  modifyGroceryListItemQuantity,
-} from '../services/firestoreService';
+import { getGroceryList, modifyGroceryListItemQuantity } from '../services/firestoreService';
 import { Product } from '../models/Product';
 
-export function getList() {
-  const result = getGroceryList();
+export async function getList(userId: string) {
+  const result = getGroceryList(userId);
   return result;
 }
 
-export function addItem(product: Product, quantity: number) {
-  const result = addGroceryListItem(product, quantity);
-  return result;
-}
-
-export function modifyQuantity(product: Product, quantity: number) {
-  const result = modifyGroceryListItemQuantity(product, quantity);
-  return result;
+export function modifyQuantity(userId: string, product: Product, quantity: number) {
+  modifyGroceryListItemQuantity(userId, product, quantity).catch((error) => {
+    console.error(error);
+  });
 }

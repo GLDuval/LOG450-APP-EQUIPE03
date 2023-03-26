@@ -21,7 +21,8 @@ export const Join: NavioScreen = observer(() => {
 
   // State (local)
   const [loading, setLoading] = useState(false);
-  const [credentialsError, setCredentialsError] = useState(false);
+  const [error, setError] = useState(false);
+  const [errorMessage, setErrorMessage] = useState('');
 
   const [name, setName] = useState('');
   const [emailInput, setEmail] = useState('');
@@ -39,16 +40,28 @@ export const Join: NavioScreen = observer(() => {
             displayName: name,
           });
           await addEmptyUserDocument(user.uid);
-          setCredentialsError(false);
+          setError(false);
           setLoading(false);
           navio.push('Login');
         })
         .catch((error: FirebaseError) => {
-          const errorCode = error.code;
-          const errorMessage = error.message;
-          setCredentialsError(true);
+          setError(true);
+          switch (error.code) {
+            case 'auth/email-already-in-use':
+              setErrorMessage(services.t.do('signup.emailAlreadyInUse'));
+              break;
+            case 'auth/weak-password':
+              setErrorMessage(services.t.do('signup.weakPassword'));
+              break;
+            case 'auth/invalid-email':
+              setErrorMessage(services.t.do('signup.invalidEmail'));
+              break;
+            default:
+              setErrorMessage(services.t.do('signup.unknownError'));
+              break;
+          }
           setLoading(false);
-          console.log(errorCode, errorMessage);
+          console.log(error.code, error.message);
         });
     },
     [name, navio],
@@ -70,7 +83,7 @@ export const Join: NavioScreen = observer(() => {
       color: getTheme().blueberry,
       textAlign: 'center',
     },
-    credentialsErrorText: {
+    error: {
       fontSize: 18,
       flex: 1,
       fontWeight: 'bold',
@@ -116,11 +129,7 @@ export const Join: NavioScreen = observer(() => {
               value={passwordInput}
             />
           </View>
-          {credentialsError && (
-            <Text style={styles.credentialsErrorText}>
-              {services.t.do('signup.passwordLength')}
-            </Text>
-          )}
+          {error && <Text style={styles.error}>{errorMessage}</Text>}
         </View>
 
         <View style={styleSheet.loginInput}>
