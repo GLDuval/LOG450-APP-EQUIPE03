@@ -37,7 +37,7 @@ export const IngredientsList = ({ ingredients }: IngredientsListProps) => {
         renderItem={({ item }) => (
           <View style={{ flexDirection: 'row', paddingTop: 20, paddingLeft: 20 }}>
             <View style={{ flexDirection: 'column' }}>
-              <Checkbox isChecked={item.isCheck} />
+              <Checkbox isChecked={false} />
             </View>
 
             <View style={{ flexDirection: 'column', paddingLeft: 10 }}>

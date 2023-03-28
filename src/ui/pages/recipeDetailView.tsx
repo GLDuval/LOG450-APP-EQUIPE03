@@ -18,8 +18,6 @@ type RecipeDetailsProps = {
 };
 
 export const RecipeDetails = ({ route }: RecipeDetailsProps) => {
-  const ingredientsLength = 8;
-
   // STYLES
   const styles = StyleSheet.create({
     page: {
@@ -53,8 +51,11 @@ export const RecipeDetails = ({ route }: RecipeDetailsProps) => {
         </View>
         <TabController
           items={[
-            // eslint-disable-next-line @typescript-eslint/restrict-plus-operands
-            { label: services.t.do('recipeDetails.ingredients') + ' (' + ingredientsLength + ')' },
+            {
+              label: `${services.t.do('recipeDetails.ingredients')} (${
+                route.params.recipe.ingredients.length
+              })`,
+            },
             { label: services.t.do('recipeDetails.instructions') },
           ]}
         >

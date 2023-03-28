@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 import { getTheme } from '../../utils/designSystem';
 import { Checkbox } from 'react-native-ui-lib';
 
@@ -6,22 +6,16 @@ type IngredientsListProps = {
   isChecked: boolean;
 };
 
-class CheckboxComponent extends Component<IngredientsListProps> {
-  state = {
-    isChecked: this.props.isChecked,
+const CheckboxComponent = ({ isChecked }: IngredientsListProps) => {
+  const [checked, setChecked] = useState<boolean>(isChecked);
+
+  const handleValueChange = () => {
+    setChecked(!checked);
   };
 
-  render() {
-    const { isChecked } = this.state;
-
-    return (
-      <Checkbox
-        value={isChecked}
-        onValueChange={(isChecked: boolean) => this.setState({ isChecked })}
-        color={getTheme().lightOrange}
-      />
-    );
-  }
-}
+  return (
+    <Checkbox value={checked} onValueChange={handleValueChange} color={getTheme().lightOrange} />
+  );
+};
 
 export default CheckboxComponent;
