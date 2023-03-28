@@ -56,6 +56,7 @@ export function useProductList() {
   const loadMore = () => {
     getAllNext(lastProduct).then(
       (nextBatch) => {
+        let newProductList = [];
         if (groceries.length > 0) {
           const updatedProducts = nextBatch.map((product) => {
             const groceryListProduct = groceries.find(
@@ -73,11 +74,12 @@ export function useProductList() {
             setGroceries(groceries);
             return product;
           });
-          setProductList([...productList, ...updatedProducts]);
+          newProductList = [...productList, ...updatedProducts];
         } else {
-          setProductList([...productList, ...nextBatch]);
+          newProductList = [...productList, ...nextBatch];
         }
-        setLastProduct(productList[productList.length - 1] || ({} as Product));
+        setProductList(newProductList);
+        setLastProduct(newProductList[newProductList.length - 1] || ({} as Product));
       },
       (err) => console.log(err),
     );

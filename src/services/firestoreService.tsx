@@ -226,7 +226,6 @@ export const getGroceryList = async (userId: string) => {
   return products;
 };
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
 export const modifyGroceryListItemQuantity = async (
   userId: string,
   product: Product,
