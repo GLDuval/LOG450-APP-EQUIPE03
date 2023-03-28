@@ -1,8 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unsafe-return */
-/* eslint-disable @typescript-eslint/no-unsafe-call */
-/* eslint-disable @typescript-eslint/no-unsafe-argument */
-/* eslint-disable @typescript-eslint/no-unsafe-member-access */
-/* eslint-disable @typescript-eslint/no-unsafe-assignment */
 import React, { useCallback, useEffect, useState } from 'react';
 import { ScrollView, StatusBar, StyleSheet } from 'react-native';
 import { Text, View, Button, LoaderScreen, Colors, Icon } from 'react-native-ui-lib';
@@ -33,7 +28,7 @@ export const Login: NavioScreen = observer(() => {
   const [isWrongLogin, setWrongLogin] = useState(false);
   const [emailInput, setEmail] = useState('');
   const [passwordInput, setPassword] = useState('');
-  const [user, loading] = useAuthState(auth);
+  const [, loading] = useAuthState(auth);
 
   // Google login
   const [request, googleResponse, promptAsync] = Google.useIdTokenAuthRequest({
@@ -58,18 +53,10 @@ export const Login: NavioScreen = observer(() => {
     }
   }, [googleResponse, navio]);
 
-  useEffect(() => {
-    if (user) {
-      navio.setRoot('MainStack');
-    }
-  }, [user, navio]);
-
   const login = useCallback(
     async (email: string, password: string) => {
       await signInWithEmailAndPassword(auth, email, password)
         .then(() => {
-          // Signed in
-          // const user = userCredential.user;
           setWrongLogin(false);
           navio.setRoot('MainStack');
         })
