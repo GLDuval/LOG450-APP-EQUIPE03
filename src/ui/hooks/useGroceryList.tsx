@@ -18,7 +18,7 @@ export function useGroceryList() {
   }, [user]);
 
   function modifyProduct(userId: string, product: Product, quantity: number) {
-    void modifyQuantity(userId, product, quantity);
+    modifyQuantity(userId, product, quantity);
   }
 
   return { groceryList, modifyProduct };

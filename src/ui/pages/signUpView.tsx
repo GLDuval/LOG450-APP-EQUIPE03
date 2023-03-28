@@ -44,9 +44,9 @@ export const Join: NavioScreen = observer(() => {
           setLoading(false);
           navio.push('Login');
         })
-        .catch((error: FirebaseError) => {
+        .catch((userError: FirebaseError) => {
           setError(true);
-          switch (error.code) {
+          switch (userError.code) {
             case 'auth/email-already-in-use':
               setErrorMessage(services.t.do('signup.emailAlreadyInUse'));
               break;
@@ -61,7 +61,7 @@ export const Join: NavioScreen = observer(() => {
               break;
           }
           setLoading(false);
-          console.log(error.code, error.message);
+          console.log(userError.code, userError.message);
         });
     },
     [name, navio],

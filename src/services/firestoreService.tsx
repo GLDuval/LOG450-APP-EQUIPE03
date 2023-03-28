@@ -144,8 +144,8 @@ export const getProductsByName = async (queryString: string) => {
     where('product_name_lower', '<=', queryString.toLowerCase() + '\uf8ff'),
   );
   const querySnapshot = await getDocs(firestoreQuery);
-  querySnapshot.forEach((doc) => {
-    products.push(doc.data() as Product);
+  querySnapshot.forEach((item) => {
+    products.push(item.data() as Product);
   });
 
   return products;

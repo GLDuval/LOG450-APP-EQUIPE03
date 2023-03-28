@@ -28,12 +28,19 @@ export const Login: NavioScreen = observer(() => {
   const [isWrongLogin, setWrongLogin] = useState(false);
   const [emailInput, setEmail] = useState('');
   const [passwordInput, setPassword] = useState('');
-  const [, loading] = useAuthState(auth);
+  const [user, loading] = useAuthState(auth);
+  const [loginLoading, setLoginLoading] = useState(false);
 
   // Google login
   const [request, googleResponse, promptAsync] = Google.useIdTokenAuthRequest({
     clientId: webClientID,
   });
+
+  useEffect(() => {
+    if (user) {
+      navio.setRoot('MainStack');
+    }
+  }, [user, navio]);
 
   useEffect(() => {
     if (googleResponse?.type === 'success') {
@@ -43,7 +50,6 @@ export const Login: NavioScreen = observer(() => {
         .then(async (userCredential) => {
           const googleUser = userCredential.user;
           await addEmptyUserDocument(googleUser.uid);
-          navio.setRoot('MainStack');
         })
         .catch((error: FirebaseError) => {
           const errorCode = error.code;
@@ -55,6 +61,7 @@ export const Login: NavioScreen = observer(() => {
 
   const login = useCallback(
     async (email: string, password: string) => {
+      setLoginLoading(true);
       await signInWithEmailAndPassword(auth, email, password)
         .then(() => {
           setWrongLogin(false);
@@ -65,6 +72,9 @@ export const Login: NavioScreen = observer(() => {
           const errorMessage = error.message;
           setWrongLogin(true);
           console.log(errorCode, errorMessage);
+        })
+        .finally(() => {
+          setLoginLoading(false);
         });
     },
     [navio],
@@ -108,7 +118,7 @@ export const Login: NavioScreen = observer(() => {
     },
   });
 
-  return (
+  return !loading && !loginLoading ? (
     <View flex bg-bgColor>
       <StatusBar backgroundColor={getTheme().bgColor} />
       <ScrollView contentInsetAdjustmentBehavior="always">
@@ -174,9 +184,10 @@ export const Login: NavioScreen = observer(() => {
             {services.t.do('login.signup')}
           </Text>
         </View>
-        {loading && <LoaderScreen message={services.t.do('login.loading')} color={Colors.grey40} />}
       </ScrollView>
     </View>
+  ) : (
+    <LoaderScreen message={services.t.do('login.loading')} color={Colors.grey40} />
   );
 });
 Login.options = () => ({});
