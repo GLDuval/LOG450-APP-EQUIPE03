@@ -8,7 +8,7 @@ import { services } from '../../services';
 import { getTheme } from '../../utils/designSystem';
 import { styleSheet } from '../../utils/stylesheet';
 import { useMap } from '../hooks/useMap';
-import MapView, { Marker, Region } from 'react-native-maps';
+import MapView, { Marker, Region, PROVIDER_GOOGLE } from 'react-native-maps';
 import * as Location from 'expo-location';
 
 export const GroceryMap: NavioScreen = observer(() => {
@@ -74,7 +74,7 @@ export const GroceryMap: NavioScreen = observer(() => {
                 {services.t.do('map.permissionDenied')}
               </Text>
             ) : location && region ? (
-              <MapView style={{ flex: 1 }} initialRegion={region}>
+              <MapView style={{ flex: 1 }} initialRegion={region} provider={PROVIDER_GOOGLE}>
                 <Marker
                   coordinate={region}
                   title={services.t.do('map.myLocation')}

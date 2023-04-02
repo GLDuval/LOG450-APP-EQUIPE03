@@ -152,14 +152,6 @@ export const Login: NavioScreen = observer(() => {
         </View>
 
         <View style={styleSheet.loginInput}>
-          <View style={styles.loginOptions}>
-            <View>
-              <Text>{services.t.do('login.forgotPassword')}</Text>
-            </View>
-          </View>
-        </View>
-
-        <View style={styleSheet.loginInput}>
           <Button
             label={services.t.do('login.login')}
             labelStyle={styleSheet.loginButtonLabel}

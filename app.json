@@ -1,7 +1,7 @@
 {
   "expo": {
     "name": "ramsai",
-    "slug": "ramsai",
+    "slug": "coco-is-cool",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -25,7 +25,12 @@
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#FFFFFF"
       },
-      "package": "ramsai"
+      "package": "com.hugomigner.ramsai",
+      "config": {
+        "googleMaps": {
+          "apiKey": "AIzaSyDmo5Be-mm4LxAQNTBvRuH8rUZwyvahwM0"
+        }
+      }
     },
     "extra": {
       "eas": {

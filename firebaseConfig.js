@@ -3,7 +3,7 @@ import { browserLocalPersistence, getAuth } from 'firebase/auth';
 import { getFirestore } from 'firebase/firestore';
 
 export const webClientID =
-  '410375834279-003cgj0ddqpt1penmhv6f1djvt8u3g6a.apps.googleusercontent.com';
+  '410375834279-97l6bvj1346a5krttagsuvi3hjsr2v7i.apps.googleusercontent.com';
 
 // Initialize Firebase
 const firebaseConfig = {
