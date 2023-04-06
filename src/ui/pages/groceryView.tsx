@@ -153,8 +153,8 @@ export const GroceryInfos: NavioScreen = observer(() => {
                           <IngredientNumberComponent item={item} />
                         </View>
 
-                        <Text style={styles.infos}>{item.regular_price}</Text>
-                        <Text style={styles.oldPrice}>{item.sale_price}</Text>
+                        <Text style={styles.infos}>{item.sale_price}</Text>
+                        <Text style={styles.oldPrice}>{item.regular_price}</Text>
                       </View>
                     </View>
                   </View>
